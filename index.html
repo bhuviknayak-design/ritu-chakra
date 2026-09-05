@@ -1,0 +1,4692 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ritu-Chakra — India's Seasonal Living</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root{
+  --bg:#f6f2e7;
+  --card:#fffdf8;
+  --card2:#eee9da;
+  --text:#263629;
+  --muted:#728073;
+  --green:#365c3c;
+  --green2:#6e9367;
+  --green3:#dce8d0;
+  --gold:#e5b94d;
+  --orange:#d8793d;
+  --red:#c95b55;
+  --blue:#7199b4;
+  --border:#ddd8c9;
+  --shadow:0 18px 50px rgba(48,67,48,.10);
+  --radius:22px;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  font-family:"DM Sans",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+button,input,select{font:inherit}
+
+button{cursor:pointer}
+
+.app{
+  min-height:100vh;
+  padding-bottom:90px;
+}
+
+.app.dark{
+  --bg:#101610;
+  --card:#192119;
+  --card2:#222c22;
+  --text:#eef2e9;
+  --muted:#aab5a7;
+  --green:#71986a;
+  --green2:#91b27f;
+  --green3:#2c3b2c;
+  --border:#303a30;
+  --shadow:0 18px 55px rgba(0,0,0,.28);
+}
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:78px;
+  padding:0 5vw;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:rgba(255,253,248,.88);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(18px);
+}
+
+.dark .header{
+  background:rgba(25,33,25,.9);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#e6d77e,#a5b878);
+  font-size:23px;
+  box-shadow:0 5px 18px rgba(95,115,60,.2);
+}
+
+.brand h1{
+  margin:0;
+  font:700 21px "Playfair Display",serif;
+}
+
+.brand p{
+  margin:2px 0 0;
+  font-size:10px;
+  color:var(--muted);
+  letter-spacing:.8px;
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.header-actions select,
+.header-btn{
+  height:40px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--card);
+  color:var(--text);
+  padding:0 11px;
+}
+
+.xp-pill{
+  background:#f1d575;
+  color:#51400d;
+  border-radius:999px;
+  padding:10px 14px;
+  font-size:12px;
+  font-weight:800;
+}
+
+main{
+  width:min(1180px,90%);
+  margin:auto;
+}
+
+.page{
+  display:none;
+  animation:fade .3s ease;
+}
+
+.page.active{display:block}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(7px)}
+  to{opacity:1;transform:none}
+}
+
+.hero{
+  min-height:620px;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  align-items:center;
+  gap:40px;
+}
+
+.eyebrow{
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2px;
+  color:var(--green2);
+}
+
+.hero h2{
+  margin:17px 0;
+  font:600 clamp(45px,6vw,75px)/.97 "Playfair Display",serif;
+  letter-spacing:-2px;
+}
+
+.hero h2 em{
+  color:var(--green2);
+}
+
+.hero p{
+  max-width:600px;
+  color:var(--muted);
+  line-height:1.85;
+  font-size:16px;
+}
+
+.btn-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+
+.btn{
+  border:0;
+  border-radius:14px;
+  padding:13px 19px;
+  font-weight:800;
+  transition:.2s;
+}
+
+.btn:hover{transform:translateY(-2px)}
+
+.btn-primary{
+  color:white;
+  background:var(--green);
+}
+
+.btn-secondary{
+  color:var(--text);
+  background:var(--card);
+  border:1px solid var(--border);
+}
+
+.chakra{
+  position:relative;
+  width:min(420px,82vw);
+  aspect-ratio:1;
+  margin:auto;
+  border-radius:50%;
+  background:
+    conic-gradient(
+      #9db97b 0 16.6%,
+      #e1bd58 16.6% 33.2%,
+      #77a29d 33.2% 49.8%,
+      #d89a68 49.8% 66.4%,
+      #b08d67 66.4% 83%,
+      #849db8 83% 100%
+    );
+  border:17px solid var(--card);
+  box-shadow:var(--shadow);
+}
+
+.chakra:before{
+  content:"";
+  position:absolute;
+  inset:17%;
+  border-radius:50%;
+  border:1px dashed rgba(255,255,255,.8);
+}
+
+.chakra-center{
+  position:absolute;
+  inset:0;
+  margin:auto;
+  width:125px;
+  height:125px;
+  border-radius:50%;
+  background:var(--card);
+  display:grid;
+  place-items:center;
+  text-align:center;
+  font:600 25px/1.1 "Playfair Display",serif;
+  color:var(--green);
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+.season-node{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  width:82px;
+  height:82px;
+  border:0;
+  border-radius:22px;
+  background:rgba(255,255,255,.88);
+  color:#263629;
+  box-shadow:0 8px 22px rgba(0,0,0,.12);
+  transition:.2s;
+}
+
+.dark .season-node{
+  background:#202a20;
+  color:white;
+}
+
+.season-node:hover{
+  transform:translate(-50%,-50%) scale(1.08);
+}
+
+.season-node.active{
+  outline:4px solid rgba(255,255,255,.8);
+  background:var(--green);
+  color:white;
+}
+
+.season-node span{
+  display:block;
+  font-size:25px;
+}
+
+.season-node small{
+  font-size:9px;
+  font-weight:800;
+}
+
+.s1{left:50%;top:4%}
+.s2{left:88%;top:28%}
+.s3{left:88%;top:72%}
+.s4{left:50%;top:96%}
+.s5{left:12%;top:72%}
+.s6{left:12%;top:28%}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin:20px 0 65px;
+}
+
+.stat{
+  padding:19px;
+  display:flex;
+  gap:13px;
+  align-items:center;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+}
+
+.stat-icon{
+  width:43px;
+  height:43px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:var(--card2);
+  font-size:20px;
+}
+
+.stat strong{
+  display:block;
+  font-size:21px;
+}
+
+.stat span{
+  display:block;
+  margin-top:2px;
+  font-size:11px;
+  color:var(--muted);
+}
+
+.section{
+  padding:25px 0 60px;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:22px;
+}
+
+.section-title h2,
+.page-title h2{
+  margin:5px 0 0;
+  font:600 38px "Playfair Display",serif;
+}
+
+.link-btn{
+  border:0;
+  background:none;
+  color:var(--green2);
+  font-weight:800;
+}
+
+.food-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.food-grid.four{
+  grid-template-columns:repeat(4,1fr);
+}
+
+.food{
+  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:var(--card);
+  transition:.2s;
+}
+
+.food:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--shadow);
+}
+
+.food-visual{
+  height:145px;
+  display:grid;
+  place-items:center;
+  font-size:62px;
+}
+
+.food-body{
+  padding:17px;
+}
+
+.food-name{
+  display:flex;
+  justify-content:space-between;
+  align-items:start;
+  gap:10px;
+}
+
+.food h3{
+  margin:0;
+  font:600 20px "Playfair Display",serif;
+}
+
+.tag{
+  white-space:nowrap;
+  padding:5px 7px;
+  border-radius:999px;
+  font-size:8px;
+  font-weight:800;
+  text-transform:uppercase;
+  background:var(--green3);
+  color:var(--green);
+}
+
+.food p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+
+.food-actions{
+  display:flex;
+  gap:7px;
+}
+
+.food-actions button{
+  flex:1;
+  border:0;
+  border-radius:10px;
+  padding:9px;
+  background:var(--green);
+  color:white;
+  font-size:11px;
+  font-weight:800;
+}
+
+.food-actions .fav{
+  flex:0 0 42px;
+  background:var(--card2);
+  color:var(--text);
+}
+
+.daily{
+  margin:20px 0 60px;
+  padding:30px;
+  border-radius:25px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:20px;
+  align-items:center;
+  color:white;
+  background:var(--green);
+}
+
+.daily-icon{
+  width:60px;
+  height:60px;
+  border-radius:17px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.13);
+  font-size:28px;
+}
+
+.daily h3{
+  margin:7px 0;
+  font:600 25px "Playfair Display",serif;
+}
+
+.daily p{
+  margin:0;
+  font-size:12px;
+  opacity:.72;
+  line-height:1.7;
+}
+
+.page{
+  padding:60px 0;
+}
+
+.page-title{
+  margin-bottom:35px;
+}
+
+.page-title p{
+  color:var(--muted);
+  max-width:680px;
+  line-height:1.7;
+}
+
+.search{
+  width:100%;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  border-radius:14px;
+  padding:15px 17px;
+  outline:0;
+}
+
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:13px 0 25px;
+}
+
+.filter{
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  padding:8px 13px;
+  border-radius:999px;
+  font-size:11px;
+}
+
+.filter.active{
+  color:white;
+  background:var(--green);
+  border-color:var(--green);
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.info-card{
+  padding:28px;
+  border:1px solid var(--border);
+  border-radius:22px;
+  background:var(--card);
+}
+
+.info-icon{
+  font-size:35px;
+  margin-bottom:13px;
+}
+
+.info-card h3{
+  margin:0 0 9px;
+  font:600 26px "Playfair Display",serif;
+}
+
+.info-card p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.75;
+  font-size:13px;
+}
+
+.ritus{
+  display:grid;
+  gap:12px;
+}
+
+.ritu-card{
+  padding:21px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:16px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+}
+
+.ritu-icon{
+  width:52px;
+  height:52px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  font-size:25px;
+  background:var(--card2);
+}
+
+.ritu-card h3{
+  margin:0;
+  font:600 21px "Playfair Display",serif;
+}
+
+.ritu-card p{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.ritu-months{
+  color:var(--green2);
+  font-weight:800;
+  font-size:11px;
+}
+
+.region-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.region{
+  padding:25px;
+  min-height:180px;
+  border-radius:20px;
+  background:var(--card);
+  border:1px solid var(--border);
+  transition:.2s;
+}
+
+.region:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow);
+}
+
+.region-icon{font-size:35px}
+
+.region h3{
+  margin:12px 0 6px;
+  font:600 23px "Playfair Display",serif;
+}
+
+.region p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+
+.festival-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.festival{
+  padding:25px;
+  border-radius:20px;
+  background:var(--card);
+  border:1px solid var(--border);
+}
+
+.festival .emoji{font-size:37px}
+
+.festival h3{
+  margin:12px 0 7px;
+  font:600 23px "Playfair Display",serif;
+}
+
+.festival p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+}
+
+.lesson{
+  padding:27px;
+  margin-bottom:15px;
+  border-radius:20px;
+  background:var(--card);
+  border:1px solid var(--border);
+}
+
+.lesson-header{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.lesson-number{
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:var(--green);
+  color:white;
+  font-weight:800;
+}
+
+.lesson h3{
+  margin:0;
+  font:600 24px "Playfair Display",serif;
+}
+
+.lesson p{
+  color:var(--muted);
+  line-height:1.8;
+  font-size:13px;
+}
+
+.lesson ul{
+  color:var(--muted);
+  line-height:2;
+  font-size:13px;
+}
+
+.quest-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.quest{
+  padding:25px;
+  border:1px solid var(--border);
+  border-radius:21px;
+  background:var(--card);
+}
+
+.quest.completed{
+  background:var(--green3);
+}
+
+.quest-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:start;
+}
+
+.quest-icon{
+  font-size:34px;
+}
+
+.xp{
+  color:#a77c12;
+  background:#f4dda0;
+  border-radius:999px;
+  padding:6px 9px;
+  font-size:10px;
+  font-weight:800;
+}
+
+.quest h3{
+  margin:15px 0 6px;
+  font:600 24px "Playfair Display",serif;
+}
+
+.quest p{
+  min-height:42px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+
+.quest button{
+  border:0;
+  border-radius:11px;
+  background:var(--green);
+  color:white;
+  padding:10px 15px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.quest button:disabled{
+  background:var(--card2);
+  color:var(--muted);
+}
+
+.game-wrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.game{
+  padding:32px;
+  text-align:center;
+  border-radius:24px;
+  background:var(--card);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+
+.game-icon{
+  font-size:75px;
+}
+
+.game h3{
+  font:600 28px "Playfair Display",serif;
+}
+
+.answers{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.answer{
+  border:1px solid var(--border);
+  background:var(--card2);
+  color:var(--text);
+  border-radius:12px;
+  padding:13px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.answer:hover{
+  background:var(--green);
+  color:white;
+}
+
+.game-score{
+  margin-top:18px;
+  color:var(--green2);
+  font-weight:800;
+  font-size:12px;
+}
+
+.profile-head{
+  padding:30px;
+  border-radius:25px;
+  background:var(--card);
+  border:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.avatar{
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:43px;
+  background:#dce7cc;
+}
+
+.profile-head h2{
+  margin:0;
+  font:600 31px "Playfair Display",serif;
+}
+
+.profile-head p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.profile-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin:18px 0 40px;
+}
+
+.badges{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:13px;
+}
+
+.badge{
+  padding:23px 10px;
+  text-align:center;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+}
+
+.badge-icon{
+  font-size:36px;
+  margin-bottom:9px;
+}
+
+.badge strong{
+  display:block;
+  font-size:12px;
+}
+
+.badge small{
+  color:var(--muted);
+  font-size:9px;
+}
+
+.badge.locked{
+  opacity:.3;
+  filter:grayscale(1);
+}
+
+.settings{
+  display:grid;
+  gap:13px;
+}
+
+.setting{
+  padding:20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border:1px solid var(--border);
+  border-radius:17px;
+  background:var(--card);
+}
+
+.setting h3{
+  margin:0;
+  font-size:14px;
+}
+
+.setting p{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.toggle{
+  width:48px;
+  height:27px;
+  border:0;
+  border-radius:999px;
+  background:#b8c1b4;
+  padding:3px;
+}
+
+.toggle span{
+  display:block;
+  width:21px;
+  height:21px;
+  border-radius:50%;
+  background:white;
+  transition:.2s;
+}
+
+.toggle.on{
+  background:var(--green);
+}
+
+.toggle.on span{
+  transform:translateX(21px);
+}
+
+.bottom-nav{
+  position:fixed;
+  z-index:90;
+  bottom:14px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(680px,94%);
+  display:flex;
+  justify-content:space-around;
+  padding:7px;
+  background:rgba(255,253,248,.92);
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(18px);
+}
+
+.dark .bottom-nav{
+  background:rgba(25,33,25,.94);
+}
+
+.nav-btn{
+  flex:1;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  padding:8px 5px;
+  border-radius:14px;
+  font-size:9px;
+  font-weight:700;
+}
+
+.nav-btn span{
+  display:block;
+  font-size:18px;
+  margin-bottom:3px;
+}
+
+.nav-btn.active{
+  color:white;
+  background:var(--green);
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(10,15,10,.65);
+  backdrop-filter:blur(8px);
+}
+
+.modal.show{display:flex}
+
+.modal-box{
+  width:min(620px,100%);
+  max-height:90vh;
+  overflow:auto;
+  padding:30px;
+  border-radius:25px;
+  background:var(--card);
+  color:var(--text);
+  box-shadow:0 30px 90px rgba(0,0,0,.3);
+}
+
+.modal-close{
+  float:right;
+  border:0;
+  background:var(--card2);
+  color:var(--text);
+  width:35px;
+  height:35px;
+  border-radius:50%;
+}
+
+.modal-food{
+  text-align:center;
+}
+
+.modal-food .big{
+  font-size:90px;
+}
+
+.modal-food h2{
+  font:600 34px "Playfair Display",serif;
+}
+
+.modal-food p{
+  color:var(--muted);
+  line-height:1.8;
+  font-size:13px;
+}
+
+.notice{
+  padding:17px;
+  border-radius:16px;
+  background:var(--green3);
+  color:var(--green);
+  font-size:12px;
+  line-height:1.7;
+}
+
+.empty{
+  grid-column:1/-1;
+  padding:50px;
+  text-align:center;
+  color:var(--muted);
+  background:var(--card);
+  border:1px dashed var(--border);
+  border-radius:20px;
+}
+
+@media(max-width:950px){
+  .hero{
+    grid-template-columns:1fr;
+    padding:45px 0;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .food-grid.four{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .region-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .festival-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .game-wrap{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:650px){
+  .header{
+    padding:0 4%;
+  }
+
+  .brand p,
+  .xp-pill{
+    display:none;
+  }
+
+  .hero h2{
+    font-size:47px;
+  }
+
+  .stats,
+  .food-grid,
+  .food-grid.four,
+  .info-grid,
+  .region-grid,
+  .festival-grid,
+  .quest-grid,
+  .profile-stats,
+  .badges{
+    grid-template-columns:1fr;
+  }
+
+  .daily{
+    grid-template-columns:1fr;
+  }
+
+  .ritu-card{
+    grid-template-columns:auto 1fr;
+  }
+
+  .ritu-months{
+    grid-column:2;
+  }
+
+  .bottom-nav{
+    width:96%;
+  }
+
+  .nav-btn small{
+    font-size:8px;
+  }
+
+  .page{
+    padding:40px 0;
+  }
+
+  .page-title h2,
+  .section-title h2{
+    font-size:32px;
+  }
+}
+
+
+/* V2 glass UI */
+body{background:radial-gradient(circle at top left,#eef8ef 0%,#f8f5ed 42%,#eaf4ee 100%);transition:.3s}
+body.dark-mode{background:radial-gradient(circle at top left,#17221a 0%,#0f1511 50%,#16231a 100%)}
+.glass-panel,.food,.game,.quest,.info-card,.region,.festival,.ritu-card,.profile-card,.stat,.setting{
+  background:rgba(255,255,255,.48)!important;
+  backdrop-filter:blur(18px) saturate(120%);
+  -webkit-backdrop-filter:blur(18px) saturate(120%);
+  border:1px solid rgba(255,255,255,.62)!important;
+  box-shadow:0 18px 45px rgba(70,100,75,.10);
+}
+.dark-mode .glass-panel,.dark-mode .food,.dark-mode .game,.dark-mode .quest,.dark-mode .info-card,.dark-mode .region,.dark-mode .festival,.dark-mode .ritu-card,.dark-mode .profile-card,.dark-mode .stat,.dark-mode .setting{
+  background:rgba(24,35,27,.52)!important;
+  border-color:rgba(255,255,255,.10)!important;
+}
+.daily-reward{margin:22px 0;padding:20px;border-radius:22px;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center}
+.daily-reward-icon{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:28px;background:rgba(255,255,255,.38)}
+.daily-reward h3{margin:3px 0 5px;font:600 22px "Playfair Display",serif}
+.daily-reward p{margin:0;color:var(--muted);font-size:12px}
+.daily-reward button:disabled{opacity:.55;cursor:not-allowed}
+@media(max-width:650px){.daily-reward{grid-template-columns:1fr}.daily-reward button{width:100%}}
+
+/* Final interaction polish */
+.game .answer{transition:transform .18s, box-shadow .18s, background .18s, color .18s}
+.game .answer:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 8px 20px rgba(54,92,60,.16)}
+.game .answer:disabled{opacity:.65;cursor:not-allowed}
+.quest.completed{transform:scale(1.01)}
+
+/* =========================================================
+   RITU-CHAKRA POLISHED GLASS UI
+   ========================================================= */
+:root{
+  --glass-bg:rgba(255,255,255,.34);
+  --glass-bg-strong:rgba(255,255,255,.46);
+  --glass-border:rgba(255,255,255,.72);
+  --glass-shadow:0 24px 70px rgba(49,78,55,.14), inset 0 1px 0 rgba(255,255,255,.78);
+}
+
+body{
+  background:
+    radial-gradient(circle at 8% 8%, rgba(181,214,176,.34), transparent 28%),
+    radial-gradient(circle at 92% 18%, rgba(225,239,205,.46), transparent 30%),
+    radial-gradient(circle at 50% 100%, rgba(198,222,190,.30), transparent 34%),
+    var(--bg);
+}
+
+.glass-panel,.food,.game,.quest,.info-card,.region,.festival,.ritu-card,.profile-card,.stat,.setting,.daily-reward{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.52), rgba(255,255,255,.22)) !important;
+  background-color:var(--glass-bg) !important;
+  backdrop-filter:blur(24px) saturate(145%) !important;
+  -webkit-backdrop-filter:blur(24px) saturate(145%) !important;
+  border:1px solid var(--glass-border) !important;
+  box-shadow:var(--glass-shadow) !important;
+}
+
+.glass-panel::before,.food::before,.game::before,.quest::before,.info-card::before,
+.region::before,.festival::before,.ritu-card::before,.profile-card::before,.stat::before,.setting::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(120deg,rgba(255,255,255,.30),transparent 38%,rgba(255,255,255,.08));
+  border-radius:inherit;
+}
+
+.glass-panel > *,.food > *,.game > *,.quest > *,.info-card > *,.region > *,
+.festival > *,.ritu-card > *,.profile-card > *,.stat > *,.setting > *{
+  position:relative;
+  z-index:1;
+}
+
+.glass-panel:hover,.food:hover,.game:hover,.quest:hover,.info-card:hover,
+.region:hover,.festival:hover,.ritu-card:hover,.profile-card:hover,.stat:hover,.setting:hover{
+  transform:translateY(-3px);
+  box-shadow:0 28px 80px rgba(49,78,55,.18), inset 0 1px 0 rgba(255,255,255,.9) !important;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+
+.dark-mode .glass-panel,.dark-mode .food,.dark-mode .game,.dark-mode .quest,
+.dark-mode .info-card,.dark-mode .region,.dark-mode .festival,.dark-mode .ritu-card,
+.dark-mode .profile-card,.dark-mode .stat,.dark-mode .setting,.dark-mode .daily-reward{
+  --glass-border:rgba(255,255,255,.16);
+  background:linear-gradient(135deg,rgba(40,58,43,.66),rgba(22,31,24,.46)) !important;
+  box-shadow:0 24px 70px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.09) !important;
+}
+
+.header{
+  background:rgba(255,253,248,.58) !important;
+  backdrop-filter:blur(24px) saturate(150%) !important;
+  -webkit-backdrop-filter:blur(24px) saturate(150%) !important;
+}
+.dark-mode .header{
+  background:rgba(16,22,16,.62) !important;
+}
+
+.game{
+  border-radius:30px !important;
+}
+.game-icon{
+  filter:drop-shadow(0 10px 16px rgba(55,80,55,.14));
+}
+.answer{
+  background:rgba(255,255,255,.38) !important;
+  border:1px solid rgba(255,255,255,.62) !important;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  transition:transform .16s ease,background .16s ease,box-shadow .16s ease;
+}
+.answer:hover:not(:disabled){
+  transform:translateY(-2px) scale(1.015);
+  box-shadow:0 10px 25px rgba(65,95,69,.14);
+}
+.answer:disabled{
+  cursor:not-allowed;
+  opacity:.65;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app" id="app">
+
+<header class="header">
+  <div class="brand">
+    <div class="logo">☀️</div>
+    <div>
+      <h1>Ritu-Chakra</h1>
+      <p>INDIA • SEASONS • KNOWLEDGE • FOOD</p>
+    </div>
+  </div>
+
+  <div class="header-actions">
+    <select id="language">
+      <option value="en">English</option>
+      <option value="hi">हिन्दी</option>
+      <option value="kn">ಕನ್ನಡ</option>
+    </select>
+
+    <button class="header-btn" id="themeBtn">🌙</button>
+
+    <div class="xp-pill">
+      ⭐ <span id="headerXP">0</span> XP · <span id="dailyXPText">Daily XP: 0/350</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section class="page active" id="home">
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">INDIAN SEASONAL LIVING</div>
+
+      <h2 id="heroTitle">
+        Live with the rhythm of the <em>seasons.</em>
+      </h2>
+
+      <p id="heroText">
+        Discover India's seasonal foods, traditional knowledge,
+        regional cultures, festivals and everyday practices through
+        the six-season Ritu Chakra.
+      </p>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="go('chakra')">
+          Explore Ritu Chakra →
+        </button>
+
+        <button class="btn btn-secondary" onclick="go('iks')">
+          Explore IKS
+        </button>
+      </div>
+    </div>
+
+    <div class="chakra" id="chakraWheel">
+
+      <div class="chakra-center">
+        ऋतु<br>चक्र
+      </div>
+
+      <button class="season-node s1" data-season="vasanta">
+        <span>🌱</span>
+        <small>Vasanta</small>
+      </button>
+
+      <button class="season-node s2" data-season="grishma">
+        <span>☀️</span>
+        <small>Grishma</small>
+      </button>
+
+      <button class="season-node s3" data-season="varsha">
+        <span>🌧️</span>
+        <small>Varsha</small>
+      </button>
+
+      <button class="season-node s4" data-season="sharad">
+        <span>🍂</span>
+        <small>Sharad</small>
+      </button>
+
+      <button class="season-node s5" data-season="hemanta">
+        <span>🌾</span>
+        <small>Hemanta</small>
+      </button>
+
+      <button class="season-node s6" data-season="shishira">
+        <span>❄️</span>
+        <small>Shishira</small>
+      </button>
+
+    </div>
+  </div>
+
+  <div class="daily-reward glass-panel" id="dailyRewardCard">
+    <div class="daily-reward-icon">🎁</div>
+    <div>
+      <div class="eyebrow">DAILY REWARD</div>
+      <h3>Come back every day for XP</h3>
+      <p id="dailyRewardText">Claim your daily reward and keep your streak going.</p>
+    </div>
+    <button class="btn btn-primary" id="dailyRewardBtn" onclick="claimDailyReward()">Claim +50 XP</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-icon">🥭</div>
+      <div><strong>50+</strong><span>Seasonal foods</span></div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-icon">🌿</div>
+      <div><strong>6</strong><span>Ritu seasons</span></div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-icon">📚</div>
+      <div><strong>12</strong><span>IKS lessons</span></div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-icon">🏆</div>
+      <div><strong id="questCount">0</strong><span>Quests completed</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      <div>
+        <div class="eyebrow">SEASONAL KITCHEN</div>
+        <h2>Today's seasonal picks</h2>
+      </div>
+
+      <button class="link-btn" onclick="go('foods')">View all →</button>
+    </div>
+
+    <div class="food-grid" id="homeFoods"></div>
+  </div>
+
+  <div class="daily">
+    <div class="daily-icon">🌿</div>
+
+    <div>
+      <div class="eyebrow" style="color:#cbdba8">DAILY WISDOM</div>
+
+      <h3>
+        Food, season, place and people are connected.
+      </h3>
+
+      <p>
+        India's food traditions evolved with climate, crops,
+        regional ecology, festivals and household practices.
+      </p>
+    </div>
+
+    <button class="btn btn-secondary" onclick="go('iks')">
+      Learn more →
+    </button>
+  </div>
+
+</section>
+
+
+<!-- CHAKRA -->
+<section class="page" id="chakra">
+
+  <div class="page-title">
+    <div class="eyebrow">THE SEASONAL CYCLE</div>
+    <h2>Ritu Chakra</h2>
+    <p>
+      The traditional Indian six-season framework offers a way
+      to explore changing climate, agriculture, food and culture.
+    </p>
+  </div>
+
+  <div class="ritus" id="rituList"></div>
+
+</section>
+
+
+<!-- FOODS -->
+<section class="page" id="foods">
+
+  <div class="page-title">
+    <div class="eyebrow">50+ FOODS</div>
+    <h2>Seasonal Foods</h2>
+    <p>
+      Explore fruits, vegetables, grains, millets, spices,
+      herbs, seeds and traditional preparations.
+    </p>
+  </div>
+
+  <input
+    class="search"
+    id="foodSearch"
+    placeholder="🔎 Search foods, Hindi names, Kannada names..."
+  >
+
+  <div class="filters" id="foodFilters"></div>
+
+  <div class="food-grid four" id="foodGrid"></div>
+
+</section>
+
+
+<!-- IKS -->
+<section class="page" id="iks">
+
+  <div class="page-title">
+    <div class="eyebrow">INDIAN KNOWLEDGE SYSTEMS</div>
+    <h2>Learn the wisdom behind the cycle.</h2>
+    <p>
+      Explore the relationship between seasonality, food,
+      agriculture, ecology, festivals and daily routines.
+    </p>
+  </div>
+
+  <div id="iksLessons"></div>
+
+</section>
+
+
+<!-- INDIA -->
+<section class="page" id="india">
+
+  <div class="page-title">
+    <div class="eyebrow">REGIONAL INDIA</div>
+    <h2>One country. Many seasonal food cultures.</h2>
+    <p>
+      India's climate and food traditions vary enormously by region.
+    </p>
+  </div>
+
+  <div class="region-grid" id="regions"></div>
+
+</section>
+
+
+<!-- FESTIVALS -->
+<section class="page" id="festivals">
+
+  <div class="page-title">
+    <div class="eyebrow">CULTURE & FOOD</div>
+    <h2>Festivals & Seasonal Foods</h2>
+    <p>
+      Explore how celebrations connect communities,
+      harvests, ingredients and traditional preparations.
+    </p>
+  </div>
+
+  <div class="festival-grid" id="festivalGrid"></div>
+
+</section>
+
+
+<!-- QUESTS -->
+<section class="page" id="quests">
+
+  <div class="page-title">
+    <div class="eyebrow">YOUR JOURNEY</div>
+    <h2>Seasonal Quests</h2>
+    <p>
+      Turn what you learn into small real-world actions.
+      Earn XP and unlock badges.
+    </p>
+  </div>
+
+  <div class="quest-grid" id="questGrid"></div>
+
+</section>
+
+
+<!-- GAMES -->
+<section class="page" id="games">
+
+  <div class="page-title">
+    <div class="eyebrow">PLAY & LEARN</div>
+    <h2>Ritu Games</h2>
+    <p>
+      Test your knowledge of Indian seasons, foods and culture.
+    </p>
+  </div>
+
+  <div class="game-wrap">
+
+    <div class="game">
+      <div class="game-icon">🥭</div>
+
+      <div class="eyebrow">GAME 01</div>
+
+      <h3>Guess the Season</h3>
+
+      <p id="question1">
+        Which season is traditionally associated with mango?
+      </p>
+
+      <div class="answers">
+        <button class="answer" onclick="answerGame(1,'Winter')">❄️ Winter</button>
+        <button class="answer" onclick="answerGame(1,'Summer')">☀️ Summer</button>
+        <button class="answer" onclick="answerGame(1,'Autumn')">🍂 Autumn</button>
+        <button class="answer" onclick="answerGame(1,'Spring')">🌱 Spring</button>
+      </div>
+
+      <div class="game-score">
+        Score: <span id="gameScore1">0</span>
+      </div>
+    </div>
+
+
+    <div class="game">
+      <div class="game-icon">🌾</div>
+
+      <div class="eyebrow">GAME 02</div>
+
+      <h3>Which One Is a Millet?</h3>
+
+      <p>
+        Choose the traditional Indian millet.
+      </p>
+
+      <div class="answers">
+        <button class="answer" onclick="answerGame(2,'Ragi')">🌾 Ragi</button>
+        <button class="answer" onclick="answerGame(2,'Apple')">🍎 Apple</button>
+        <button class="answer" onclick="answerGame(2,'Mango')">🥭 Mango</button>
+        <button class="answer" onclick="answerGame(2,'Cucumber')">🥒 Cucumber</button>
+      </div>
+
+      <div class="game-score">
+        Score: <span id="gameScore2">0</span>
+      </div>
+    </div>
+
+
+    <div class="game">
+      <div class="game-icon">🪔</div>
+
+      <div class="eyebrow">GAME 03</div>
+
+      <h3>Festival Food</h3>
+
+      <p>
+        Which ingredient is strongly associated with Makar Sankranti?
+      </p>
+
+      <div class="answers">
+        <button class="answer" onclick="answerGame(3,'Sesame')">🌱 Sesame</button>
+        <button class="answer" onclick="answerGame(3,'Mango')">🥭 Mango</button>
+        <button class="answer" onclick="answerGame(3,'Watermelon')">🍉 Watermelon</button>
+        <button class="answer" onclick="answerGame(3,'Strawberry')">🍓 Strawberry</button>
+      </div>
+
+      <div class="game-score">
+        Score: <span id="gameScore3">0</span>
+      </div>
+    </div>
+
+
+    <div class="game">
+      <div class="game-icon">🇮🇳</div>
+
+      <div class="eyebrow">GAME 04</div>
+
+      <h3>India Explorer</h3>
+
+      <p>
+        Which region is especially known for ragi-based food traditions?
+      </p>
+
+      <div class="answers">
+        <button class="answer" onclick="answerGame(4,'South India')">🌴 South India</button>
+        <button class="answer" onclick="answerGame(4,'Arctic')">🧊 Arctic</button>
+        <button class="answer" onclick="answerGame(4,'Pacific')">🌊 Pacific</button>
+        <button class="answer" onclick="answerGame(4,'Antarctica')">❄️ Antarctica</button>
+      </div>
+
+      <div class="game-score">
+        Score: <span id="gameScore4">0</span>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PROFILE -->
+<section class="page" id="profile">
+
+  <div class="page-title">
+    <div class="eyebrow">YOUR RITU PROFILE</div>
+    <h2>Your seasonal journey</h2>
+  </div>
+
+  <div class="profile-head">
+    <div class="avatar">🌿</div>
+
+    <div>
+      <h2>Season Explorer</h2>
+      <p>
+        Keep learning. Keep exploring.
+        Keep connecting with the seasons.
+      </p>
+
+      <div class="xp-pill" style="display:inline-block">
+        Level <span id="profileLevel">1</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-stats">
+
+    <div class="stat">
+      <div class="stat-icon">⭐</div>
+      <div>
+        <strong id="profileXP">0</strong>
+        <span>Total XP</span>
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-icon">🔥</div>
+      <div>
+        <strong id="profileStreak">0</strong>
+        <span>Day streak</span>
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-icon">🎮</div>
+      <div>
+        <strong id="profileGames">0</strong>
+        <span>Games played</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-title">
+    <div>
+      <div class="eyebrow">ACHIEVEMENTS</div>
+      <h2>Badges</h2>
+    </div>
+  </div>
+
+  <div class="badges" id="badges"></div>
+
+</section>
+
+
+<!-- SETTINGS -->
+<section class="page" id="settings">
+
+  <div class="page-title">
+    <div class="eyebrow">PERSONALIZE</div>
+    <h2>Settings</h2>
+    <p>
+      Customize your Ritu-Chakra experience.
+    </p>
+  </div>
+
+  <div class="settings">
+
+    <div class="setting">
+      <div>
+        <h3>🌙 Dark Mode</h3>
+        <p>Use a darker interface at night.</p>
+      </div>
+
+      <button class="toggle" id="darkToggle" onclick="toggleTheme()">
+        <span></span>
+      </button>
+    </div>
+
+
+    <div class="setting">
+      <div>
+        <h3>🌐 Language</h3>
+        <p>English, Hindi or Kannada.</p>
+      </div>
+
+      <select id="settingsLanguage"
+        onchange="changeLanguage(this.value)"
+        style="padding:8px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text)">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="kn">ಕನ್ನಡ</option>
+      </select>
+    </div>
+
+
+    <div class="setting">
+      <div>
+        <h3>💾 Saved Data</h3>
+        <p>Your progress is stored locally in your browser.</p>
+      </div>
+
+      <button class="btn btn-secondary" onclick="resetProgress()">
+        Reset
+      </button>
+    </div>
+
+  </div>
+
+  <div class="notice" style="margin-top:20px">
+    <strong>About Ritu-Chakra</strong><br>
+    This app is an educational exploration of seasonal food,
+    culture and Indian knowledge traditions. Seasonal availability
+    varies by region, climate and agricultural practice.
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+  <button class="nav-btn active" data-page="home" onclick="go('home')">
+    <span>⌂</span>
+    Home
+  </button>
+
+  <button class="nav-btn" data-page="chakra" onclick="go('chakra')">
+    <span>☀️</span>
+    Chakra
+  </button>
+
+  <button class="nav-btn" data-page="foods" onclick="go('foods')">
+    <span>🥗</span>
+    Foods
+  </button>
+
+  <button class="nav-btn" data-page="iks" onclick="go('iks')">
+    <span>📚</span>
+    IKS
+  </button>
+
+  <button class="nav-btn" data-page="quests" onclick="go('quests')">
+    <span>🏆</span>
+    Quests
+  </button>
+
+  <button class="nav-btn" data-page="games" onclick="go('games')">
+    <span>🎮</span>
+    Games
+  </button>
+
+  <button class="nav-btn" data-page="profile" onclick="go('profile')">
+    <span>👤</span>
+    Profile
+  </button>
+
+</nav>
+
+
+<!-- FOOD MODAL -->
+
+<div class="modal" id="foodModal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="hideModal()">×</button>
+
+    <div class="modal-food">
+      <div class="big" id="modalEmoji"></div>
+
+      <div class="eyebrow" id="modalCategory"></div>
+
+      <h2 id="modalName"></h2>
+
+      <p id="modalDescription"></p>
+
+      <div class="notice">
+        <strong>What it gives your body</strong>
+        <ul id="modalBodyBenefits"></ul>
+      </div>
+
+      <div class="notice" style="margin-top:12px">
+        <strong>Seasonal benefits</strong>
+        <ul id="modalBenefits"></ul>
+      </div>
+
+      <div style="margin-top:15px;text-align:left">
+        <strong>Traditional regions</strong>
+        <p id="modalRegions"></p>
+      </div>
+
+      <div style="margin-top:15px;text-align:left">
+        <strong>Season</strong>
+        <p id="modalSeason"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+/* =========================================================
+   RITU-CHAKRA DATA
+   ========================================================= */
+
+const foods = [
+
+/* SPRING */
+
+{
+ id:"neem",
+ name:["Neem","नीम","ಬೇವು"],
+ desc:["A culturally significant Indian tree used in traditional practices.",
+       "भारतीय संस्कृति और पारंपरिक प्रथाओं में महत्वपूर्ण वृक्ष।",
+       "ಭಾರತೀಯ ಸಂಸ್ಕೃತಿ ಮತ್ತು ಸಾಂಪ್ರದಾಯಿಕ ಪದ್ಧತಿಗಳಲ್ಲಿ ಪ್ರಮುಖ ಮರ."],
+ category:"Herb",
+ season:["Vasanta"],
+ regions:["North","South","East","West","Central"],
+ emoji:"🌿",
+ colors:["#557b45","#9dbb6a"],
+ benefits:["Traditionally used in cultural and household practices."]
+},
+
+{
+ id:"strawberry",
+ name:["Strawberry","स्ट्रॉबेरी","ಸ್ಟ್ರಾಬೆರಿ"],
+ desc:["A cool-season fruit cultivated in selected regions of India.",
+       "भारत के कुछ क्षेत्रों में उगाया जाने वाला ठंडे मौसम का फल।",
+       "ಭಾರತದ ಕೆಲವು ಪ್ರದೇಶಗಳಲ್ಲಿ ಬೆಳೆಯುವ ತಂಪು ಋತುವಿನ ಹಣ್ಣು."],
+ category:"Fruit",
+ season:["Shishira","Vasanta"],
+ regions:["North","West"],
+ emoji:"🍓",
+ colors:["#c74e5c","#f08a82"],
+ benefits:["Contains vitamin C and plant antioxidants."]
+},
+
+{
+ id:"peas",
+ name:["Green Peas","मटर","ಹಸಿರು ಬಟಾಣಿ"],
+ desc:["Fresh peas are strongly associated with cool-season harvests.",
+       "ताज़ी मटर ठंडे मौसम की फसल से जुड़ी होती है।",
+       "ತಾಜಾ ಬಟಾಣಿ ತಂಪು ಋತುವಿನ ಬೆಳೆಗೆ ಸಂಬಂಧಿಸಿದೆ."],
+ category:"Legume",
+ season:["Shishira","Vasanta"],
+ regions:["North","West"],
+ emoji:"🫛",
+ colors:["#6e9e4e","#a8c96e"],
+ benefits:["Provides plant protein and fiber."]
+},
+
+{
+ id:"spinach",
+ name:["Spinach","पालक","ಪಾಲಕ್"],
+ desc:["A leafy green used in many Indian regional cuisines.",
+       "भारतीय क्षेत्रीय व्यंजनों में उपयोग की जाने वाली हरी सब्ज़ी।",
+       "ಭಾರತದ ಅನೇಕ ಪ್ರಾದೇಶಿಕ ಅಡುಗೆಗಳಲ್ಲಿ ಬಳಸುವ ಸೊಪ್ಪು."],
+ category:"Leafy",
+ season:["Shishira","Vasanta"],
+ regions:["North","South","East","West"],
+ emoji:"🥬",
+ colors:["#477e49","#80a95c"],
+ benefits:["Provides folate, iron and vitamins."]
+},
+
+{
+ id:"radish",
+ name:["Radish","मूली","ಮೂಲಂಗಿ"],
+ desc:["A crisp root vegetable commonly grown during cooler weather.",
+       "ठंडे मौसम में उगाई जाने वाली कुरकुरी जड़ वाली सब्ज़ी।",
+       "ತಂಪಾದ ಹವಾಮಾನದಲ್ಲಿ ಬೆಳೆಯುವ ಬೇರು ತರಕಾರಿ."],
+ category:"Vegetable",
+ season:["Shishira","Vasanta"],
+ regions:["North","South","West"],
+ emoji:"🥕",
+ colors:["#e6d5c0","#b8d27b"],
+ benefits:["Provides fiber and vitamin C."]
+},
+
+/* SUMMER */
+
+{
+ id:"mango",
+ name:["Mango","आम","ಮಾವು"],
+ desc:["One of India's most celebrated summer fruits.",
+       "भारत के सबसे प्रसिद्ध ग्रीष्मकालीन फलों में से एक।",
+       "ಭಾರತದ ಪ್ರಸಿದ್ಧ ಬೇಸಿಗೆ ಹಣ್ಣುಗಳಲ್ಲಿ ಒಂದು."],
+ category:"Fruit",
+ season:["Grishma"],
+ regions:["North","South","East","West","Central"],
+ emoji:"🥭",
+ colors:["#f4b43f","#e57a35"],
+ benefits:["Provides vitamin C and antioxidants.","A seasonal source of carbohydrates and energy."]
+},
+
+{
+ id:"watermelon",
+ name:["Watermelon","तरबूज","ಕಲ್ಲಂಗಡಿ"],
+ desc:["A water-rich summer fruit traditionally enjoyed during hot weather.",
+       "गर्मियों में खाया जाने वाला जल से भरपूर फल।",
+       "ಬೇಸಿಗೆಯಲ್ಲಿ ತಿನ್ನುವ ನೀರಿನ ಅಂಶ ಹೆಚ್ಚು ಇರುವ ಹಣ್ಣು."],
+ category:"Fruit",
+ season:["Grishma"],
+ regions:["North","South","East","West"],
+ emoji:"🍉",
+ colors:["#7db85d","#ed756a"],
+ benefits:["High water content makes it refreshing during hot weather."]
+},
+
+{
+ id:"cucumber",
+ name:["Cucumber","खीरा","ಸೌತೆಕಾಯಿ"],
+ desc:["A crisp, water-rich vegetable used in summer meals.",
+       "गर्मियों के भोजन में उपयोग की जाने वाली जल से भरपूर सब्ज़ी।",
+       "ಬೇಸಿಗೆಯ ಆಹಾರದಲ್ಲಿ ಬಳಸುವ ನೀರಿನ ಅಂಶ ಹೆಚ್ಚಿರುವ ತರಕಾರಿ."],
+ category:"Vegetable",
+ season:["Grishma"],
+ regions:["North","South","East","West"],
+ emoji:"🥒",
+ colors:["#70a75a","#b9d27a"],
+ benefits:["Supports hydration and adds freshness to meals."]
+},
+
+{
+ id:"bael",
+ name:["Bael","बेल","ಬೇಲ"],
+ desc:["A traditional fruit commonly associated with hot weather.",
+       "गर्म मौसम से जुड़ा पारंपरिक फल।",
+       "ಬಿಸಿ ಹವಾಮಾನಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ಸಾಂಪ್ರದಾಯಿಕ ಹಣ್ಣು."],
+ category:"Fruit",
+ season:["Grishma"],
+ regions:["North","Central","East"],
+ emoji:"🍈",
+ colors:["#9ea956","#c8b46e"],
+ benefits:["Traditionally consumed as a cooling drink."]
+},
+
+{
+ id:"jamun",
+ name:["Jamun","जामुन","ನೇರಳೆ ಹಣ್ಣು"],
+ desc:["A dark purple summer fruit found across India.",
+       "भारत में पाया जाने वाला गहरे रंग का ग्रीष्मकालीन फल।",
+       "ಭಾರತದಾದ್ಯಂತ ಕಂಡುಬರುವ ಗಾಢ ನೇರಳೆ ಬಣ್ಣದ ಬೇಸಿಗೆ ಹಣ್ಣು."],
+ category:"Fruit",
+ season:["Grishma"],
+ regions:["North","South","East","West","Central"],
+ emoji:"🫐",
+ colors:["#4e4a79","#7d6e9f"],
+ benefits:["Contains plant polyphenols and vitamin C."]
+},
+
+{
+ id:"lychee",
+ name:["Lychee","लीची","ಲಿಚ್ಚಿ"],
+ desc:["A fragrant fruit associated with the early summer harvest.",
+       "गर्मियों की शुरुआत की सुगंधित फल फसल।",
+       "ಬೇಸಿಗೆಯ ಆರಂಭದಲ್ಲಿ ದೊರೆಯುವ ಸುಗಂಧಯುಕ್ತ ಹಣ್ಣು."],
+ category:"Fruit",
+ season:["Grishma"],
+ regions:["North","East"],
+ emoji:"🍒",
+ colors:["#d75e65","#f0a09a"],
+ benefits:["Contains vitamin C and water."]
+},
+
+{
+ id:"papaya",
+ name:["Papaya","पपीता","ಪಪ್ಪಾಯಿ"],
+ desc:["A tropical fruit used fresh and in cooked preparations.",
+       "ताज़ा और पके दोनों रूपों में उपयोग किया जाने वाला उष्णकटिबंधीय फल।",
+       "ತಾಜಾ ಮತ್ತು ಬೇಯಿಸಿದ ರೂಪಗಳಲ್ಲಿ ಬಳಸುವ ಉಷ್ಣವಲಯದ ಹಣ್ಣು."],
+ category:"Fruit",
+ season:["Grishma","Varsha"],
+ regions:["South","East","West"],
+ emoji:"🥭",
+ colors:["#e89b46","#e9c85c"],
+ benefits:["Contains vitamin C and carotenoids."]
+},
+
+{
+ id:"pineapple",
+ name:["Pineapple","अनानास","ಅನಾನಸ್"],
+ desc:["A tropical fruit grown in several Indian regions.",
+       "भारत के कई क्षेत्रों में उगाया जाने वाला उष्णकटिबंधीय फल।",
+       "ಭಾರತದ ಹಲವು ಪ್ರದೇಶಗಳಲ್ಲಿ ಬೆಳೆಯುವ ಉಷ್ಣವಲಯದ ಹಣ್ಣು."],
+ category:"Fruit",
+ season:["Grishma","Varsha"],
+ regions:["East","South"],
+ emoji:"🍍",
+ colors:["#b8aa53","#75a260"],
+ benefits:["Contains vitamin C and manganese."]
+},
+
+{
+ id:"coconut",
+ name:["Coconut","नारियल","ತೆಂಗಿನಕಾಯಿ"],
+ desc:["A foundational ingredient in coastal and South Indian cuisines.",
+       "तटीय और दक्षिण भारतीय व्यंजनों का प्रमुख घटक।",
+       "ಕರಾವಳಿ ಮತ್ತು ದಕ್ಷಿಣ ಭಾರತೀಯ ಅಡುಗೆಯ ಪ್ರಮುಖ ಪದಾರ್ಥ."],
+ category:"Nut",
+ season:["Grishma","Varsha"],
+ regions:["South","West","East"],
+ emoji:"🥥",
+ colors:["#7d9d62","#e2d2a3"],
+ benefits:["Provides fat, minerals and culinary versatility."]
+},
+
+/* MONSOON */
+
+{
+ id:"corn",
+ name:["Corn","मक्का","ಮೆಕ್ಕೆಜೋಳ"],
+ desc:["A widely cultivated grain eaten fresh or dried.",
+       "व्यापक रूप से उगाया जाने वाला अनाज।",
+       "ವ್ಯಾಪಕವಾಗಿ ಬೆಳೆಯುವ ಧಾನ್ಯ."],
+ category:"Grain",
+ season:["Varsha","Sharad"],
+ regions:["North","West","Central","South"],
+ emoji:"🌽",
+ colors:["#e4c34d","#79a84e"],
+ benefits:["Provides carbohydrates and fiber."]
+},
+
+{
+ id:"ginger",
+ name:["Ginger","अदरक","ಶುಂಠಿ"],
+ desc:["A fragrant rhizome used throughout Indian cuisines.",
+       "भारतीय व्यंजनों में व्यापक रूप से उपयोग की जाने वाली सुगंधित जड़।",
+       "ಭಾರತೀಯ ಅಡುಗೆಗಳಲ್ಲಿ ವ್ಯಾಪಕವಾಗಿ ಬಳಸುವ ಸುಗಂಧಯುಕ್ತ ಕಾಂಡ."],
+ category:"Spice",
+ season:["Varsha","Hemanta"],
+ regions:["South","North","East"],
+ emoji:"🫚",
+ colors:["#b98452","#e2c19a"],
+ benefits:["Traditionally used in food and beverages."]
+},
+
+{
+ id:"turmeric",
+ name:["Turmeric","हल्दी","ಅರಿಶಿನ"],
+ desc:["A foundational Indian spice used in cooking and traditional practices.",
+       "भारतीय भोजन और पारंपरिक प्रथाओं में उपयोग होने वाला प्रमुख मसाला।",
+       "ಭಾರತೀಯ ಅಡುಗೆ ಮತ್ತು ಸಾಂಪ್ರದಾಯಿಕ ಪದ್ಧತಿಗಳಲ್ಲಿ ಬಳಸುವ ಪ್ರಮುಖ ಮಸಾಲೆ."],
+ category:"Spice",
+ season:["Varsha","Sharad"],
+ regions:["South","East","West","Central"],
+ emoji:"🫚",
+ colors:["#d99b32","#e7c55d"],
+ benefits:["Contains curcumin and other plant compounds."]
+},
+
+{
+ id:"ragi",
+ name:["Finger Millet","रागी","ರಾಗಿ"],
+ desc:["A staple millet with a particularly strong presence in South India.",
+       "दक्षिण भारत में विशेष रूप से लोकप्रिय पारंपरिक बाजरा।",
+       "ದಕ್ಷಿಣ ಭಾರತದಲ್ಲಿ ಬಹಳ ಜನಪ್ರಿಯವಾದ ಸಿರಿಧಾನ್ಯ."],
+ category:"Millet",
+ season:["Varsha","Sharad","Hemanta"],
+ regions:["South","Central"],
+ emoji:"🌾",
+ colors:["#796a4e","#b09b69"],
+ benefits:["A source of calcium and fiber."]
+},
+
+{
+ id:"foxtail",
+ name:["Foxtail Millet","कंगनी","ನವಣೆ"],
+ desc:["An ancient millet cultivated in several Indian regions.",
+       "भारत के कई क्षेत्रों में उगाया जाने वाला प्राचीन सिरीधान्य।",
+       "ಭಾರತದ ಹಲವು ಪ್ರದೇಶಗಳಲ್ಲಿ ಬೆಳೆಯುವ ಪ್ರಾಚೀನ ಸಿರಿಧಾನ್ಯ."],
+ category:"Millet",
+ season:["Varsha","Sharad"],
+ regions:["South","Central"],
+ emoji:"🌾",
+ colors:["#b69b58","#d5c277"],
+ benefits:["Contains fiber and plant-based nutrients."]
+},
+
+{
+ id:"little-millet",
+ name:["Little Millet","कुटकी","ಸಾಮೆ"],
+ desc:["A traditional small millet used in regional Indian cuisines.",
+       "भारतीय क्षेत्रीय भोजन में उपयोग किया जाने वाला पारंपरिक सिरीधान्य।",
+       "ಭಾರತೀಯ ಪ್ರಾದೇಶಿಕ ಅಡುಗೆಯಲ್ಲಿ ಬಳಸುವ ಸಾಂಪ್ರದಾಯಿಕ ಸಿರಿಧಾನ್ಯ."],
+ category:"Millet",
+ season:["Varsha","Sharad"],
+ regions:["South","Central"],
+ emoji:"🌾",
+ colors:["#a98d5e","#d1b97b"],
+ benefits:["Provides fiber and complex carbohydrates."]
+},
+
+{
+ id:"barnyard-millet",
+ name:["Barnyard Millet","सांवा","ಊದಲು"],
+ desc:["A resilient millet grown in several parts of India.",
+       "भारत के कई हिस्सों में उगाया जाने वाला सिरीधान्य।",
+       "ಭಾರತದ ಹಲವು ಭಾಗಗಳಲ್ಲಿ ಬೆಳೆಯುವ ಸಿರಿಧಾನ್ಯ."],
+ category:"Millet",
+ season:["Varsha","Sharad"],
+ regions:["North","South","Central"],
+ emoji:"🌾",
+ colors:["#a99b6d","#d7c88e"],
+ benefits:["Provides fiber and plant nutrients."]
+},
+
+{
+ id:"bajra",
+ name:["Pearl Millet","बाजरा","ಸಜ್ಜೆ"],
+ desc:["A hardy millet deeply associated with dryland farming.",
+       "शुष्क क्षेत्रों की खेती से जुड़ा महत्वपूर्ण बाजरा।",
+       "ಒಣಭೂಮಿ ಕೃಷಿಗೆ ಸಂಬಂಧಿಸಿದ ಪ್ರಮುಖ ಸಿರಿಧಾನ್ಯ."],
+ category:"Millet",
+ season:["Varsha","Sharad","Hemanta"],
+ regions:["North","West","Central"],
+ emoji:"🌾",
+ colors:["#9d8c62","#c8b37d"],
+ benefits:["Provides fiber, minerals and complex carbohydrates."]
+},
+
+/* AUTUMN */
+
+{
+ id:"guava",
+ name:["Guava","अमरूद","ಪೇರಳೆ"],
+ desc:["A fragrant fruit enjoyed across many regions of India.",
+       "भारत के अनेक क्षेत्रों में पसंद किया जाने वाला सुगंधित फल।",
+       "ಭಾರತದ ಅನೇಕ ಪ್ರದೇಶಗಳಲ್ಲಿ ಜನಪ್ರಿಯವಾದ ಹಣ್ಣು."],
+ category:"Fruit",
+ season:["Sharad","Hemanta"],
+ regions:["North","South","East","West"],
+ emoji:"🍐",
+ colors:["#92b96b","#e7c96d"],
+ benefits:["Rich in vitamin C and fiber."]
+},
+
+{
+ id:"pomegranate",
+ name:["Pomegranate","अनार","ದಾಳಿಂಬೆ"],
+ desc:["A jewel-like fruit found in many Indian food traditions.",
+       "भारतीय खाद्य परंपराओं में पाया जाने वाला सुंदर दानों वाला फल।",
+       "ಭಾರತೀಯ ಆಹಾರ ಸಂಪ್ರದಾಯಗಳಲ್ಲಿ ಕಂಡುಬರುವ ಸುಂದರ ಹಣ್ಣು."],
+ category:"Fruit",
+ season:["Sharad","Hemanta"],
+ regions:["North","West","Central"],
+ emoji:"🍎",
+ colors:["#9e3c43","#d65d5a"],
+ benefits:["Contains polyphenols and vitamin C."]
+},
+
+{
+ id:"amla",
+ name:["Amla","आंवला","ನೆಲ್ಲಿಕಾಯಿ"],
+ desc:["The Indian gooseberry, deeply associated with Indian food traditions.",
+       "भारतीय खाद्य और स्वास्थ्य परंपराओं से जुड़ा फल।",
+       "ಭಾರತೀಯ ಆಹಾರ ಮತ್ತು ಆರೋಗ್ಯ ಸಂಪ್ರದಾಯಗಳಿಗೆ ಸಂಬಂಧಿಸಿದ ಹಣ್ಣು."],
+ category:"Fruit",
+ season:["Sharad","Hemanta"],
+ regions:["North","South","East","Central"],
+ emoji:"🟢",
+ colors:["#8aa65b","#b8c77d"],
+ benefits:["Naturally rich in vitamin C."]
+},
+
+{
+ id:"sugarcane",
+ name:["Sugarcane","गन्ना","ಕಬ್ಬು"],
+ desc:["A major Indian crop with strong harvest and festival associations.",
+       "भारत की प्रमुख फसल, जो फसल और त्योहारों से जुड़ी है।",
+       "ಭಾರತದ ಪ್ರಮುಖ ಬೆಳೆ; ಕೊಯ್ಲು ಮತ್ತು ಹಬ್ಬಗಳೊಂದಿಗೆ ಸಂಬಂಧಿಸಿದೆ."],
+ category:"Crop",
+ season:["Sharad","Hemanta"],
+ regions:["North","South","West","Central"],
+ emoji:"🎋",
+ colors:["#77a66a","#c3c879"],
+ benefits:["Traditionally consumed as juice and fresh cane."]
+},
+
+{
+ id:"lotus-seed",
+ name:["Lotus Seeds","मखाना","ಮಖಾನಾ"],
+ desc:["An aquatic food especially associated with eastern India.",
+       "विशेष रूप से पूर्वी भारत से जुड़ा जलीय खाद्य।",
+       "ಪೂರ್ವ ಭಾರತಕ್ಕೆ ವಿಶೇಷವಾಗಿ ಸಂಬಂಧಿಸಿದ ಜಲ ಆಹಾರ."],
+ category:"Seed",
+ season:["Sharad"],
+ regions:["East","North"],
+ emoji:"🌸",
+ colors:["#e7d5bb","#d6bca3"],
+ benefits:["Contains protein and minerals."]
+},
+
+/* WINTER */
+
+{
+ id:"carrot",
+ name:["Carrot","गाजर","ಕ್ಯಾರೆಟ್"],
+ desc:["A winter vegetable used in curries, salads and traditional sweets.",
+       "सर्दियों में सब्ज़ियों, सलाद और मिठाइयों में उपयोग की जाने वाली सब्ज़ी।",
+       "ಚಳಿಗಾಲದಲ್ಲಿ ಪಲ್ಯ, ಸಲಾಡ್ ಮತ್ತು ಸಿಹಿತಿಂಡಿಗಳಲ್ಲಿ ಬಳಸುವ ತರಕಾರಿ."],
+ category:"Vegetable",
+ season:["Hemanta","Shishira"],
+ regions:["North","South","West"],
+ emoji:"🥕",
+ colors:["#e47b38","#e9a054"],
+ benefits:["Provides beta-carotene and fiber."]
+},
+
+{
+ id:"beetroot",
+ name:["Beetroot","चुकंदर","ಬೀಟ್ರೂಟ್"],
+ desc:["A colorful winter root vegetable.",
+       "रंगीन सर्दियों की जड़ वाली सब्ज़ी।",
+       "ಬಣ್ಣದ ಚಳಿಗಾಲದ ಬೇರು ತರಕಾರಿ."],
+ category:"Vegetable",
+ season:["Hemanta","Shishira"],
+ regions:["North","South","West"],
+ emoji:"🫜",
+ colors:["#8d3e50","#c06468"],
+ benefits:["Contains folate and naturally occurring nitrates."]
+},
+
+{
+ id:"mustard",
+ name:["Mustard Greens","सरसों का साग","ಸಾಸಿವೆ ಸೊಪ್ಪು"],
+ desc:["A leafy winter green especially prominent in North Indian cuisine.",
+       "उत्तर भारतीय भोजन में प्रसिद्ध सर्दियों की हरी पत्तेदार सब्ज़ी।",
+       "ಉತ್ತರ ಭಾರತದ ಅಡುಗೆಯಲ್ಲಿ ಪ್ರಸಿದ್ಧವಾದ ಚಳಿಗಾಲದ ಸೊಪ್ಪು."],
+ category:"Leafy",
+ season:["Hemanta","Shishira"],
+ regions:["North"],
+ emoji:"🥬",
+ colors:["#5b874a","#94ad61"],
+ benefits:["Provides vitamins, minerals and fiber."]
+},
+
+{
+ id:"sesame",
+ name:["Sesame","तिल","ಎಳ್ಳು"],
+ desc:["A traditional seed used in winter foods and festival preparations.",
+       "सर्दियों के भोजन और त्योहारों में उपयोग किया जाने वाला पारंपरिक बीज।",
+       "ಚಳಿಗಾಲದ ಆಹಾರ ಮತ್ತು ಹಬ್ಬಗಳಲ್ಲಿ ಬಳಸುವ ಸಾಂಪ್ರದಾಯಿಕ ಬೀಜ."],
+ category:"Seed",
+ season:["Shishira"],
+ regions:["North","South","West","Central"],
+ emoji:"🌱",
+ colors:["#d4c19c","#a88d62"],
+ benefits:["Contains healthy fats, calcium and minerals."]
+},
+
+{
+ id:"sweet-potato",
+ name:["Sweet Potato","शकरकंद","ಸಿಹಿಗೆಣಸು"],
+ desc:["A root vegetable commonly enjoyed during cooler months.",
+       "ठंडे महीनों में पसंद की जाने वाली जड़ वाली सब्ज़ी।",
+       "ತಂಪಾದ ತಿಂಗಳುಗಳಲ್ಲಿ ಜನಪ್ರಿಯವಾದ ಬೇರು ತರಕಾರಿ."],
+ category:"Vegetable",
+ season:["Hemanta","Shishira"],
+ regions:["North","South","East"],
+ emoji:"🍠",
+ colors:["#b46b54","#dfa178"],
+ benefits:["Provides complex carbohydrates and beta-carotene."]
+},
+
+{
+ id:"turnip",
+ name:["Turnip","शलजम","ನವಿಲುಕೋಸು"],
+ desc:["A cool-season root vegetable used in winter cooking.",
+       "सर्दियों में उपयोग की जाने वाली जड़ वाली सब्ज़ी।",
+       "ಚಳಿಗಾಲದ ಅಡುಗೆಯಲ್ಲಿ ಬಳಸುವ ಬೇರು ತರಕಾರಿ."],
+ category:"Vegetable",
+ season:["Hemanta","Shishira"],
+ regions:["North","West"],
+ emoji:"🥕",
+ colors:["#d9d2c1","#b88ea7"],
+ benefits:["Provides fiber and vitamin C."]
+},
+
+{
+ id:"cauliflower",
+ name:["Cauliflower","फूलगोभी","ಹೂಕೋಸು"],
+ desc:["A cool-season vegetable widely used in Indian cuisine.",
+       "भारतीय भोजन में व्यापक रूप से उपयोग की जाने वाली ठंडे मौसम की सब्ज़ी।",
+       "ಭಾರತೀಯ ಅಡುಗೆಯಲ್ಲಿ ವ್ಯಾಪಕವಾಗಿ ಬಳಸುವ ತಂಪು ಋತುವಿನ ತರಕಾರಿ."],
+ category:"Vegetable",
+ season:["Hemanta","Shishira"],
+ regions:["North","South","West"],
+ emoji:"🥦",
+ colors:["#e7e5d7","#a8b779"],
+ benefits:["Provides vitamin C and fiber."]
+},
+
+{
+ id:"peas-pulao",
+ name:["Fresh Peas","ताज़ी मटर","ತಾಜಾ ಬಟಾಣಿ"],
+ desc:["Fresh winter peas used in curries, pulao and snacks.",
+       "सर्दियों में सब्ज़ियों, पुलाव और नाश्ते में उपयोग की जाने वाली मटर।",
+       "ಚಳಿಗಾಲದ ಪಲ್ಯ, ಪುಲಾವ್ ಮತ್ತು ತಿಂಡಿಗಳಲ್ಲಿ ಬಳಸುವ ತಾಜಾ ಬಟಾಣಿ."],
+ category:"Legume",
+ season:["Hemanta","Shishira"],
+ regions:["North","West"],
+ emoji:"🫛",
+ colors:["#659b4d","#b0ce71"],
+ benefits:["Provides plant protein and fiber."]
+},
+
+/* YEAR / REGIONAL */
+
+{
+ id:"banana",
+ name:["Banana","केला","ಬಾಳೆಹಣ್ಣು"],
+ desc:["A tropical staple with many regional varieties.",
+       "कई क्षेत्रीय किस्मों वाला उष्णकटिबंधीय फल।",
+       "ಅನೇಕ ಪ್ರಾದೇಶಿಕ ತಳಿಗಳನ್ನು ಹೊಂದಿರುವ ಉಷ್ಣವಲಯದ ಹಣ್ಣು."],
+ category:"Fruit",
+ season:["Grishma","Varsha"],
+ regions:["South","East","West"],
+ emoji:"🍌",
+ colors:["#e7c950","#a4b05b"],
+ benefits:["Provides carbohydrates and potassium."]
+},
+
+{
+ id:"tamarind",
+ name:["Tamarind","इमली","ಹುಣಸೆಹಣ್ಣು"],
+ desc:["A souring ingredient central to many Indian cuisines.",
+       "भारतीय भोजन में व्यापक रूप से उपयोग होने वाला खट्टा फल।",
+       "ಭಾರತೀಯ ಅಡುಗೆಯಲ್ಲಿ ಪ್ರಮುಖ ಹುಳಿ ಪದಾರ್ಥ."],
+ category:"Fruit",
+ season:["Varsha","Sharad"],
+ regions:["South","West","Central","East"],
+ emoji:"🌰",
+ colors:["#765138","#b07b48"],
+ benefits:["Used traditionally as a souring ingredient."]
+},
+
+{
+ id:"curry-leaf",
+ name:["Curry Leaves","करी पत्ता","ಕರಿಬೇವು"],
+ desc:["An aromatic leaf fundamental to many South Indian dishes.",
+       "दक्षिण भारतीय भोजन का सुगंधित और महत्वपूर्ण पत्ता।",
+       "ದಕ್ಷಿಣ ಭಾರತೀಯ ಅಡುಗೆಯ ಪ್ರಮುಖ ಸುವಾಸನೆಯ ಸೊಪ್ಪು."],
+ category:"Leafy",
+ season:["Grishma","Varsha"],
+ regions:["South","West"],
+ emoji:"🌿",
+ colors:["#4d8247","#7ca35b"],
+ benefits:["Adds aroma and plant compounds to food."]
+},
+
+{
+ id:"drumstick",
+ name:["Drumstick","सहजन","ನುಗ್ಗೆಕಾಯಿ"],
+ desc:["A nutritious pod used widely in South Indian cooking.",
+       "दक्षिण भारतीय भोजन में व्यापक रूप से उपयोग की जाने वाली फली।",
+       "ದಕ್ಷಿಣ ಭಾರತೀಯ ಅಡುಗೆಯಲ್ಲಿ ವ್ಯಾಪಕವಾಗಿ ಬಳಸುವ ಕಾಯಿ."],
+ category:"Vegetable",
+ season:["Grishma","Varsha"],
+ regions:["South","Central","West"],
+ emoji:"🥒",
+ colors:["#739d55","#b2c976"],
+ benefits:["Provides fiber and several micronutrients."]
+},
+
+{
+ id:"bottle-gourd",
+ name:["Bottle Gourd","लौकी","ಸೋರೆಕಾಯಿ"],
+ desc:["A water-rich vegetable used in everyday Indian cooking.",
+       "भारतीय घरेलू भोजन में उपयोग की जाने वाली जल से भरपूर सब्ज़ी।",
+       "ದೈನಂದಿನ ಭಾರತೀಯ ಅಡುಗೆಯಲ್ಲಿ ಬಳಸುವ ನೀರಿನ ಅಂಶ ಹೆಚ್ಚಿರುವ ತರಕಾರಿ."],
+ category:"Vegetable",
+ season:["Grishma","Varsha"],
+ regions:["North","South","East","West"],
+ emoji:"🥒",
+ colors:["#a9c27a","#d9e09b"],
+ benefits:["High water content and provides fiber."]
+},
+
+{
+ id:"ridge-gourd",
+ name:["Ridge Gourd","तुरई","ಹೀರೆಕಾಯಿ"],
+ desc:["A warm-season vegetable used in curries and dals.",
+       "गर्म मौसम में उपयोग की जाने वाली सब्ज़ी।",
+       "ಬಿಸಿ ಋತುವಿನಲ್ಲಿ ಬಳಸುವ ತರಕಾರಿ."],
+ category:"Vegetable",
+ season:["Grishma","Varsha"],
+ regions:["South","West","North"],
+ emoji:"🥒",
+ colors:["#709f5e","#b8d186"],
+ benefits:["Provides water and fiber."]
+},
+
+{
+ id:"green-gram",
+ name:["Green Gram","मूंग","ಹೆಸರುಕಾಳು"],
+ desc:["A versatile pulse used throughout Indian food cultures.",
+       "भारतीय भोजन में व्यापक रूप से उपयोग की जाने वाली दाल।",
+       "ಭಾರತೀಯ ಆಹಾರ ಸಂಸ್ಕೃತಿಗಳಲ್ಲಿ ವ್ಯಾಪಕವಾಗಿ ಬಳಸುವ ಕಾಳು."],
+ category:"Legume",
+ season:["Varsha","Sharad"],
+ regions:["North","South","West","East"],
+ emoji:"🫘",
+ colors:["#719f55","#aacb74"],
+ benefits:["Provides plant protein and fiber."]
+},
+
+{
+ id:"black-gram",
+ name:["Black Gram","उड़द","ಉದ್ದು"],
+ desc:["An important pulse used in dals, idli, dosa and other foods.",
+       "दाल, इडली, डोसा और अन्य खाद्य पदार्थों में उपयोग की जाने वाली दाल।",
+       "ದಾಲ್, ಇಡ್ಲಿ, ದೋಸೆ ಮುಂತಾದವುಗಳಲ್ಲಿ ಬಳಸುವ ಕಾಳು."],
+ category:"Legume",
+ season:["Varsha","Sharad"],
+ regions:["South","North","West"],
+ emoji:"🫘",
+ colors:["#46463f","#85836e"],
+ benefits:["Provides plant protein and minerals."]
+},
+
+{
+ id:"chickpea",
+ name:["Chickpea","चना","ಕಡಲೆ"],
+ desc:["A major pulse used in snacks, curries and flour.",
+       "नाश्ते, करी और आटे में उपयोग की जाने वाली प्रमुख दाल।",
+       "ತಿಂಡಿ, ಕರಿಗಳು ಮತ್ತು ಹಿಟ್ಟಿನಲ್ಲಿ ಬಳಸುವ ಪ್ರಮುಖ ಕಾಳು."],
+ category:"Legume",
+ season:["Hemanta","Shishira"],
+ regions:["North","West","Central"],
+ emoji:"🫘",
+ colors:["#c9ad6d","#e0c98b"],
+ benefits:["Provides plant protein, fiber and minerals."]
+},
+
+{
+ id:"groundnut",
+ name:["Groundnut","मूंगफली","ಕಡಲೆಕಾಯಿ"],
+ desc:["A widely grown Indian oilseed and food crop.",
+       "भारत में उगाई जाने वाली महत्वपूर्ण तिलहन और खाद्य फसल।",
+       "ಭಾರತದಲ್ಲಿ ಬೆಳೆಯುವ ಪ್ರಮುಖ ಎಣ್ಣೆಬೀಜ ಮತ್ತು ಆಹಾರ ಬೆಳೆ."],
+ category:"Nut",
+ season:["Sharad","Hemanta"],
+ regions:["West","South","Central"],
+ emoji:"🥜",
+ colors:["#a87642","#d2a568"],
+ benefits:["Provides protein and healthy fats."]
+},
+
+{
+ id:"walnut",
+ name:["Walnut","अखरोट","ಆಕ್ರೋಟ್"],
+ desc:["A cool-climate nut strongly associated with Himalayan regions.",
+       "हिमालयी क्षेत्रों से जुड़ा ठंडे मौसम का मेवा।",
+       "ಹಿಮಾಲಯ ಪ್ರದೇಶಗಳಿಗೆ ಸಂಬಂಧಿಸಿದ ತಂಪು ಹವಾಮಾನದ ಕಾಯಿ."],
+ category:"Nut",
+ season:["Hemanta","Shishira"],
+ regions:["North"],
+ emoji:"🌰",
+ colors:["#725037","#aa7950"],
+ benefits:["Provides healthy fats and plant protein."]
+},
+
+{
+ id:"almond",
+ name:["Almond","बादाम","ಬಾದಾಮಿ"],
+ desc:["A traditional dry fruit used across Indian households.",
+       "भारतीय घरों में उपयोग किया जाने वाला पारंपरिक मेवा।",
+       "ಭಾರತೀಯ ಮನೆಗಳಲ್ಲಿ ಬಳಸುವ ಸಾಂಪ್ರದಾಯಿಕ ಕಾಯಿ."],
+ category:"Nut",
+ season:["Hemanta","Shishira"],
+ regions:["North","West"],
+ emoji:"🌰",
+ colors:["#a87854","#d2b08d"],
+ benefits:["Provides healthy fats, protein and vitamin E."]
+},
+
+{
+ id:"jowar",
+ name:["Sorghum","ज्वार","ಜೋಳ"],
+ desc:["A drought-tolerant grain important in several Indian regions.",
+       "भारत के कई क्षेत्रों में महत्वपूर्ण सूखा-सहनशील अनाज।",
+       "ಭಾರತದ ಹಲವು ಪ್ರದೇಶಗಳಲ್ಲಿ ಪ್ರಮುಖ ಬರಸಹಿಷ್ಣು ಧಾನ್ಯ."],
+ category:"Grain",
+ season:["Varsha","Sharad","Hemanta"],
+ regions:["West","Central","South"],
+ emoji:"🌾",
+ colors:["#aa8e5c","#d3bd7c"],
+ benefits:["Provides fiber and complex carbohydrates."]
+},
+
+{
+ id:"rice",
+ name:["Rice","चावल","ಅಕ್ಕಿ"],
+ desc:["A foundational staple with enormous regional diversity in India.",
+       "भारत का अत्यंत विविध क्षेत्रीय उपयोग वाला प्रमुख अनाज।",
+       "ಭಾರತದ ಅತ್ಯಂತ ವೈವಿಧ್ಯಮಯ ಪ್ರಮುಖ ಧಾನ್ಯ."],
+ category:"Grain",
+ season:["Varsha","Sharad"],
+ regions:["South","East","North","West"],
+ emoji:"🍚",
+ colors:["#eee9d7","#d6cba8"],
+ benefits:["Provides carbohydrates and energy."]
+},
+
+{
+ id:"wheat",
+ name:["Wheat","गेहूँ","ಗೋಧಿ"],
+ desc:["A major staple particularly important across northern India.",
+       "विशेष रूप से उत्तर भारत का प्रमुख अनाज।",
+       "ವಿಶೇಷವಾಗಿ ಉತ್ತರ ಭಾರತದಲ್ಲಿ ಪ್ರಮುಖ ಧಾನ್ಯ."],
+ category:"Grain",
+ season:["Hemanta","Shishira"],
+ regions:["North","West","Central"],
+ emoji:"🌾",
+ colors:["#b79c59","#dfca8b"],
+ benefits:["Provides carbohydrates, protein and fiber."]
+},
+
+{
+ id:"sesame-ladoo",
+ name:["Sesame Ladoo","तिल लड्डू","ಎಳ್ಳು ಉಂಡೆ"],
+ desc:["A traditional sesame preparation strongly associated with winter festivals.",
+       "सर्दियों के त्योहारों से जुड़ी पारंपरिक तिल की मिठाई।",
+       "ಚಳಿಗಾಲದ ಹಬ್ಬಗಳಿಗೆ ಸಂಬಂಧಿಸಿದ ಸಾಂಪ್ರದಾಯಿಕ ಎಳ್ಳಿನ ಸಿಹಿ."],
+ category:"Traditional Food",
+ season:["Shishira"],
+ regions:["North","South","West","Central"],
+ emoji:"🍘",
+ colors:["#d0a66a","#9c7547"],
+ benefits:["Sesame contributes healthy fats and minerals."],
+ festival:["Makar Sankranti"]
+},
+
+{
+ id:"jaggery",
+ name:["Jaggery","गुड़","ಬೆಲ್ಲ"],
+ desc:["A traditional unrefined sweetener used in many regional preparations.",
+       "कई क्षेत्रीय व्यंजनों में उपयोग किया जाने वाला पारंपरिक मीठा पदार्थ।",
+       "ಅನೇಕ ಪ್ರಾದೇಶಿಕ ಅಡುಗೆಗಳಲ್ಲಿ ಬಳಸುವ ಸಾಂಪ್ರದಾಯಿಕ ಸಿಹಿ ಪದಾರ್ಥ."],
+ category:"Sweetener",
+ season:["Hemanta","Shishira"],
+ regions:["North","South","West","Central","East"],
+ emoji:"🍯",
+ colors:["#a86f36","#d49a4d"],
+ benefits:["Traditionally used as a sweetener in seasonal preparations."]
+},
+
+{
+ id:"makhana",
+ name:["Makhana","मखाना","ಮಖಾನಾ"],
+ desc:["Popped lotus seeds widely used in North and East Indian foods.",
+       "उत्तर और पूर्वी भारत में उपयोग किए जाने वाले कमल के बीज।",
+       "ಉತ್ತರ ಮತ್ತು ಪೂರ್ವ ಭಾರತದಲ್ಲಿ ಬಳಸುವ ಕಮಲದ ಬೀಜ."],
+ category:"Seed",
+ season:["Sharad","Shishira"],
+ regions:["North","East"],
+ emoji:"⚪",
+ colors:["#e5d8bf","#c6b8a2"],
+ benefits:["Provides protein and minerals."]
+},
+
+{
+ id:"mustard-seed",
+ name:["Mustard Seed","सरसों","ಸಾಸಿವೆ"],
+ desc:["An important spice and oilseed across many Indian cuisines.",
+       "भारतीय भोजन में महत्वपूर्ण मसाला और तिलहन।",
+       "ಭಾರತೀಯ ಅಡುಗೆಯಲ್ಲಿ ಪ್ರಮುಖ ಮಸಾಲೆ ಮತ್ತು ಎಣ್ಣೆಬೀಜ."],
+ category:"Seed",
+ season:["Hemanta","Shishira"],
+ regions:["North","West","East"],
+ emoji:"🟡",
+ colors:["#c9a83e","#e4cf69"],
+ benefits:["Used as a culinary spice and oilseed."]
+},
+
+{
+ id:"fenugreek",
+ name:["Fenugreek","मेथी","ಮೆಂತ್ಯ"],
+ desc:["A leafy herb and seed used widely in Indian cooking.",
+       "भारतीय भोजन में व्यापक रूप से उपयोग होने वाली पत्ती और बीज।",
+       "ಭಾರತೀಯ ಅಡುಗೆಯಲ್ಲಿ ವ್ಯಾಪಕವಾಗಿ ಬಳಸುವ ಸೊಪ್ಪು ಮತ್ತು ಬೀಜ."],
+ category:"Herb",
+ season:["Hemanta","Shishira"],
+ regions:["North","West","South"],
+ emoji:"🌿",
+ colors:["#72994f","#a9c36e"],
+ benefits:["Provides fiber and plant compounds."]
+},
+
+{
+ id:"sesame-seed",
+ name:["White Sesame","सफेद तिल","ಬಿಳಿ ಎಳ್ಳು"],
+ desc:["A versatile seed used in sweets, chutneys and seasonal dishes.",
+       "मिठाइयों, चटनी और मौसमी व्यंजनों में उपयोग होने वाला बीज।",
+       "ಸಿಹಿತಿಂಡಿ, ಚಟ್ನಿ ಮತ್ತು ಋತುಮಾನಿಕ ಆಹಾರಗಳಲ್ಲಿ ಬಳಸುವ ಬೀಜ."],
+ category:"Seed",
+ season:["Shishira"],
+ regions:["North","South","West"],
+ emoji:"🌱",
+ colors:["#e4d4ae","#c2a875"],
+ benefits:["Provides healthy fats and minerals."]
+}
+
+];
+
+
+/* =========================================================
+   SEASONS
+   ========================================================= */
+
+const seasons = [
+
+{
+ id:"vasanta",
+ name:["Vasanta — Spring","वसंत ऋतु","ವಸಂತ ಋತು"],
+ months:"March – April",
+ icon:"🌱",
+ color:"#8eaa67",
+ desc:"A season of renewal, flowering and transition."
+},
+
+{
+ id:"grishma",
+ name:["Grishma — Summer","ग्रीष्म ऋतु","ಗ್ರೀಷ್ಮ ಋತು"],
+ months:"May – June",
+ icon:"☀️",
+ color:"#dfb849",
+ desc:"Hot and dry months where hydration becomes important."
+},
+
+{
+ id:"varsha",
+ name:["Varsha — Monsoon","वर्षा ऋतु","ವರ್ಷಾ ಋತು"],
+ months:"July – August",
+ icon:"🌧️",
+ color:"#6e9c98",
+ desc:"Rainy months associated with changing agriculture and food practices."
+},
+
+{
+ id:"sharad",
+ name:["Sharad — Autumn","शरद ऋतु","ಶರದ್ ಋತು"],
+ months:"September – October",
+ icon:"🍂",
+ color:"#d49561",
+ desc:"Clearer skies and transition toward cooler weather."
+},
+
+{
+ id:"hemanta",
+ name:["Hemanta — Pre-winter","हेमंत ऋतु","ಹೇಮಂತ ಋತು"],
+ months:"November – December",
+ icon:"🌾",
+ color:"#a98762",
+ desc:"Cooler days traditionally associated with nourishing foods."
+},
+
+{
+ id:"shishira",
+ name:["Shishira — Winter","शिशिर ऋतु","ಶಿಶಿರ ಋತು"],
+ months:"January – February",
+ icon:"❄️",
+ color:"#8099b5",
+ desc:"The coldest part of the traditional six-season cycle."
+}
+
+];
+
+
+/* =========================================================
+   IKS
+   ========================================================= */
+
+const lessons = [
+
+{
+ icon:"🌿",
+ title:"Ayurveda & Seasonality",
+ text:"Indian medical traditions developed detailed ideas about seasonal changes and their relationship to food, routine and wellbeing.",
+ bullets:[
+  "Seasonal routines are often discussed under ritucharya.",
+  "Food choices can be adapted to climate and digestion.",
+  "Local traditions vary considerably."
+ ]
+},
+
+{
+ icon:"🌾",
+ title:"Agricultural Knowledge",
+ text:"Traditional food systems were closely connected to harvest calendars, rainfall, soil, water and local biodiversity.",
+ bullets:[
+  "Farmers followed local growing cycles.",
+  "Millets have long been important in dryland regions.",
+  "Food traditions often reflect local ecology."
+ ]
+},
+
+{
+ icon:"🪔",
+ title:"Festivals & Food",
+ text:"Many Indian festivals occur around seasonal transitions, harvests or agricultural milestones.",
+ bullets:[
+  "Festival foods frequently use seasonal ingredients.",
+  "Offerings and household foods vary by community.",
+  "Food can carry cultural memory across generations."
+ ]
+},
+
+{
+ icon:"🌏",
+ title:"Biodiversity",
+ text:"India contains enormous agricultural and ecological diversity. Seasonal eating can help people notice the crops and plants around them.",
+ bullets:[
+  "Local varieties can differ from state to state.",
+  "Traditional crops often adapt to regional climate.",
+  "Biodiversity is part of food culture."
+ ]
+},
+
+{
+ icon:"💧",
+ title:"Water & Climate",
+ text:"Climate strongly influences what grows, how food is preserved and what people traditionally prefer during different periods.",
+ bullets:[
+  "Hot periods often encourage water-rich foods.",
+  "Rainy periods change storage and cooking practices.",
+  "Cool periods support different crops."
+ ]
+},
+
+{
+ icon:"🧘",
+ title:"Daily Routine",
+ text:"Seasonal traditions extend beyond food into sleep, activity, clothing and household routines.",
+ bullets:[
+  "Daily habits can change with daylight and temperature.",
+  "Traditional routines are not identical everywhere.",
+  "Modern life can adapt useful seasonal awareness."
+ ]
+}
+
+];
+
+
+/* =========================================================
+   REGIONS
+   ========================================================= */
+
+const regions = [
+
+{
+ icon:"🏔️",
+ name:"North India",
+ text:"Cool winters, wheat, mustard greens, carrots, seasonal fruits and diverse grain traditions."
+},
+
+{
+ icon:"🌴",
+ name:"South India",
+ text:"Tropical and coastal food cultures featuring rice, coconut, millets, banana, curry leaves and regional vegetables."
+},
+
+{
+ icon:"🌊",
+ name:"East India",
+ text:"Rice-based traditions, aquatic foods, seasonal vegetables and rich festival cuisines."
+},
+
+{
+ icon:"🏜️",
+ name:"West India",
+ text:"Dryland crops, millets, groundnut, seasonal vegetables and diverse coastal traditions."
+},
+
+{
+ icon:"🌾",
+ name:"Central India",
+ text:"Millets, pulses, grains, forest foods and agricultural traditions shaped by seasonal rainfall."
+},
+
+{
+ icon:"🌧️",
+ name:"Northeast India",
+ text:"Highly diverse food cultures shaped by hills, forests, rainfall, local crops and community traditions."
+}
+
+];
+
+
+/* =========================================================
+   FESTIVALS
+   ========================================================= */
+
+const festivals = [
+
+{
+ emoji:"🪁",
+ name:"Makar Sankranti",
+ text:"A major seasonal festival associated with the sun's transition and harvest traditions. Sesame, jaggery and regional preparations are common."
+},
+
+{
+ emoji:"🌈",
+ name:"Holi",
+ text:"A spring festival celebrated across many communities with diverse foods, drinks and regional customs."
+},
+
+{
+ emoji:"🪔",
+ name:"Diwali",
+ text:"A major festival with extensive regional food traditions, including sweets, snacks and family preparations."
+},
+
+{
+ emoji:"🌾",
+ name:"Pongal",
+ text:"A major harvest celebration in Tamil Nadu connected with rice, sugarcane and agricultural gratitude."
+},
+
+{
+ emoji:"🌿",
+ name:"Ugadi",
+ text:"A New Year celebration in parts of South India with symbolic foods representing different tastes and experiences."
+},
+
+{
+ emoji:"🌼",
+ name:"Onam",
+ text:"A major Kerala celebration associated with the elaborate Onam sadya and seasonal cultural traditions."
+},
+
+{
+ emoji:"🥁",
+ name:"Bihu",
+ text:"Assamese festivals connected to agricultural cycles and distinctive seasonal foods."
+},
+
+{
+ emoji:"🌸",
+ name:"Navratri",
+ text:"A period observed in different ways across India, with regional fasting and festival food traditions."
+},
+
+{
+ emoji:"🔥",
+ name:"Lohri",
+ text:"A winter festival especially associated with Punjab and neighboring regions, with seasonal foods and bonfire traditions."
+}
+
+];
+
+
+/* =========================================================
+   QUESTS
+   ========================================================= */
+
+const quests = [
+
+{
+ id:"q1",
+ icon:"🥭",
+ title:"Meet a seasonal fruit",
+ text:"Choose a fruit that is currently seasonal and learn one thing about it.",
+ xp:50
+},
+
+{
+ id:"q2",
+ icon:"👵",
+ title:"Ask a family elder",
+ text:"Ask someone what food they remember eating during a particular season.",
+ xp:75
+},
+
+{
+ id:"q3",
+ icon:"🌾",
+ title:"Find a local grain",
+ text:"Identify one traditional grain or millet commonly grown in your region.",
+ xp:100
+},
+
+{
+ id:"q4",
+ icon:"📓",
+ title:"Food journal",
+ text:"Write down what you ate today and identify which foods are seasonal.",
+ xp:100
+},
+
+{
+ id:"q5",
+ icon:"🌱",
+ title:"Discover a local plant",
+ text:"Find a plant or herb traditionally used in your region.",
+ xp:75
+},
+
+{
+ id:"q6",
+ icon:"🪔",
+ title:"Festival food detective",
+ text:"Choose a festival and learn one traditional food connected with it.",
+ xp:125
+},
+
+{
+ id:"q7",
+ icon:"💧",
+ title:"Seasonal hydration",
+ text:"Notice how your hydration habits change with the weather.",
+ xp:50
+},
+
+{
+ id:"q8",
+ icon:"🛒",
+ title:"Local market explorer",
+ text:"Visit or explore a local market and identify three seasonal ingredients.",
+ xp:150
+}
+
+];
+
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+const badges = [
+
+{
+ id:"first",
+ icon:"🌱",
+ name:"First Step",
+ desc:"Complete your first quest.",
+ requirement:1
+},
+
+{
+ id:"explorer",
+ icon:"🧭",
+ name:"Season Explorer",
+ desc:"Complete 3 quests.",
+ requirement:3
+},
+
+{
+ id:"foodie",
+ icon:"🥭",
+ name:"Seasonal Eater",
+ desc:"Complete 5 quests.",
+ requirement:5
+},
+
+{
+ id:"learner",
+ icon:"📚",
+ name:"IKS Learner",
+ desc:"Complete 100 XP worth of quests.",
+ requirement:100
+},
+
+{
+ id:"culture",
+ icon:"🪔",
+ name:"Culture Keeper",
+ desc:"Complete 7 quests.",
+ requirement:7
+},
+
+{
+ id:"scholar",
+ icon:"🌾",
+ name:"Ritu Scholar",
+ desc:"Earn 500 XP.",
+ requirement:500
+},
+
+{
+ id:"master",
+ icon:"☀️",
+ name:"Ritu Master",
+ desc:"Earn 1000 XP.",
+ requirement:1000
+},
+
+{
+ id:"legend",
+ icon:"🏆",
+ name:"Chakra Legend",
+ desc:"Earn 2000 XP.",
+ requirement:2000
+}
+
+];
+
+
+/* =========================================================
+   STATE
+   ========================================================= */
+
+let state = JSON.parse(localStorage.getItem("rituChakraState")) || {
+
+ xp:0,
+ level:1,
+ streak:1,
+ language:"en",
+ dark:false,
+ favorites:[],
+ quests:[],
+ games:[],
+ gameScores:[0,0,0,0],
+ season:"all"
+};
+
+
+function save(){
+ localStorage.setItem(
+   "rituChakraState",
+   JSON.stringify(state)
+ );
+}
+
+
+function levelFromXP(xp){
+ return Math.floor(xp/250)+1;
+}
+
+
+function addXP(amount){
+
+ state.xp += amount;
+ state.level = levelFromXP(state.xp);
+
+ save();
+ updateUI();
+
+}
+
+
+function completeQuest(id){
+
+ if(state.quests.includes(id)) return;
+
+ const quest=quests.find(q=>q.id===id);
+
+ if(!quest)return;
+
+ state.quests.push(id);
+
+ addXP(quest.xp);
+
+ renderQuests();
+
+}
+
+
+function toggleFavorite(id){
+
+ if(state.favorites.includes(id)){
+   state.favorites =
+     state.favorites.filter(x=>x!==id);
+ }else{
+   state.favorites.push(id);
+ }
+
+ save();
+ renderFoods();
+ renderHomeFoods();
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+function go(page){
+
+ document.querySelectorAll(".page")
+   .forEach(p=>p.classList.remove("active"));
+
+ const target=document.getElementById(page);
+
+ if(target){
+   target.classList.add("active");
+ }
+
+ document.querySelectorAll(".nav-btn")
+   .forEach(btn=>{
+     btn.classList.toggle(
+       "active",
+       btn.dataset.page===page
+     );
+   });
+
+ window.scrollTo({
+   top:0,
+   behavior:"smooth"
+ });
+
+}
+
+
+function changeLanguage(lang){
+
+ state.language=lang;
+
+ document.getElementById("language").value=lang;
+ document.getElementById("settingsLanguage").value=lang;
+
+ save();
+
+ renderAll();
+
+}
+
+
+/* =========================================================
+   THEME
+   ========================================================= */
+
+function toggleTheme(){
+
+ state.dark=!state.dark;
+
+ save();
+
+ applyTheme();
+
+}
+
+
+function applyTheme(){
+
+ document.getElementById("app")
+   .classList.toggle("dark",state.dark);
+
+ document.getElementById("themeBtn").textContent =
+   state.dark ? "☀️" : "🌙";
+
+ document.getElementById("darkToggle")
+   ?.classList.toggle("on",state.dark);
+
+}
+
+
+/* =========================================================
+   FOOD RENDERING
+   ========================================================= */
+
+function foodName(food){
+
+ return food.name[
+   state.language==="en" ? 0 :
+   state.language==="hi" ? 1 : 2
+ ];
+
+}
+
+
+function foodDesc(food){
+
+ return food.desc[
+   state.language==="en" ? 0 :
+   state.language==="hi" ? 1 : 2
+ ];
+
+}
+
+
+function renderFoodCard(food){
+
+ const favorite=state.favorites.includes(food.id);
+
+ return `
+ <article class="food">
+
+   <div
+     class="food-visual"
+     style="background:linear-gradient(135deg,${food.colors[0]},${food.colors[1]})">
+     ${food.emoji}
+   </div>
+
+   <div class="food-body">
+
+     <div class="food-name">
+       <h3>${foodName(food)}</h3>
+       <span class="tag">${food.category}</span>
+     </div>
+
+     <p>${foodDesc(food)}</p>
+
+     <div class="food-actions">
+
+       <button onclick="openFood('${food.id}')">
+         Learn more →
+       </button>
+
+       <button
+         class="fav"
+         onclick="toggleFavorite('${food.id}')">
+         ${favorite ? "❤️" : "♡"}
+       </button>
+
+     </div>
+
+   </div>
+
+ </article>
+ `;
+}
+
+
+function renderHomeFoods(){
+
+ const container=document.getElementById("homeFoods");
+
+ container.innerHTML =
+   foods.slice(0,6)
+     .map(renderFoodCard)
+     .join("");
+
+}
+
+
+function renderFoods(){
+
+ const search=
+   document.getElementById("foodSearch")
+   ?.value
+   .toLowerCase() || "";
+
+ let filtered=foods.filter(food=>{
+
+   const text=[
+     food.name[0],
+     food.name[1],
+     food.name[2],
+     food.category,
+     ...food.regions,
+     ...food.season
+   ].join(" ").toLowerCase();
+
+   const matchesSearch=text.includes(search);
+
+   const matchesSeason =
+     state.season==="all" ||
+     food.season.includes(state.season);
+
+   return matchesSearch && matchesSeason;
+
+ });
+
+ document.getElementById("foodGrid").innerHTML =
+   filtered.length
+   ? filtered.map(renderFoodCard).join("")
+   : `<div class="empty">No seasonal foods found.</div>`;
+
+}
+
+
+/* =========================================================
+   FILTERS
+   ========================================================= */
+
+function renderFilters(){
+
+ const container=document.getElementById("foodFilters");
+
+ const filters=[
+   ["all","All"],
+   ["Vasanta","🌱 Spring"],
+   ["Grishma","☀️ Summer"],
+   ["Varsha","🌧️ Monsoon"],
+   ["Sharad","🍂 Autumn"],
+   ["Hemanta","🌾 Pre-winter"],
+   ["Shishira","❄️ Winter"]
+ ];
+
+ container.innerHTML=filters.map(([id,label])=>`
+
+   <button
+     class="filter ${state.season===id.toLowerCase()?"active":""}"
+     onclick="setSeason('${id.toLowerCase()}')">
+     ${label}
+   </button>
+
+ `).join("");
+
+}
+
+
+function setSeason(season){
+
+ state.season=season;
+
+ save();
+
+ renderFilters();
+ renderFoods();
+
+}
+
+
+/* =========================================================
+   RITU LIST
+   ========================================================= */
+
+function renderRitus(){
+
+ document.getElementById("rituList").innerHTML =
+ seasons.map((s,i)=>`
+
+ <article
+   class="ritu-card"
+   onclick="setSeason('${s.id}')"
+   style="cursor:pointer">
+
+   <div
+     class="ritu-icon"
+     style="background:${s.color}22">
+     ${s.icon}
+   </div>
+
+   <div>
+     <h3>${s.name[
+       state.language==="en" ? 0 :
+       state.language==="hi" ? 1 : 2
+     ]}</h3>
+
+     <p>${s.desc}</p>
+   </div>
+
+   <div class="ritu-months">
+     ${s.months}
+   </div>
+
+ </article>
+
+ `).join("");
+
+}
+
+
+/* =========================================================
+   IKS
+   ========================================================= */
+
+function renderIKS(){
+
+ document.getElementById("iksLessons").innerHTML =
+ lessons.map((lesson,i)=>`
+
+ <article class="lesson">
+
+   <div class="lesson-header">
+
+     <div class="lesson-number">
+       ${i+1}
+     </div>
+
+     <div style="font-size:30px">
+       ${lesson.icon}
+     </div>
+
+     <h3>${lesson.title}</h3>
+
+   </div>
+
+   <p>${lesson.text}</p>
+
+   <ul>
+     ${lesson.bullets.map(x=>`<li>${x}</li>`).join("")}
+   </ul>
+
+ </article>
+
+ `).join("");
+
+}
+
+
+/* =========================================================
+   REGIONS
+   ========================================================= */
+
+function renderRegions(){
+
+ document.getElementById("regions").innerHTML =
+ regions.map(r=>`
+
+ <article class="region">
+
+   <div class="region-icon">${r.icon}</div>
+
+   <h3>${r.name}</h3>
+
+   <p>${r.text}</p>
+
+ </article>
+
+ `).join("");
+
+}
+
+
+/* =========================================================
+   FESTIVALS
+   ========================================================= */
+
+function renderFestivals(){
+
+ document.getElementById("festivalGrid").innerHTML =
+ festivals.map(f=>`
+
+ <article class="festival">
+
+   <div class="emoji">${f.emoji}</div>
+
+   <h3>${f.name}</h3>
+
+   <p>${f.text}</p>
+
+ </article>
+
+ `).join("");
+
+}
+
+
+/* =========================================================
+   QUESTS
+   ========================================================= */
+
+function renderQuests(){
+
+ document.getElementById("questGrid").innerHTML =
+ quests.map(q=>{
+
+   const completed=state.quests.includes(q.id);
+
+   return `
+
+   <article class="quest ${completed?"completed":""}">
+
+     <div class="quest-top">
+
+       <div class="quest-icon">
+         ${q.icon}
+       </div>
+
+       <div class="xp">
+         +${q.xp} XP
+       </div>
+
+     </div>
+
+     <h3>${q.title}</h3>
+
+     <p>${q.text}</p>
+
+     <button
+       ${completed?"disabled":""}
+       onclick="completeQuest('${q.id}')">
+
+       ${completed ? "✓ Completed" : "Complete Quest"}
+
+     </button>
+
+   </article>
+
+   `;
+
+ }).join("");
+
+}
+
+
+/* =========================================================
+   GAMES
+   ========================================================= */
+
+const correctAnswers={
+ 1:"Summer",
+ 2:"Ragi",
+ 3:"Sesame",
+ 4:"South India"
+};
+
+
+function answerGame(game,answer){
+
+ if(correctAnswers[game]===answer){
+
+   state.gameScores[game-1]++;
+
+   if(!state.games.includes(game)){
+     state.games.push(game);
+     addXP(25);
+   }
+
+   save();
+
+   document.getElementById(
+     "gameScore"+game
+   ).textContent=state.gameScores[game-1];
+
+   alert("Correct! 🎉 +25 XP");
+
+ }else{
+
+   alert("Not quite — try again! 🌿");
+
+ }
+
+}
+
+
+/* =========================================================
+   PROFILE
+   ========================================================= */
+
+function renderBadges(){
+
+ const questCount=state.quests.length;
+
+ document.getElementById("badges").innerHTML =
+ badges.map(b=>{
+
+   let unlocked=false;
+
+   if(
+     b.id==="first" &&
+     questCount>=1
+   ) unlocked=true;
+
+   if(
+     b.id==="explorer" &&
+     questCount>=3
+   ) unlocked=true;
+
+   if(
+     b.id==="foodie" &&
+     questCount>=5
+   ) unlocked=true;
+
+   if(
+     b.id==="learner" &&
+     state.xp>=100
+   ) unlocked=true;
+
+   if(
+     b.id==="culture" &&
+     questCount>=7
+   ) unlocked=true;
+
+   if(
+     b.id==="scholar" &&
+     state.xp>=500
+   ) unlocked=true;
+
+   if(
+     b.id==="master" &&
+     state.xp>=1000
+   ) unlocked=true;
+
+   if(
+     b.id==="legend" &&
+     state.xp>=2000
+   ) unlocked=true;
+
+   return `
+
+   <div class="badge ${unlocked?"":"locked"}">
+
+     <div class="badge-icon">
+       ${b.icon}
+     </div>
+
+     <strong>${b.name}</strong>
+
+     <small>${b.desc}</small>
+
+   </div>
+
+   `;
+
+ }).join("");
+
+}
+
+
+/* =========================================================
+   FOOD MODAL
+   ========================================================= */
+
+function openFood(id){
+
+ const food=foods.find(f=>f.id===id);
+
+ if(!food)return;
+
+ document.getElementById("modalEmoji")
+   .textContent=food.emoji;
+
+ document.getElementById("modalName")
+   .textContent=foodName(food);
+
+ document.getElementById("modalCategory")
+   .textContent=food.category;
+
+ document.getElementById("modalDescription")
+   .textContent=foodDesc(food);
+
+ document.getElementById("modalBenefits")
+   .innerHTML=food.benefits
+     .map(x=>`<li>${x}</li>`)
+     .join("");
+
+ document.getElementById("modalRegions")
+   .textContent=food.regions.join(" • ");
+
+ document.getElementById("modalSeason")
+   .textContent=food.season.join(" • ");
+
+ document.getElementById("foodModal")
+   .classList.add("show");
+
+}
+
+
+function hideModal(){
+
+ document.getElementById("foodModal")
+   .classList.remove("show");
+
+}
+
+
+function closeModal(e){
+
+ if(e.target.id==="foodModal"){
+   hideModal();
+ }
+
+}
+
+
+/* =========================================================
+   UI
+   ========================================================= */
+
+function updateUI(){
+
+ state.level=levelFromXP(state.xp);
+
+ document.getElementById("headerXP")
+   .textContent=state.xp;
+
+ document.getElementById("profileXP")
+   .textContent=state.xp;
+
+ document.getElementById("profileLevel")
+   .textContent=state.level;
+
+ document.getElementById("profileStreak")
+   .textContent=state.streak;
+
+ document.getElementById("profileGames")
+   .textContent=state.games.length;
+
+ document.getElementById("questCount")
+   .textContent=state.quests.length;
+
+}
+
+
+function renderAll(){
+
+ applyTheme();
+
+ renderHomeFoods();
+
+ renderFoods();
+
+ renderFilters();
+
+ renderRitus();
+
+ renderIKS();
+
+ renderRegions();
+
+ renderFestivals();
+
+ renderQuests();
+
+ renderBadges();
+
+ updateUI();
+
+}
+
+
+function resetProgress(){
+
+ if(
+   !confirm(
+     "Reset all Ritu-Chakra progress?"
+   )
+ ) return;
+
+ state={
+   xp:0,
+   level:1,
+   streak:1,
+   language:"en",
+   dark:false,
+   favorites:[],
+   quests:[],
+   games:[],
+   gameScores:[0,0,0,0],
+   season:"all"
+ };
+
+ save();
+
+ location.reload();
+
+}
+
+
+/* =========================================================
+   LANGUAGE UI
+   ========================================================= */
+
+const translations={
+
+ en:{
+   heroTitle:"Live with the rhythm of the seasons.",
+   heroText:"Discover India's seasonal foods, traditional knowledge, regional cultures, festivals and everyday practices through the six-season Ritu Chakra."
+ },
+
+ hi:{
+   heroTitle:"ऋतुओं की लय के साथ जिएँ।",
+   heroText:"छः ऋतुओं के ऋतु चक्र के माध्यम से भारत के मौसमी खाद्य, पारंपरिक ज्ञान, क्षेत्रीय संस्कृति और त्योहारों को जानें।"
+ },
+
+ kn:{
+   heroTitle:"ಋತುಗಳ ಲಯದೊಂದಿಗೆ ಬದುಕಿರಿ.",
+   heroText:"ಆರು ಋತುಗಳ ಋತುಚಕ್ರದ ಮೂಲಕ ಭಾರತದ ಋತುಮಾನ ಆಹಾರ, ಸಾಂಪ್ರದಾಯಿಕ ಜ್ಞಾನ, ಪ್ರಾದೇಶಿಕ ಸಂಸ್ಕೃತಿ ಮತ್ತು ಹಬ್ಬಗಳನ್ನು ಅನ್ವೇಷಿಸಿ."
+ }
+
+};
+
+
+function updateLanguageUI(){
+
+ const lang=translations[state.language];
+
+ document.getElementById("heroTitle").innerHTML =
+   lang.heroTitle;
+
+ document.getElementById("heroText").textContent =
+   lang.heroText;
+
+}
+
+
+/* =========================================================
+   EVENTS
+   ========================================================= */
+
+document
+ .getElementById("language")
+ .addEventListener("change",e=>{
+   changeLanguage(e.target.value);
+ });
+
+document
+ .getElementById("foodSearch")
+ .addEventListener("input",renderFoods);
+
+
+document
+ .querySelectorAll(".season-node")
+ .forEach(node=>{
+
+   node.addEventListener("click",()=>{
+
+     const season=node.dataset.season;
+
+     state.season=season;
+
+     save();
+
+     renderFilters();
+     renderFoods();
+
+     go("foods");
+
+   });
+
+ });
+
+
+/* =========================================================
+   PATCH RENDER
+   ========================================================= */
+
+const oldRenderAll=renderAll;
+
+renderAll=function(){
+
+ oldRenderAll();
+
+ updateLanguageUI();
+
+ document.getElementById("language").value=
+   state.language;
+
+ document.getElementById("settingsLanguage").value=
+   state.language;
+
+ document.querySelectorAll(".season-node")
+   .forEach(node=>{
+     node.classList.toggle(
+       "active",
+       state.season===node.dataset.season
+     );
+   });
+
+};
+
+
+/* =========================================================
+   START
+   =========================================================
+   The app is initialized at DOMContentLoaded below, after all
+   V2 data and functions have been defined.
+   ========================================================= */
+
+/* =========================================================
+   RITU-CHAKRA V2 PATCH — DAILY XP, REWARDS, QUESTS & GAMES
+   ========================================================= */
+
+const RC_DAILY_KEY = "rituChakraDaily";
+const RC_TODAY = new Date().toISOString().slice(0,10);
+
+function getDailyData(){
+  let d;
+  try { d = JSON.parse(localStorage.getItem(RC_DAILY_KEY) || "null"); } catch(e) { d=null; }
+  if(!d || d.date !== RC_TODAY){
+    d = {date:RC_TODAY, xp:0, rewardClaimed:false, questDone:[], gameDone:[]};
+  }
+  /* Fix the old bug where a stale daily counter could block a fresh 0-XP profile. */
+  if(Number(state.xp) === 0 && Number(d.xp) > 0){
+    d.xp = 0;
+    d.rewardClaimed = false;
+    d.questDone = [];
+    d.gameDone = [];
+  }
+  d.xp = Math.max(0, Math.min(350, Number(d.xp)||0));
+  return d;
+}
+
+function saveDailyData(d){
+  localStorage.setItem(RC_DAILY_KEY, JSON.stringify(d));
+}
+
+function dailyXP(){
+  const d=getDailyData();
+  saveDailyData(d);
+  return d.xp;
+}
+
+function addXP(amount, source="activity"){
+  amount = Math.max(0, Number(amount)||0);
+  if(!amount) return 0;
+
+  const d=getDailyData();
+  const remaining=350-d.xp;
+  const gained=Math.min(amount, remaining);
+
+  if(gained>0){
+    state.xp = Math.max(0, Number(state.xp)||0) + gained;
+    state.level = levelFromXP(state.xp);
+    d.xp += gained;
+    saveDailyData(d);
+    save();
+    updateUI();
+    renderDailyReward();
+  }
+
+  if(gained < amount){
+    alert("You've reached today's 350 XP limit. Come back tomorrow for more XP! 🌿");
+  }
+  return gained;
+}
+
+function updateDailyXPUI(){
+  const used=dailyXP();
+  const pill=document.getElementById("dailyXPText");
+  if(pill) pill.textContent=`Daily XP: ${used}/350`;
+}
+
+function renderDailyReward(){
+  const d=getDailyData();
+  const btn=document.getElementById("dailyRewardBtn");
+  const text=document.getElementById("dailyRewardText");
+  if(!btn || !text) return;
+
+  const remaining=350-d.xp;
+  if(d.rewardClaimed){
+    btn.disabled=true;
+    btn.textContent="✓ Claimed today";
+    text.textContent=`Reward claimed. Daily XP: ${d.xp}/350. Come back tomorrow!`;
+  }else if(remaining<=0){
+    btn.disabled=true;
+    btn.textContent="Daily limit reached";
+    text.textContent="You've already earned 350 XP today. Your reward will be available tomorrow.";
+  }else{
+    btn.disabled=false;
+    const possible=Math.min(50,remaining);
+    btn.textContent=`Claim +${possible} XP`;
+    text.textContent=`Your daily reward is ready. Daily XP: ${d.xp}/350.`;
+  }
+  updateDailyXPUI();
+}
+
+function claimDailyReward(){
+  const d=getDailyData();
+  if(d.rewardClaimed) return;
+  if(d.xp>=350){ renderDailyReward(); return; }
+  const gained=addXP(50,"daily reward");
+  if(gained>0){
+    d.rewardClaimed=true;
+    saveDailyData(d);
+    renderDailyReward();
+    alert(`Daily reward claimed! 🎁 +${gained} XP`);
+  }
+}
+
+/* A much larger rotating quest bank. Six appear each day. */
+const dailyQuestBank=[
+ {id:"q01",icon:"🥭",xp:50,title:"Season Spotter",text:"Find one fruit that is naturally in season right now."},
+ {id:"q02",icon:"💧",xp:50,title:"Hydration Check",text:"Choose a water-rich seasonal food for today's snack."},
+ {id:"q03",icon:"🌾",xp:75,title:"Millet Mission",text:"Learn one fact about ragi, jowar, bajra or another millet."},
+ {id:"q04",icon:"👵",xp:75,title:"Elder Wisdom",text:"Ask a family elder about one food they ate in a particular season."},
+ {id:"q05",icon:"🧺",xp:75,title:"Local Market Hunt",text:"Identify one locally grown food at a market or shop."},
+ {id:"q06",icon:"📔",xp:50,title:"Food Journal",text:"Write down three foods you ate today and mark their season."},
+ {id:"q07",icon:"🌿",xp:75,title:"Native Plant",text:"Discover one native crop or plant from your region."},
+ {id:"q08",icon:"🪔",xp:100,title:"Festival Detective",text:"Find one festival food and learn why it is traditionally prepared."},
+ {id:"q09",icon:"🍲",xp:50,title:"Seasonal Plate",text:"Build a meal using at least two seasonal ingredients."},
+ {id:"q10",icon:"🌍",xp:75,title:"Food Miles",text:"Compare a local food with an imported food and think about transport distance."},
+ {id:"q11",icon:"🔎",xp:50,title:"Ingredient Detective",text:"Read a food label and identify one ingredient you recognise."},
+ {id:"q12",icon:"🌱",xp:75,title:"Green Swap",text:"Choose one packaged snack and suggest a seasonal whole-food alternative."},
+ {id:"q13",icon:"☀️",xp:50,title:"Season Watch",text:"Observe today's weather and connect it to one seasonal food choice."},
+ {id:"q14",icon:"📚",xp:75,title:"IKS Explorer",text:"Read one Ritu-Chakra IKS lesson and write one thing you learned."},
+ {id:"q15",icon:"🗺️",xp:100,title:"India Explorer",text:"Learn one seasonal food tradition from a different Indian region."},
+ {id:"q16",icon:"🥬",xp:50,title:"Green Bite",text:"Add one leafy seasonal food to a meal today."},
+ {id:"q17",icon:"🫘",xp:75,title:"Pulse Power",text:"Find a local pulse and learn one nutrition fact about it."},
+ {id:"q18",icon:"♻️",xp:75,title:"Waste Less",text:"Think of one way your household can reduce food waste today."},
+ {id:"q19",icon:"🎯",xp:50,title:"Quick Quiz",text:"Answer one new Ritu Game question correctly."},
+ {id:"q20",icon:"📸",xp:50,title:"Food Observer",text:"Observe one seasonal food around you and note where it came from."},
+ {id:"q21",icon:"🌧️",xp:75,title:"Rainy Wisdom",text:"Learn one traditional food or preservation practice linked with the rainy season."},
+ {id:"q22",icon:"❄️",xp:75,title:"Cool-Season Clue",text:"Find one food associated with cooler months in India."},
+ {id:"q23",icon:"🔥",xp:75,title:"Kitchen Knowledge",text:"Ask how one traditional dish is prepared and why its ingredients are used."},
+ {id:"q24",icon:"🌏",xp:100,title:"Biodiversity Mission",text:"Learn the name of one traditional crop variety or local food plant."}
+];
+
+function dailyQuestList(){
+  const dayNum=Math.floor(Date.parse(RC_TODAY)/86400000);
+  const arr=[...dailyQuestBank];
+  let seed=dayNum*9301+49297;
+  for(let i=arr.length-1;i>0;i--){
+    seed=(seed*233280+12345)%2147483647;
+    const j=seed%(i+1);
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr.slice(0,6);
+}
+
+function completeQuest(id){
+  const d=getDailyData();
+  const todayQuests=dailyQuestList();
+  const quest=todayQuests.find(q=>q.id===id);
+  if(!quest || d.questDone.includes(id)) return;
+
+  const gained=addXP(quest.xp,"quest");
+  if(gained>0){
+    d.questDone.push(id);
+    saveDailyData(d);
+    state.quests=Array.isArray(state.quests)?state.quests:[];
+    const historyKey=RC_TODAY+":"+id;
+    if(!state.quests.includes(historyKey)) state.quests.push(historyKey);
+    save();
+    renderQuests();
+    renderBadges();
+  }
+}
+
+function renderQuests(){
+  const box=document.getElementById("questGrid");
+  if(!box) return;
+  const d=getDailyData();
+  box.innerHTML=dailyQuestList().map(q=>{
+    const done=d.questDone.includes(q.id);
+    return `<article class="quest ${done?"completed":""}">
+      <div class="quest-top"><div class="quest-icon">${q.icon}</div><div class="xp">+${q.xp} XP</div></div>
+      <h3>${q.title}</h3><p>${q.text}</p>
+      <button ${done?"disabled":""} onclick="completeQuest('${q.id}')">${done?"✓ Completed":"Complete Quest"}</button>
+    </article>`;
+  }).join("");
+}
+
+/* 48-question rotating game bank: one question = one XP reward per day. */
+const gameBank=[
+ {game:1,q:"Which season is traditionally associated with mango?",a:"Summer",o:["Winter","Summer","Monsoon","Autumn"]},
+ {game:1,q:"Which season is generally linked with fresh green peas in North India?",a:"Winter",o:["Winter","Summer","Monsoon","Autumn"]},
+ {game:1,q:"Which season follows Varsha in the six-season cycle?",a:"Sharad",o:["Vasanta","Sharad","Hemanta","Shishira"]},
+ {game:1,q:"Which season is known as the rainy season?",a:"Varsha",o:["Grishma","Varsha","Sharad","Vasanta"]},
+ {game:1,q:"Which season is associated with spring?",a:"Vasanta",o:["Vasanta","Hemanta","Varsha","Grishma"]},
+ {game:1,q:"Which season is associated with the hottest part of the year?",a:"Grishma",o:["Shishira","Grishma","Sharad","Vasanta"]},
+ {game:1,q:"Which season comes after Sharad?",a:"Hemanta",o:["Varsha","Hemanta","Vasanta","Grishma"]},
+ {game:1,q:"Which season comes after Hemanta?",a:"Shishira",o:["Shishira","Sharad","Varsha","Vasanta"]},
+ {game:1,q:"Which food is commonly linked with summer hydration?",a:"Watermelon",o:["Watermelon","Sesame","Mustard greens","Peas"]},
+ {game:1,q:"Which is a cool-season leafy vegetable?",a:"Spinach",o:["Spinach","Mango","Watermelon","Jackfruit"]},
+ {game:1,q:"Which season is associated with many harvest traditions?",a:"Sharad",o:["Sharad","Grishma","Vasanta","Shishira"]},
+ {game:1,q:"Which seasonal idea means adjusting food and routine with the climate?",a:"Ritucharya",o:["Ritucharya","Monsoon","Biodiversity","Fermentation"]},
+ {game:2,q:"Which one is a millet?",a:"Ragi",o:["Ragi","Apple","Mango","Cucumber"]},
+ {game:2,q:"Which one is a millet?",a:"Bajra",o:["Rice","Bajra","Potato","Banana"]},
+ {game:2,q:"Which one is a millet?",a:"Jowar",o:["Jowar","Carrot","Papaya","Spinach"]},
+ {game:2,q:"Which is a pulse rather than a millet?",a:"Lentil",o:["Lentil","Ragi","Bajra","Jowar"]},
+ {game:2,q:"Ragi is also called what?",a:"Finger millet",o:["Finger millet","Pearl millet","Foxtail millet","Little millet"]},
+ {game:2,q:"Which nutrient is commonly provided by millets?",a:"Fiber",o:["Fiber","Only water","Only sugar","Only vitamin C"]},
+ {game:2,q:"Which is a traditional dryland crop?",a:"Bajra",o:["Bajra","Strawberry","Orange","Coconut"]},
+ {game:2,q:"Which grain is commonly used in dosa and idli traditions?",a:"Rice",o:["Rice","Apple","Sesame","Mango"]},
+ {game:2,q:"Which food is a legume?",a:"Green gram",o:["Green gram","Ragi","Jowar","Rice"]},
+ {game:2,q:"Which food is a leafy green?",a:"Spinach",o:["Spinach","Bajra","Sesame","Groundnut"]},
+ {game:2,q:"Which food is a seed often used in Indian sweets?",a:"Sesame",o:["Sesame","Spinach","Rice","Mango"]},
+ {game:2,q:"Which is a root vegetable?",a:"Carrot",o:["Carrot","Ragi","Lentil","Coconut"]},
+ {game:3,q:"Which ingredient is strongly associated with Makar Sankranti?",a:"Sesame",o:["Sesame","Mango","Watermelon","Strawberry"]},
+ {game:3,q:"Pongal is especially associated with which state?",a:"Tamil Nadu",o:["Tamil Nadu","Punjab","Assam","Goa"]},
+ {game:3,q:"Onam is strongly associated with which state?",a:"Kerala",o:["Kerala","Rajasthan","Bihar","Gujarat"]},
+ {game:3,q:"Bihu is associated with which state?",a:"Assam",o:["Assam","Kerala","Punjab","Goa"]},
+ {game:3,q:"Ugadi is celebrated as a New Year festival in parts of which region?",a:"South India",o:["South India","North India only","Northeast only","Himalayas only"]},
+ {game:3,q:"Which festival is strongly connected with harvest traditions in Tamil Nadu?",a:"Pongal",o:["Pongal","Holi","Diwali","Bihu"]},
+ {game:3,q:"Which festival is widely known as a festival of lights?",a:"Diwali",o:["Diwali","Bihu","Pongal","Onam"]},
+ {game:3,q:"Which festival is associated with colours and spring celebrations?",a:"Holi",o:["Holi","Lohri","Onam","Bihu"]},
+ {game:3,q:"Which food combination is famously associated with Makar Sankranti in many regions?",a:"Sesame and jaggery",o:["Sesame and jaggery","Mango and salt","Coconut and cucumber","Rice and apple"]},
+ {game:3,q:"What does harvest food often reflect?",a:"Seasonal availability",o:["Seasonal availability","Only imported foods","Only desserts","No local ingredients"]},
+ {game:3,q:"What can festival foods preserve besides nutrition?",a:"Cultural memory",o:["Cultural memory","Only calories","Only colour","Only packaging"]},
+ {game:4,q:"Which region is especially known for ragi-based food traditions?",a:"South India",o:["South India","Arctic","Pacific","Antarctica"]},
+ {game:4,q:"Which region includes Assam?",a:"Northeast India",o:["Northeast India","West India","South India","Central India"]},
+ {game:4,q:"Which region is famous for many coconut-based coastal foods?",a:"South India",o:["South India","Central India","Northwest only","Himalayas only"]},
+ {game:4,q:"Which region is strongly associated with sarson (mustard greens) traditions?",a:"North India",o:["North India","Northeast India","South India","Andaman"]},
+ {game:4,q:"Which region has many dryland millet traditions?",a:"West India",o:["West India","Arctic","Pacific","Antarctica"]},
+ {game:4,q:"Which region has major rice-based food cultures and Bihu traditions?",a:"Northeast India",o:["Northeast India","West India","Northwest only","Central India only"]},
+ {game:4,q:"Which region includes Kerala?",a:"South India",o:["South India","East India","Central India","North India"]},
+ {game:4,q:"Which region includes Rajasthan?",a:"West India",o:["West India","South India","Northeast India","East India"]},
+ {game:4,q:"Which region includes Odisha?",a:"East India",o:["East India","West India","South India","North India"]},
+ {game:4,q:"Why can food traditions differ between regions?",a:"Climate and local ecology",o:["Climate and local ecology","Only language","Only school rules","Only packaging"]},
+ {game:4,q:"What is one benefit of learning regional food traditions?",a:"Understanding biodiversity",o:["Understanding biodiversity","Avoiding all new foods","Ignoring local crops","Eating only one food"]},
+ {game:4,q:"What does a local crop often reflect?",a:"Regional climate",o:["Regional climate","Only city size","Only road traffic","Only clothing"]}
+];
+
+function todayGameQuestions(game){
+  const list=gameBank.filter(x=>x.game===game);
+  const dayNum=Math.floor(Date.parse(RC_TODAY)/86400000);
+  const offset=(dayNum*7+game*3)%list.length;
+  return list.slice(offset).concat(list.slice(0,offset)).slice(0,3);
+}
+
+function renderGames(){
+  const wrap=document.querySelector(".game-wrap");
+  if(!wrap) return;
+  const d=getDailyData();
+
+  const labels=["🥭","🌾","🪔","🇮🇳"];
+  const titles=["Guess the Season","Millet Mission","Festival Food","India Explorer"];
+
+  wrap.innerHTML=[1,2,3,4].map(game=>{
+    const q=todayGameQuestions(game)?.[0];
+    if(!q) return `<div class="game glass-panel"><h3>Game ${game}</h3><p>Question loading…</p></div>`;
+
+    const index=gameBank.indexOf(q);
+    const questionId=`g${game}-${index}`;
+    const done=d.gameDone.includes(questionId);
+    const options=[...q.o].sort(()=>Math.random()-.5);
+
+    return `<div class="game glass-panel" data-game="${game}" data-index="${index}">
+      <div class="game-icon">${labels[game-1]}</div>
+      <div class="eyebrow">GAME 0${game} • TODAY'S QUESTION</div>
+      <h3>${titles[game-1]}</h3>
+      <p>${q.q}</p>
+      <div class="answers">
+        ${options.map(o=>`<button type="button" class="answer" data-answer="${encodeURIComponent(o)}" ${done?"disabled":""}>${o}</button>`).join("")}
+      </div>
+      <div class="game-score">Score: <span id="gameScore${game}">${Number(state.gameScores?.[game-1]||0)}</span></div>
+      <small style="color:var(--muted)">${done?"✓ Today's question completed — tomorrow brings a new one.":"Correct answers earn +25 XP once per question per day."}</small>
+    </div>`;
+  }).join("");
+
+  wrap.onclick=function(e){
+    const btn=e.target.closest(".answer");
+    if(!btn || btn.disabled) return;
+    const card=btn.closest(".game");
+    if(!card) return;
+    const game=Number(card.dataset.game);
+    const index=Number(card.dataset.index);
+    const answer=decodeURIComponent(btn.dataset.answer||"");
+    answerGame(game,answer,index);
+  };
+}
+
+function answerGame(game,answer,index){
+  const q=gameBank[index];
+  if(!q || Number(q.game)!==Number(game)) return;
+
+  const d=getDailyData();
+  const questionId=`g${game}-${index}`;
+
+  if(d.gameDone.includes(questionId)){
+    showToast("Already completed today 🌿");
+    return;
+  }
+
+  if(answer===q.a){
+    state.gameScores=Array.isArray(state.gameScores)?state.gameScores:[0,0,0,0];
+    state.games=Array.isArray(state.games)?state.games:[];
+
+    const gained=addXP(25,"game");
+    d.gameDone.push(questionId);
+    state.gameScores[game-1]=(Number(state.gameScores[game-1])||0)+1;
+
+    if(!state.games.includes(game)) state.games.push(game);
+
+    saveDailyData(d);
+    save();
+    renderGames();
+    renderBadges();
+    updateUI();
+    showToast(gained>0 ? `Correct! 🎉 +${gained} XP` : "Correct! 🎉");
+  }else{
+    showToast("Not quite — try again! 🌿");
+  }
+}
+
+
+/* Food modal: explain actual body benefits separately from seasonal context. */
+function openFood(id){
+  const food=foods.find(f=>f.id===id);
+  if(!food)return;
+  document.getElementById("modalEmoji").textContent=food.emoji;
+  document.getElementById("modalName").textContent=foodName(food);
+  document.getElementById("modalCategory").textContent=food.category;
+  document.getElementById("modalDescription").textContent=foodDesc(food);
+  const bodyBenefits=food.bodyBenefits || food.nutritionBenefits || ["Provides useful nutrients as part of a varied diet."];
+  document.getElementById("modalBodyBenefits").innerHTML=bodyBenefits.map(x=>`<li>${x}</li>`).join("");
+  document.getElementById("modalBenefits").innerHTML=food.benefits.map(x=>`<li>${x}</li>`).join("");
+  document.getElementById("modalRegions").textContent=food.regions.join(" • ");
+  document.getElementById("modalSeason").textContent=food.season.join(" • ");
+  document.getElementById("foodModal").classList.add("show");
+}
+
+/* Theme fix: apply it to body + app, and wire both theme controls. */
+function applyTheme(){
+  document.body.classList.toggle("dark-mode",!!state.dark);
+  document.getElementById("app")?.classList.toggle("dark",!!state.dark);
+  const btn=document.getElementById("themeBtn");
+  if(btn) btn.textContent=state.dark?"☀️":"🌙";
+  document.getElementById("darkToggle")?.classList.toggle("on",!!state.dark);
+}
+function toggleTheme(){
+  state.dark=!state.dark;
+  save();
+  applyTheme();
+}
+
+/* Expand IKS without removing the original lessons. */
+const extraIKS=[
+ {icon:"🌾",title:"Millets & Dryland Wisdom",text:"Millets are diverse grains suited to many Indian farming environments.",bullets:["Ragi, jowar and bajra are examples.","Different regions developed their own recipes.","Millet traditions connect food with local agriculture."]},
+ {icon:"🥣",title:"Fermentation Traditions",text:"Fermentation is used in many Indian food traditions and can change texture, flavour and digestibility.",bullets:["Idli and dosa batter are familiar examples.","Fermentation is a traditional food-processing method.","Practices vary across communities."]},
+ {icon:"☀️",title:"Summer Food Practices",text:"Hot weather influenced traditional choices around hydration, meal timing and food preservation.",bullets:["Water-rich foods can be useful in hot conditions.","Seasonal fruits are common in many summer food cultures.","Traditional practices differ by region."]},
+ {icon:"🌧️",title:"Monsoon Food Knowledge",text:"Rainy periods can affect storage, freshness and cooking practices.",bullets:["Food preservation becomes especially important.","Cooking practices may respond to humidity.","Local knowledge varies by climate."]},
+ {icon:"❄️",title:"Winter & Cool-Season Foods",text:"Cooler months support different crops and traditional recipes in many parts of India.",bullets:["Leafy greens and roots are common in several regions.","Warm cooked foods feature in many traditions.","Availability depends on local climate."]},
+ {icon:"🪴",title:"Home Gardens",text:"Small gardens and household plants can connect people with seasonality and local biodiversity.",bullets:["Herbs and vegetables can be grown in suitable spaces.","Observation helps people notice seasonal changes.","Gardening can support food awareness."]},
+ {icon:"🌳",title:"Agro-Biodiversity",text:"Food diversity includes crop varieties, local plants, seeds and farming knowledge.",bullets:["Traditional varieties can be adapted to local conditions.","Biodiversity supports resilience in food systems.","Local seed knowledge can carry cultural value."]},
+ {icon:"🧂",title:"Traditional Preservation",text:"Indian communities have developed many ways to preserve foods across seasons.",bullets:["Drying, pickling and fermentation are examples.","Preservation can extend seasonal availability.","Methods differ across regions and households."]},
+ {icon:"🧘",title:"Ritucharya in Daily Life",text:"Ritucharya describes adapting routines with seasonal changes in traditional Indian health systems.",bullets:["Food is only one part of seasonal routine.","Sleep, activity and clothing can also be considered.","Modern adaptation should use reliable health guidance."]},
+ {icon:"🌍",title:"Local Food & Sustainability",text:"Choosing suitable local seasonal foods can help people think about transport, farming and waste.",bullets:["Local availability can reduce unnecessary food miles.","Seasonality can support awareness of farming cycles.","Sustainability involves more than one factor."]},
+ {icon:"🪁",title:"Harvest & Community",text:"Harvest festivals connect food, agriculture, gratitude and community in many Indian cultures.",bullets:["Pongal, Bihu and Makar Sankranti have strong seasonal connections.","Festival foods vary by region.","Food traditions can preserve community memory."]},
+ {icon:"📜",title:"Knowledge Across Generations",text:"Seasonal food knowledge is often passed through families, farmers, cooks and communities.",bullets:["Recipes can carry local history.","Elders may remember older seasonal practices.","Documenting knowledge can help preserve it."]}
+];
+
+function renderIKS(){
+  const box=document.getElementById("iksLessons");
+  if(!box)return;
+  const all=[...(typeof lessons!=="undefined"?lessons:[]),...extraIKS];
+  box.innerHTML=all.map(l=>`<article class="info-card glass-panel"><div class="info-icon">${l.icon}</div><h3>${l.title}</h3><p>${l.text}</p><ul style="margin-top:12px;color:var(--muted);line-height:1.8;font-size:13px">${l.bullets.map(b=>`<li>${b}</li>`).join("")}</ul></article>`).join("");
+}
+
+/* Food season bug fix + more seasonal variety. */
+function renderFoods(){
+  const search=document.getElementById("foodSearch")?.value.toLowerCase().trim()||"";
+  const grid=document.getElementById("foodGrid");
+  if(!grid)return;
+  const selected=(state.season||"all").toLowerCase();
+  const filtered=foods.filter(f=>{
+    const seasonMatch=selected==="all" || f.season.some(s=>s.toLowerCase()===selected);
+    const hay=[...f.name,f.category,...f.regions,...f.season].join(" ").toLowerCase();
+    return seasonMatch && (!search || hay.includes(search));
+  });
+  grid.innerHTML=filtered.length?filtered.map(renderFoodCard).join(""):`<div class="empty"><h3>No seasonal foods found</h3><p>Try another season or clear the search.</p></div>`;
+}
+
+/* Add body-benefit data to existing foods without changing their original content. */
+const bodyBenefitMap={
+ mango:["Vitamin C and vitamin A contribute to normal immune and eye function.","Contains water and natural carbohydrates for energy."],
+ banana:["Provides carbohydrate for energy.","Provides potassium and fiber."],
+ ragi:["Provides fiber and plant-based nutrients.","A useful source of calcium compared with many common grains."],
+ jowar:["Provides fiber and plant-based nutrients.","A whole grain that can contribute to a varied diet."],
+ bajra:["Provides fiber, minerals and plant-based nutrients.","A traditional whole grain used in many Indian food cultures."],
+ spinach:["Provides folate, iron and vitamins.","Adds fiber and plant nutrients to meals."],
+ carrot:["Provides beta-carotene, which the body can convert to vitamin A.","Provides fiber and plant nutrients."],
+ tomato:["Provides vitamin C and antioxidant compounds.","Adds water and plant nutrients to meals."],
+ watermelon:["High water content helps make it a hydrating food.","Provides vitamin C and plant compounds."],
+ orange:["Provides vitamin C.","Provides water and fiber."],
+ guava:["Rich in vitamin C.","Provides fiber and plant nutrients."],
+ papaya:["Provides vitamin C and vitamin A-related carotenoids.","Provides fiber and water."],
+ coconut:["Provides energy and minerals.","Contains fats that contribute to energy intake."],
+ peas:["Provides plant protein and fiber.","Provides folate and other micronutrients."],
+ strawberry:["Provides vitamin C and plant antioxidants.","Provides water and fiber."],
+ neem:["Contains naturally occurring plant compounds.","Traditionally valued in household and cultural practices; it is not a substitute for medical treatment."]
+};
+foods.forEach(f=>{ if(bodyBenefitMap[f.id]) f.bodyBenefits=bodyBenefitMap[f.id]; });
+
+/* Keep Home's seasonal pick seasonal rather than using the first six foods. */
+function renderHomeFoods(){
+  const grid=document.getElementById("homeFoods");
+  if(!grid)return;
+  const seasonNames=["vasanta","grishma","varsha","sharad","hemanta","shishira"];
+  const month=new Date().getMonth();
+  const seasonByMonth=["shishira","vasanta","vasanta","grishma","grishma","grishma","varsha","varsha","varsha","sharad","sharad","hemanta"];
+  const current=seasonByMonth[month];
+  let list=foods.filter(f=>f.season.some(s=>s.toLowerCase()===current)).slice(0,6);
+  if(list.length<6) list=foods.slice(0,6);
+  grid.innerHTML=list.map(renderFoodCard).join("");
+}
+
+/* Master refresh that keeps every tab visible and updated. */
+function renderAll(){
+  applyTheme();
+  renderHomeFoods(); renderFoods(); renderFilters(); renderRitus(); renderIKS();
+  renderRegions(); renderFestivals(); renderQuests(); renderGames(); renderBadges();
+  updateUI(); renderDailyReward(); updateDailyXPUI(); updateLanguageUI();
+  const lang=document.getElementById("language"); const sl=document.getElementById("settingsLanguage");
+  if(lang)lang.value=state.language; if(sl)sl.value=state.language;
+  document.querySelectorAll(".season-node").forEach(n=>n.classList.toggle("active",n.dataset.season===(state.season||"all")));
+}
+
+/* =========================================================
+   FINAL INTERACTION + LANGUAGE LAYER
+   ========================================================= */
+
+const UI_LANG = {
+  en:{
+    home:"Home", chakra:"Chakra", foods:"Foods", iks:"IKS", quests:"Quests", games:"Games", profile:"Profile",
+    heroEyebrow:"INDIAN SEASONAL LIVING",
+    heroTitle:"Live with the rhythm of the seasons.",
+    heroText:"Discover India's seasonal foods, traditional knowledge, regional cultures, festivals and everyday practices through the six-season Ritu Chakra.",
+    explore:"Explore Ritu Chakra →", exploreIKS:"Explore IKS",
+    seasonalKitchen:"SEASONAL KITCHEN", todaysPicks:"Today's seasonal picks", viewAll:"View all →",
+    dailyWisdom:"DAILY WISDOM", learnMore:"Learn more →",
+    seasonalCycle:"THE SEASONAL CYCLE", rituTitle:"Ritu Chakra",
+    foodsEyebrow:"50+ FOODS", foodsTitle:"Seasonal Foods",
+    iksEyebrow:"INDIAN KNOWLEDGE SYSTEMS", iksTitle:"Learn the wisdom behind the cycle.",
+    indiaEyebrow:"REGIONAL INDIA", festivalsEyebrow:"CULTURE & FOOD",
+    questsEyebrow:"YOUR JOURNEY", questsTitle:"Seasonal Quests",
+    gamesEyebrow:"PLAY & LEARN", gamesTitle:"Ritu Games",
+    profileEyebrow:"YOUR RITU PROFILE", profileTitle:"Your seasonal journey",
+    settingsEyebrow:"PERSONALIZE", settingsTitle:"Settings",
+    complete:"Complete Quest", completed:"✓ Completed",
+    dark:"🌙 Dark Mode", darkDesc:"Use a darker interface at night.",
+    language:"🌐 Language", languageDesc:"English, Hindi or Kannada.",
+    saved:"💾 Saved Data", savedDesc:"Your progress is stored locally in your browser.",
+    reset:"Reset", level:"Level", totalXP:"Total XP", streak:"Day streak", played:"Games played",
+    badges:"Badges", achievements:"ACHIEVEMENTS", about:"About Ritu-Chakra",
+    dailyReward:"DAILY REWARD", rewardTitle:"Come back every day for XP",
+    rewardDesc:"Claim your daily reward and keep your streak going.",
+    claim:"Claim +50 XP", dailyWisdomTitle:"Food, season, place and people are connected.",
+    dailyWisdomText:"India's food traditions evolved with climate, crops, festivals, regional ecology and household practices.",
+    today:"TODAY'S QUESTION", correct:"Correct answers earn +25 XP once per question per day.",
+    tomorrow:"✓ Today's question completed — tomorrow brings a new one."
+  },
+  hi:{
+    home:"होम", chakra:"ऋतु चक्र", foods:"खाद्य", iks:"भा.ज्ञा.प्र.", quests:"अभियान", games:"खेल", profile:"प्रोफ़ाइल",
+    heroEyebrow:"भारतीय मौसमी जीवन", heroTitle:"ऋतुओं की लय के साथ जिएँ।",
+    heroText:"छः ऋतुओं के ऋतु चक्र के माध्यम से भारत के मौसमी खाद्य, पारंपरिक ज्ञान, क्षेत्रीय संस्कृति और त्योहारों को जानें।",
+    explore:"ऋतु चक्र देखें →", exploreIKS:"भा.ज्ञा.प्र. देखें",
+    seasonalKitchen:"मौसमी रसोई", todaysPicks:"आज के मौसमी विकल्प", viewAll:"सभी देखें →",
+    dailyWisdom:"दैनिक ज्ञान", learnMore:"और जानें →",
+    seasonalCycle:"मौसमी चक्र", rituTitle:"ऋतु चक्र",
+    foodsEyebrow:"50+ खाद्य", foodsTitle:"मौसमी खाद्य",
+    iksEyebrow:"भारतीय ज्ञान प्रणालियाँ", iksTitle:"चक्र के पीछे का ज्ञान जानें।",
+    indiaEyebrow:"क्षेत्रीय भारत", festivalsEyebrow:"संस्कृति और भोजन",
+    questsEyebrow:"आपकी यात्रा", questsTitle:"मौसमी अभियान",
+    gamesEyebrow:"खेलें और सीखें", gamesTitle:"ऋतु खेल",
+    profileEyebrow:"आपकी ऋतु प्रोफ़ाइल", profileTitle:"आपकी मौसमी यात्रा",
+    settingsEyebrow:"व्यक्तिगत करें", settingsTitle:"सेटिंग्स",
+    complete:"अभियान पूरा करें", completed:"✓ पूरा हुआ",
+    dark:"🌙 डार्क मोड", darkDesc:"रात में गहरा इंटरफ़ेस उपयोग करें।",
+    language:"🌐 भाषा", languageDesc:"अंग्रेज़ी, हिन्दी या कन्नड़।",
+    saved:"💾 सहेजा डेटा", savedDesc:"आपकी प्रगति ब्राउज़र में स्थानीय रूप से सहेजी जाती है।",
+    reset:"रीसेट", level:"स्तर", totalXP:"कुल XP", streak:"दिनों की स्ट्रीक", played:"खेले गए खेल",
+    badges:"बैज", achievements:"उपलब्धियाँ", about:"ऋतु-चक्र के बारे में",
+    dailyReward:"दैनिक पुरस्कार", rewardTitle:"हर दिन XP के लिए वापस आएँ",
+    rewardDesc:"दैनिक पुरस्कार लें और अपनी स्ट्रीक जारी रखें।",
+    claim:"+50 XP लें", dailyWisdomTitle:"भोजन, ऋतु, स्थान और लोग आपस में जुड़े हैं।",
+    dailyWisdomText:"भारत की खाद्य परंपराएँ जलवायु, फसलों, त्योहारों, क्षेत्रीय पारिस्थितिकी और घरेलू प्रथाओं के साथ विकसित हुई हैं।",
+    today:"आज का प्रश्न", correct:"हर प्रश्न के लिए दिन में एक बार सही उत्तर पर +25 XP।",
+    tomorrow:"✓ आज का प्रश्न पूरा हुआ — कल नया प्रश्न मिलेगा।"
+  },
+  kn:{
+    home:"ಮುಖಪುಟ", chakra:"ಋತುಚಕ್ರ", foods:"ಆಹಾರ", iks:"ಭಾ.ಜಾ.ವ್ಯ.", quests:"ಅಭಿಯಾನಗಳು", games:"ಆಟಗಳು", profile:"ಪ್ರೊಫೈಲ್",
+    heroEyebrow:"ಭಾರತೀಯ ಋತುಮಾನ ಜೀವನ", heroTitle:"ಋತುಗಳ ಲಯದೊಂದಿಗೆ ಬದುಕಿರಿ.",
+    heroText:"ಆರು ಋತುಗಳ ಋತುಚಕ್ರದ ಮೂಲಕ ಭಾರತದ ಋತುಮಾನ ಆಹಾರ, ಸಾಂಪ್ರದಾಯಿಕ ಜ್ಞಾನ, ಪ್ರಾದೇಶಿಕ ಸಂಸ್ಕೃತಿ ಮತ್ತು ಹಬ್ಬಗಳನ್ನು ಅನ್ವೇಷಿಸಿ.",
+    explore:"ಋತುಚಕ್ರ ಅನ್ವೇಷಿಸಿ →", exploreIKS:"ಭಾ.ಜಾ.ವ್ಯ. ಅನ್ವೇಷಿಸಿ",
+    seasonalKitchen:"ಋತುಮಾನ ಅಡುಗೆಮನೆ", todaysPicks:"ಇಂದಿನ ಋತುಮಾನ ಆಯ್ಕೆಗಳು", viewAll:"ಎಲ್ಲವನ್ನೂ ನೋಡಿ →",
+    dailyWisdom:"ದೈನಂದಿನ ಜ್ಞಾನ", learnMore:"ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ →",
+    seasonalCycle:"ಋತುಮಾನ ಚಕ್ರ", rituTitle:"ಋತುಚಕ್ರ",
+    foodsEyebrow:"50+ ಆಹಾರಗಳು", foodsTitle:"ಋತುಮಾನ ಆಹಾರಗಳು",
+    iksEyebrow:"ಭಾರತೀಯ ಜ್ಞಾನ ವ್ಯವಸ್ಥೆಗಳು", iksTitle:"ಚಕ್ರದ ಹಿಂದಿನ ಜ್ಞಾನವನ್ನು ತಿಳಿಯಿರಿ.",
+    indiaEyebrow:"ಪ್ರಾದೇಶಿಕ ಭಾರತ", festivalsEyebrow:"ಸಂಸ್ಕೃತಿ ಮತ್ತು ಆಹಾರ",
+    questsEyebrow:"ನಿಮ್ಮ ಪ್ರಯಾಣ", questsTitle:"ಋತುಮಾನ ಅಭಿಯಾನಗಳು",
+    gamesEyebrow:"ಆಡಿ ಮತ್ತು ಕಲಿಯಿರಿ", gamesTitle:"ಋತು ಆಟಗಳು",
+    profileEyebrow:"ನಿಮ್ಮ ಋತು ಪ್ರೊಫೈಲ್", profileTitle:"ನಿಮ್ಮ ಋತುಮಾನ ಪ್ರಯಾಣ",
+    settingsEyebrow:"ವೈಯಕ್ತೀಕರಿಸಿ", settingsTitle:"ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+    complete:"ಅಭಿಯಾನ ಪೂರ್ಣಗೊಳಿಸಿ", completed:"✓ ಪೂರ್ಣಗೊಂಡಿದೆ",
+    dark:"🌙 ಡಾರ್ಕ್ ಮೋಡ್", darkDesc:"ರಾತ್ರಿಯಲ್ಲಿ ಗಾಢ ಇಂಟರ್‌ಫೇಸ್ ಬಳಸಿ.",
+    language:"🌐 ಭಾಷೆ", languageDesc:"ಇಂಗ್ಲಿಷ್, ಹಿಂದಿ ಅಥವಾ ಕನ್ನಡ.",
+    saved:"💾 ಉಳಿಸಿದ ಡೇಟಾ", savedDesc:"ನಿಮ್ಮ ಪ್ರಗತಿಯನ್ನು ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಸ್ಥಳೀಯವಾಗಿ ಉಳಿಸಲಾಗುತ್ತದೆ.",
+    reset:"ರೀಸೆಟ್", level:"ಹಂತ", totalXP:"ಒಟ್ಟು XP", streak:"ದಿನಗಳ ಸ್ಟ್ರೀಕ್", played:"ಆಡಿದ ಆಟಗಳು",
+    badges:"ಬ್ಯಾಡ್ಜ್‌ಗಳು", achievements:"ಸಾಧನೆಗಳು", about:"ಋತು-ಚಕ್ರದ ಬಗ್ಗೆ",
+    dailyReward:"ದೈನಂದಿನ ಬಹುಮಾನ", rewardTitle:"XPಗಾಗಿ ಪ್ರತಿದಿನ ಮರಳಿ ಬನ್ನಿ",
+    rewardDesc:"ದೈನಂದಿನ ಬಹುಮಾನವನ್ನು ಪಡೆದು ನಿಮ್ಮ ಸ್ಟ್ರೀಕ್ ಮುಂದುವರಿಸಿ.",
+    claim:"+50 XP ಪಡೆಯಿರಿ", dailyWisdomTitle:"ಆಹಾರ, ಋತು, ಸ್ಥಳ ಮತ್ತು ಜನರು ಪರಸ್ಪರ ಸಂಪರ್ಕ ಹೊಂದಿದ್ದಾರೆ.",
+    dailyWisdomText:"ಭಾರತದ ಆಹಾರ ಪರಂಪರೆಗಳು ಹವಾಮಾನ, ಬೆಳೆಗಳು, ಹಬ್ಬಗಳು, ಪ್ರಾದೇಶಿಕ ಪರಿಸರ ಮತ್ತು ಮನೆಯ ಪದ್ಧತಿಗಳೊಂದಿಗೆ ಬೆಳೆದಿವೆ.",
+    today:"ಇಂದಿನ ಪ್ರಶ್ನೆ", correct:"ಪ್ರತಿ ಪ್ರಶ್ನೆಗೆ ದಿನಕ್ಕೆ ಒಮ್ಮೆ ಸರಿಯಾದ ಉತ್ತರಕ್ಕೆ +25 XP.",
+    tomorrow:"✓ ಇಂದಿನ ಪ್ರಶ್ನೆ ಪೂರ್ಣಗೊಂಡಿದೆ — ನಾಳೆ ಹೊಸ ಪ್ರಶ್ನೆ ಬರುತ್ತದೆ."
+  }
+};
+
+function t(key){
+  return (UI_LANG[state.language]||UI_LANG.en)[key] || UI_LANG.en[key] || key;
+}
+
+function setLastText(el,text){
+  if(!el) return;
+  const span=el.querySelector("span");
+  if(span){
+    const textNodes=[...el.childNodes].filter(n=>n.nodeType===3);
+    if(textNodes.length) textNodes[textNodes.length-1].nodeValue=" "+text;
+  }else el.textContent=text;
+}
+
+function applyLanguageUI(){
+  const p=UI_LANG[state.language]||UI_LANG.en;
+
+  const map={
+    heroTitle:p.heroTitle, heroText:p.heroText,
+    headerXP:state.xp,
+    profileXP:state.xp, profileLevel:state.level, profileStreak:state.streak
+  };
+  Object.entries(map).forEach(([id,val])=>{const el=document.getElementById(id);if(el)el.textContent=val;});
+
+  const navKeys=["home","chakra","foods","iks","quests","games","profile"];
+  document.querySelectorAll(".nav-btn").forEach((b,i)=>setLastText(b,p[navKeys[i]]));
+
+  const ey=document.querySelectorAll(".page .page-title .eyebrow");
+  const eyVals=[p.seasonalCycle,p.foodsEyebrow,p.iksEyebrow,p.indiaEyebrow,p.festivalsEyebrow,p.questsEyebrow,p.gamesEyebrow,p.profileEyebrow,p.settingsEyebrow];
+  ey.forEach((e,i)=>{if(eyVals[i])e.textContent=eyVals[i];});
+
+  const homeEy=document.querySelector("#home .hero .eyebrow"); if(homeEy)homeEy.textContent=p.heroEyebrow;
+  const homeSectionEy=document.querySelector("#home .section-title .eyebrow"); if(homeSectionEy)homeSectionEy.textContent=p.seasonalKitchen;
+  const wisdomEy=document.querySelector("#home .daily .eyebrow"); if(wisdomEy)wisdomEy.textContent=p.dailyWisdom;
+
+  const sectionH=document.querySelector("#home .section-title h2"); if(sectionH)sectionH.textContent=p.todaysPicks;
+  const sectionLink=document.querySelector("#home .section-title .link-btn"); if(sectionLink)sectionLink.textContent=p.viewAll;
+  const heroBtns=document.querySelectorAll("#home .hero .btn-row .btn");
+  if(heroBtns[0])heroBtns[0].textContent=p.explore;
+  if(heroBtns[1])heroBtns[1].textContent=p.exploreIKS;
+  const wisdomBtn=document.querySelector("#home .daily .btn"); if(wisdomBtn)wisdomBtn.textContent=p.learnMore;
+
+  const dailyEy=document.querySelector("#dailyRewardCard .eyebrow"); if(dailyEy)dailyEy.textContent=p.dailyReward;
+  const dailyTitle=document.querySelector("#dailyRewardCard h3"); if(dailyTitle)dailyTitle.textContent=p.rewardTitle;
+  const dailyText=document.querySelector("#dailyRewardCard p"); if(dailyText && !dailyText.id)dailyText.textContent=p.rewardDesc;
+
+  const settingsDark=document.querySelector("#settings .setting:nth-child(1) h3");
+  const settingsDarkP=document.querySelector("#settings .setting:nth-child(1) p");
+  if(settingsDark)settingsDark.textContent=p.dark;
+  if(settingsDarkP)settingsDarkP.textContent=p.darkDesc;
+  const settingsLang=document.querySelector("#settings .setting:nth-child(2) h3");
+  const settingsLangP=document.querySelector("#settings .setting:nth-child(2) p");
+  if(settingsLang)settingsLang.textContent=p.language;
+  if(settingsLangP)settingsLangP.textContent=p.languageDesc;
+  const saved=document.querySelector("#settings .setting:nth-child(3) h3");
+  const savedP=document.querySelector("#settings .setting:nth-child(3) p");
+  if(saved)saved.textContent=p.saved;
+  if(savedP)savedP.textContent=p.savedDesc;
+  const reset=document.querySelector("#settings .setting:nth-child(3) button"); if(reset)reset.textContent=p.reset;
+
+  const statLabels=document.querySelectorAll("#home .stats .stat span");
+  if(statLabels.length>=4){
+    statLabels[0].textContent=state.language==="en"?"Seasonal foods":state.language==="hi"?"मौसमी खाद्य":"ಋತುಮಾನ ಆಹಾರಗಳು";
+    statLabels[1].textContent=state.language==="en"?"Ritu seasons":state.language==="hi"?"ऋतु":"ಋತುಗಳು";
+    statLabels[2].textContent=state.language==="en"?"IKS lessons":state.language==="hi"?"ज्ञान पाठ":"ಜ್ಞಾನ ಪಾಠಗಳು";
+    statLabels[3].textContent=state.language==="en"?"Quests completed":state.language==="hi"?"पूरे किए अभियान":"ಪೂರ್ಣಗೊಂಡ ಅಭಿಯಾನಗಳು";
+  }
+
+  const profileLabels=document.querySelectorAll("#profile .profile-stats .stat span");
+  if(profileLabels.length>=3){profileLabels[0].textContent=p.totalXP;profileLabels[1].textContent=p.streak;profileLabels[2].textContent=p.played;}
+  const badgeEy=document.querySelector("#profile .section-title .eyebrow");if(badgeEy)badgeEy.textContent=p.achievements;
+  const badgeH=document.querySelector("#profile .section-title h2");if(badgeH)badgeH.textContent=p.badges;
+
+  // Keep dropdowns synchronized.
+  const lang=document.getElementById("language"), sl=document.getElementById("settingsLanguage");
+  if(lang)lang.value=state.language;if(sl)sl.value=state.language;
+}
+
+function showToast(message){
+  let toast=document.getElementById("rcToast");
+  if(!toast){
+    toast=document.createElement("div");
+    toast.id="rcToast";
+    toast.style.cssText="position:fixed;left:50%;bottom:92px;transform:translateX(-50%) translateY(12px);z-index:9999;padding:12px 18px;border-radius:999px;background:var(--green);color:#fff;font-weight:800;font-size:13px;box-shadow:0 14px 35px rgba(0,0,0,.22);opacity:0;transition:.22s;pointer-events:none";
+    document.body.appendChild(toast);
+  }
+  toast.textContent=message;
+  requestAnimationFrame(()=>{toast.style.opacity="1";toast.style.transform="translateX(-50%) translateY(0)";});
+  clearTimeout(window.__rcToastTimer);
+  window.__rcToastTimer=setTimeout(()=>{toast.style.opacity="0";toast.style.transform="translateX(-50%) translateY(12px)";},1800);
+}
+
+/* Localized quest rendering. */
+const questI18n={
+  hi:{
+    "Season Spotter":["मौसम खोजी","एक ऐसा फल खोजें जो अभी स्वाभाविक रूप से मौसम में हो।"],
+    "Hydration Check":["जल-जांच","आज के नाश्ते के लिए पानी से भरपूर मौसमी भोजन चुनें।"],
+    "Millet Mission":["मिलेट मिशन","रागी, ज्वार, बाजरा या किसी अन्य मिलेट के बारे में एक तथ्य जानें।"],
+    "Elder Wisdom":["बड़ों का ज्ञान","परिवार के किसी बड़े से किसी मौसम के भोजन के बारे में पूछें।"],
+    "Local Market Hunt":["स्थानीय बाज़ार खोज","तीन मौसमी स्थानीय सामग्री पहचानें।"],
+    "Food Journal":["भोजन डायरी","आज खाए तीन खाद्य लिखें और उनका मौसम चिन्हित करें।"]
+  },
+  kn:{
+    "Season Spotter":["ಋತು ಹುಡುಕಾಟ","ಈಗ ಋತುವಿನಲ್ಲಿ ದೊರೆಯುವ ಒಂದು ಹಣ್ಣನ್ನು ಹುಡುಕಿ."],
+    "Hydration Check":["ನೀರಿನ ಪರಿಶೀಲನೆ","ಇಂದಿನ ತಿಂಡಿಗೆ ನೀರಿನ ಅಂಶ ಹೆಚ್ಚು ಇರುವ ಋತುಮಾನ ಆಹಾರ ಆಯ್ಕೆಮಾಡಿ."],
+    "Millet Mission":["ಸಿರಿಧಾನ್ಯ ಮಿಷನ್","ರಾಗಿ, ಜೋಳ, ಸಜ್ಜೆ ಅಥವಾ ಇನ್ನೊಂದು ಸಿರಿಧಾನ್ಯ ಕುರಿತು ಒಂದು ಮಾಹಿತಿ ತಿಳಿಯಿರಿ."],
+    "Elder Wisdom":["ಹಿರಿಯರ ಜ್ಞಾನ","ಒಂದು ಋತುವಿನ ಆಹಾರದ ಬಗ್ಗೆ ಕುಟುಂಬದ ಹಿರಿಯರನ್ನು ಕೇಳಿ."],
+    "Local Market Hunt":["ಸ್ಥಳೀಯ ಮಾರುಕಟ್ಟೆ ಹುಡುಕಾಟ","ಮೂರು ಋತುಮಾನ ಸ್ಥಳೀಯ ಪದಾರ್ಥಗಳನ್ನು ಗುರುತಿಸಿ."],
+    "Food Journal":["ಆಹಾರ ದಿನಚರಿ","ಇಂದು ತಿಂದ ಮೂರು ಆಹಾರಗಳನ್ನು ಬರೆದು ಅವುಗಳ ಋತುವನ್ನು ಗುರುತಿಸಿ."]
+  }
+};
+
+const originalRenderQuests=renderQuests;
+renderQuests=function(){
+  originalRenderQuests();
+  const map=questI18n[state.language];
+  if(!map)return;
+  document.querySelectorAll("#questGrid .quest").forEach(card=>{
+    const h=card.querySelector("h3");
+    const p=card.querySelector("p");
+    if(h && map[h.textContent]){h.textContent=map[h.textContent][0];p.textContent=map[h.textContent][1];}
+    const b=card.querySelector("button");if(b)b.textContent=b.disabled?t("completed"):t("complete");
+  });
+};
+
+/* More visual game feedback + translated shell labels. */
+const originalRenderGames=renderGames;
+renderGames=function(){
+  originalRenderGames();
+  const p=UI_LANG[state.language]||UI_LANG.en;
+  const titles=state.language==="hi"
+    ? ["मौसम पहचानें","मिलेट मिशन","त्योहार भोजन","भारत खोजी"]
+    : state.language==="kn"
+    ? ["ಋತು ಗುರುತಿಸಿ","ಸಿರಿಧಾನ್ಯ ಮಿಷನ್","ಹಬ್ಬದ ಆಹಾರ","ಭಾರತ ಅನ್ವೇಷಕ"]
+    : ["Guess the Season","Millet Mission","Festival Food","India Explorer"];
+
+  document.querySelectorAll("#games .game").forEach((card,i)=>{
+    const eyebrow=card.querySelector(".eyebrow"); if(eyebrow)eyebrow.textContent=`GAME 0${i+1} • ${p.today}`;
+    const h=card.querySelector("h3"); if(h)h.textContent=titles[i];
+    const small=card.querySelector("small"); if(small)small.textContent=small.textContent.startsWith("✓")?p.tomorrow:p.correct;
+  });
+};
+
+/* Language-aware full refresh. */
+const baseRenderAll=renderAll;
+renderAll=function(){
+  baseRenderAll();
+  applyLanguageUI();
+  renderQuests();
+  renderGames();
+  applyLanguageUI();
+};
+
+/* Wire controls after the original app has loaded. */
+window.addEventListener("DOMContentLoaded",()=>{
+  document.getElementById("themeBtn")?.addEventListener("click",toggleTheme);
+  document.getElementById("foodSearch")?.addEventListener("input",renderFoods);
+  document.getElementById("language")?.addEventListener("change",e=>changeLanguage(e.target.value));
+  document.getElementById("settingsLanguage")?.addEventListener("change",e=>changeLanguage(e.target.value));
+  renderAll();
+});
+
+
+/* =========================================================
+   RITU-CHAKRA FINAL GAME ENGINE — ROBUST CLICK HANDLER
+   This intentionally uses one document-level listener so the
+   games keep working even when the app rerenders their cards.
+   ========================================================= */
+(function(){
+  if(window.__RC_GAME_ENGINE__) return;
+  window.__RC_GAME_ENGINE__=true;
+
+  const gameTitles=["Guess the Season","Millet Mission","Festival Food","India Explorer"];
+  const gameIcons=["🥭","🌾","🪔","🇮🇳"];
+
+  function paintGames(){
+    const wrap=document.querySelector(".game-wrap");
+    if(!wrap || typeof gameBank==="undefined") return;
+
+    const d=typeof getDailyData==="function" ? getDailyData() : {gameDone:[]};
+
+    wrap.innerHTML=[1,2,3,4].map(game=>{
+      const list=gameBank.filter(q=>Number(q.game)===game);
+      if(!list.length) return "";
+
+      const dayNum=Math.floor(Date.parse(RC_TODAY)/86400000);
+      const q=list[(dayNum*7+game*3)%list.length];
+      const index=gameBank.indexOf(q);
+      const id=`g${game}-${index}`;
+      const done=Array.isArray(d.gameDone)&&d.gameDone.includes(id);
+
+      return `
+      <article class="game glass-panel" data-rc-game="${game}" data-rc-index="${index}">
+        <div class="game-icon">${gameIcons[game-1]}</div>
+        <div class="eyebrow">GAME 0${game} • PLAY & LEARN</div>
+        <h3>${gameTitles[game-1]}</h3>
+        <p>${q.q}</p>
+        <div class="answers">
+          ${q.o.map((option,i)=>`
+            <button type="button"
+              class="answer"
+              data-rc-answer="${encodeURIComponent(option)}"
+              ${done?"disabled":""}>
+              ${option}
+            </button>`).join("")}
+        </div>
+        <div class="game-score">
+          Score: <span>${Number(state.gameScores?.[game-1]||0)}</span>
+        </div>
+        <small>${done?"✓ Completed today":"Choose an answer • +25 XP for a correct answer"}</small>
+      </article>`;
+    }).join("");
+  }
+
+  function handleClick(e){
+    const btn=e.target.closest(".game-wrap .answer");
+    if(!btn || btn.disabled) return;
+
+    const card=btn.closest("[data-rc-game]");
+    if(!card) return;
+
+    const game=Number(card.dataset.rcGame);
+    const index=Number(card.dataset.rcIndex);
+    const answer=decodeURIComponent(btn.dataset.rcAnswer||"");
+
+    const q=gameBank[index];
+    if(!q) return;
+
+    if(answer===q.a){
+      const d=getDailyData();
+      d.gameDone=Array.isArray(d.gameDone)?d.gameDone:[];
+
+      const id=`g${game}-${index}`;
+      if(d.gameDone.includes(id)){
+        showToast("Already completed today 🌿");
+        return;
+      }
+
+      const gained=addXP(25,"game");
+      d.gameDone.push(id);
+
+      state.gameScores=Array.isArray(state.gameScores)?state.gameScores:[0,0,0,0];
+      state.games=Array.isArray(state.games)?state.games:[];
+      state.gameScores[game-1]=(Number(state.gameScores[game-1])||0)+1;
+      if(!state.games.includes(game)) state.games.push(game);
+
+      saveDailyData(d);
+      save();
+
+      paintGames();
+      if(typeof renderBadges==="function") renderBadges();
+      if(typeof updateUI==="function") updateUI();
+      if(typeof updateDailyXPUI==="function") updateDailyXPUI();
+
+      showToast(gained ? `Correct! 🎉 +${gained} XP` : "Correct! 🎉");
+    }else{
+      btn.disabled=true;
+      btn.textContent="✕ Try another answer";
+      btn.style.opacity=".65";
+      showToast("Not quite — try another answer 🌿");
+    }
+  }
+
+  document.addEventListener("click",handleClick,true);
+
+  window.RCRenderGames=paintGames;
+
+  document.addEventListener("DOMContentLoaded",()=>{
+    setTimeout(paintGames,50);
+  });
+})();
+
+</script>
+
+</body>
+</html>
+```
