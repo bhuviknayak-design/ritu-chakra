@@ -587,15 +587,15 @@ a{ color:inherit; }
   </div>
 
   <nav class="nav-links" id="navLinks">
-    <button class="nav-link active" data-nav="home">Home</button>
-    <button class="nav-link" data-nav="food-detective">Food Detective</button>
-    <button class="nav-link" data-nav="build-plate">Build My Plate</button>
-    <button class="nav-link" data-nav="planner">Ritu Planner</button>
-    <button class="nav-link" data-nav="wisdom-action">Wisdom → Action</button>
-    <button class="nav-link" data-nav="scan">Scan & Discover</button>
-    <button class="nav-link" data-nav="iks">IKS</button>
-    <button class="nav-link" data-nav="quizzes">Quizzes</button>
-    <button class="nav-link" data-nav="survey">Survey</button>
+    <button class="nav-link active" data-nav="home" data-i18n="nav_home">Home</button>
+    <button class="nav-link" data-nav="food-detective" data-i18n="nav_food">Food Detective</button>
+    <button class="nav-link" data-nav="build-plate" data-i18n="nav_plate">Build My Plate</button>
+    <button class="nav-link" data-nav="planner" data-i18n="nav_planner">Ritu Planner</button>
+    <button class="nav-link" data-nav="wisdom-action" data-i18n="nav_wisdom">Wisdom → Action</button>
+    <button class="nav-link" data-nav="scan" data-i18n="nav_scan">Scan & Discover</button>
+    <button class="nav-link" data-nav="iks" data-i18n="nav_iks">IKS</button>
+    <button class="nav-link" data-nav="quizzes" data-i18n="nav_quiz">Quizzes</button>
+    <button class="nav-link" data-nav="survey" data-i18n="nav_survey">Survey</button>
   </nav>
 
   <div class="nav-controls">
@@ -622,50 +622,50 @@ a{ color:inherit; }
         </div>
       </div>
       <div class="hero-text">
-        <p class="eyebrow">Indian Knowledge System × Sustainability</p>
+        <p class="eyebrow" data-i18n="hero_eyebrow">Indian Knowledge System × Sustainability</p>
         <h1>RITU-CHAKRA</h1>
-        <p class="hero-tagline" id="heroTagline">Seasonal Wisdom. Sustainable Action.</p>
-        <p class="hero-desc" id="heroDesc">An interactive platform connecting Indian seasonal knowledge, nutrition and sustainability with practical actions for today's world.</p>
-        <p class="hero-hint">Tap a season on the wheel, or jump straight in below.</p>
+        <p class="hero-tagline" id="heroTagline" data-i18n="tagline">Seasonal Wisdom. Sustainable Action.</p>
+        <p class="hero-desc" id="heroDesc" data-i18n="heroDesc">An interactive platform connecting Indian seasonal knowledge, nutrition and sustainability with practical actions for today's world.</p>
+        <p class="hero-hint" data-i18n="hero_hint">Tap a season on the wheel, or jump straight in below.</p>
       </div>
     </div>
 
     <div class="home-actions">
       <button class="glass-btn action-btn" data-nav="food-detective">
-        <span class="ab-emoji">🌱</span><span>Explore Ritu-Chakra</span>
+        <span class="ab-emoji">🌱</span><span data-i18n="home_action_explore">Explore Ritu-Chakra</span>
       </button>
       <button class="glass-btn action-btn" data-nav="planner">
-        <span class="ab-emoji">🌦️</span><span>Ritu Planner</span>
+        <span class="ab-emoji">🌦️</span><span data-i18n="home_action_planner">Ritu Planner</span>
       </button>
       <button class="glass-btn action-btn" data-nav="wisdom-action">
-        <span class="ab-emoji">🪷</span><span>Wisdom → Action</span>
+        <span class="ab-emoji">🪷</span><span data-i18n="home_action_wisdom">Wisdom → Action</span>
       </button>
       <button class="glass-btn action-btn" data-nav="scan">
-        <span class="ab-emoji">📸</span><span>Scan & Discover</span>
+        <span class="ab-emoji">📸</span><span data-i18n="home_action_scan">Scan & Discover</span>
       </button>
       <button class="glass-btn action-btn" data-nav="food-detective" data-food-open="true">
-        <span class="ab-emoji">🥗</span><span>Food Detective</span>
+        <span class="ab-emoji">🥗</span><span data-i18n="home_action_food">Food Detective</span>
       </button>
     </div>
 
     <div class="home-flow glass-panel">
-      <h3>The Ritu-Chakra experience</h3>
+      <h3 data-i18n="flow_heading">The Ritu-Chakra experience</h3>
       <div class="flow-steps">
-        <div class="flow-step"><span>Discover</span></div>
+        <div class="flow-step"><span data-i18n="flow_discover">Discover</span></div>
         <div class="flow-arrow">→</div>
-        <div class="flow-step"><span>Learn</span></div>
+        <div class="flow-step"><span data-i18n="flow_learn">Learn</span></div>
         <div class="flow-arrow">→</div>
-        <div class="flow-step"><span>Personalize</span></div>
+        <div class="flow-step"><span data-i18n="flow_personalize">Personalize</span></div>
         <div class="flow-arrow">→</div>
-        <div class="flow-step"><span>Act</span></div>
+        <div class="flow-step"><span data-i18n="flow_act">Act</span></div>
       </div>
     </div>
   </section>
 
   <!-- ================= FOOD DETECTIVE ================= -->
   <section class="view" id="view-food-detective" data-view="food-detective">
-    <h2 class="view-title">🔎 Food Detective</h2>
-    <p class="view-sub">Search a seasonal food to uncover its nutrition, benefits, sustainability story and Indian knowledge connection.</p>
+    <h2 class="view-title" data-i18n="food_title">🔎 Food Detective</h2>
+    <p class="view-sub" data-i18n="food_sub">Search a seasonal food to uncover its nutrition, benefits, sustainability story and Indian knowledge connection.</p>
 
     <div class="glass-panel search-panel">
       <div class="search-row">
@@ -687,8 +687,8 @@ a{ color:inherit; }
 
   <!-- ================= BUILD MY PLATE ================= -->
   <section class="view" id="view-build-plate" data-view="build-plate">
-    <h2 class="view-title">🥗 Build My Plate</h2>
-    <p class="view-sub">Pick foods from each category to build a seasonal plate, and see it evaluated instantly.</p>
+    <h2 class="view-title" data-i18n="plate_title">🥗 Build My Plate</h2>
+    <p class="view-sub" data-i18n="plate_sub">Pick foods from each category to build a seasonal plate, and see it evaluated instantly.</p>
 
     <div class="plate-builder">
       <div class="plate-categories" id="plateCategories"></div>
@@ -699,7 +699,7 @@ a{ color:inherit; }
             <span class="plate-empty-msg">Your plate is empty</span>
           </div>
         </div>
-        <button class="glass-btn primary" id="buildPlateBtn">✨ Build My Plate</button>
+        <button class="glass-btn primary" id="buildPlateBtn" data-i18n="plate_build_btn">✨ Build My Plate</button>
         <div id="plateSummary"></div>
       </div>
     </div>
@@ -707,17 +707,17 @@ a{ color:inherit; }
 
   <!-- ================= RITU PLANNER ================= -->
   <section class="view" id="view-planner" data-view="planner">
-    <h2 class="view-title">🌱 Ritu Planner</h2>
-    <p class="view-sub">Create a personalised seasonal sustainability action plan.</p>
+    <h2 class="view-title" data-i18n="planner_title">🌱 Ritu Planner</h2>
+    <p class="view-sub" data-i18n="planner_sub">Create a personalised seasonal sustainability action plan.</p>
 
     <div class="glass-panel planner-form">
       <div class="form-row">
-        <label for="plannerRegion">📍 Region</label>
+        <label for="plannerRegion" data-i18n="planner_region_label">📍 Region</label>
         <input type="text" id="plannerRegion" class="glass-input" placeholder="e.g. Karnataka" />
       </div>
 
       <div class="form-row">
-        <label>🌦️ Season</label>
+        <label data-i18n="planner_season_label">🌦️ Season</label>
         <div class="pill-select" id="plannerSeasonSelect">
           <button class="pill" data-value="monsoon">🌧️ Monsoon</button>
           <button class="pill" data-value="summer">☀️ Summer</button>
@@ -727,7 +727,7 @@ a{ color:inherit; }
       </div>
 
       <div class="form-row">
-        <label>🏠 Environment</label>
+        <label data-i18n="planner_env_label">🏠 Environment</label>
         <div class="pill-select" id="plannerEnvSelect">
           <button class="pill" data-value="home">🏠 Home</button>
           <button class="pill" data-value="school">🏫 School</button>
@@ -737,7 +737,7 @@ a{ color:inherit; }
       </div>
 
       <div class="form-row">
-        <label>🎯 Goal</label>
+        <label data-i18n="planner_goal_label">🎯 Goal</label>
         <div class="pill-select" id="plannerGoalSelect">
           <button class="pill" data-value="water">💧 Save Water</button>
           <button class="pill" data-value="energy">⚡ Save Energy</button>
@@ -748,7 +748,7 @@ a{ color:inherit; }
         </div>
       </div>
 
-      <button class="glass-btn primary wide" id="createPlanBtn">🌱 Create My Plan</button>
+      <button class="glass-btn primary wide" id="createPlanBtn" data-i18n="planner_create_btn">🌱 Create My Plan</button>
     </div>
 
     <div id="plannerOutput"></div>
@@ -758,8 +758,8 @@ a{ color:inherit; }
 
   <!-- ================= WISDOM → ACTION ================= -->
   <section class="view" id="view-wisdom-action" data-view="wisdom-action">
-    <h2 class="view-title">🪷 Wisdom → Action</h2>
-    <p class="view-sub">What resource are you trying to protect?</p>
+    <h2 class="view-title" data-i18n="wisdom_title">🪷 Wisdom → Action</h2>
+    <p class="view-sub" data-i18n="wisdom_sub">What resource are you trying to protect?</p>
 
     <div class="resource-choices" id="resourceChoices">
       <button class="resource-btn glass" data-resource="water"><span class="rb-emoji">💧</span>Water</button>
@@ -774,12 +774,12 @@ a{ color:inherit; }
 
   <!-- ================= SCAN & DISCOVER ================= -->
   <section class="view" id="view-scan" data-view="scan">
-    <h2 class="view-title">📸 Scan & Discover</h2>
-    <p class="view-sub">Photograph or upload something around you — a plant, structure, or practice — and discover its possible connections.</p>
+    <h2 class="view-title" data-i18n="scan_title">📸 Scan & Discover</h2>
+    <p class="view-sub" data-i18n="scan_sub">Photograph or upload something around you — a plant, structure, or practice — and discover its possible connections.</p>
 
     <div class="glass-panel scan-panel">
       <div class="scan-actions">
-        <label class="glass-btn primary" for="scanFileInput">📸 Scan Now</label>
+        <label class="glass-btn primary" for="scanFileInput" data-i18n="scan_now_btn">📸 Scan Now</label>
         <input type="file" id="scanFileInput" accept="image/*" capture="environment" hidden />
       </div>
       <div id="scanPreviewZone"></div>
@@ -788,24 +788,24 @@ a{ color:inherit; }
 
   <!-- ================= IKS ================= -->
   <section class="view" id="view-iks" data-view="iks">
-    <h2 class="view-title">🧠 Indian Knowledge System</h2>
-    <p class="view-sub">Explore traditional knowledge systems and how they connect to sustainability today.</p>
+    <h2 class="view-title" data-i18n="iks_title">🧠 Indian Knowledge System</h2>
+    <p class="view-sub" data-i18n="iks_sub">Explore traditional knowledge systems and how they connect to sustainability today.</p>
     <div class="card-grid" id="iksGrid"></div>
     <div id="iksDetailZone"></div>
   </section>
 
   <!-- ================= QUIZZES ================= -->
   <section class="view" id="view-quizzes" data-view="quizzes">
-    <h2 class="view-title">🎯 Quizzes</h2>
-    <p class="view-sub">Pick a topic and test what you know.</p>
+    <h2 class="view-title" data-i18n="quiz_title">🎯 Quizzes</h2>
+    <p class="view-sub" data-i18n="quiz_sub">Pick a topic and test what you know.</p>
     <div class="card-grid" id="quizTopicGrid"></div>
     <div id="quizPlayZone"></div>
   </section>
 
   <!-- ================= SURVEY ================= -->
   <section class="view" id="view-survey" data-view="survey">
-    <h2 class="view-title">📋 Student Survey</h2>
-    <p class="view-sub">Quick yes / no questions about seasonal and sustainable living.</p>
+    <h2 class="view-title" data-i18n="survey_title">📋 Student Survey</h2>
+    <p class="view-sub" data-i18n="survey_sub">Quick yes / no questions about seasonal and sustainable living.</p>
     <div class="glass-panel survey-panel" id="surveyPanel"></div>
   </section>
 
@@ -987,6 +987,558 @@ const FOODS = [
     sustainability:
       "A rhizome crop that can be intercropped with other plants, supporting more diverse, resilient small farms.",
     iks: "Central to Indian households for cooking and rituals alike; harvested largely in the post-monsoon months.",
+  },
+
+  /* ---- expanded list (62+ total) ---- */
+  {
+    id: "okra",
+    name: "Okra (Bhindi)",
+    category: "vegetable",
+    emoji: "🫛",
+    seasons: ["monsoon", "summer"],
+    nutrients: ["Fibre", "Vitamin C", "Folate"],
+    benefits: ["Contributes dietary fibre", "Supports general nutrition"],
+    sustainability: "A warm-weather crop that grows quickly with modest water needs compared to many vegetables.",
+    iks: "A staple vegetable across regional Indian cuisines, typically harvested through the warmer, wetter months.",
+  },
+  {
+    id: "eggplant",
+    name: "Eggplant (Baingan)",
+    category: "vegetable",
+    emoji: "🍆",
+    seasons: ["monsoon", "autumn"],
+    nutrients: ["Fibre", "Antioxidants", "Potassium"],
+    benefits: ["Contributes dietary fibre and antioxidants"],
+    sustainability: "A hardy plant that can be grown across many soil types with relatively low water demand.",
+    iks: "Featured in regional dishes like baingan bharta, tied to post-monsoon harvest calendars in many areas.",
+  },
+  {
+    id: "greenbeans",
+    name: "Green Beans (Phalli)",
+    category: "vegetable",
+    emoji: "🫛",
+    seasons: ["monsoon"],
+    nutrients: ["Fibre", "Vitamin K", "Folate"],
+    benefits: ["Contributes fibre and folate to the diet"],
+    sustainability: "A legume-family crop that can fix some nitrogen in soil, reducing fertiliser needs for future crops.",
+    iks: "Commonly grown as a monsoon kitchen-garden crop across many Indian households.",
+  },
+  {
+    id: "bottlegourd",
+    name: "Bottle Gourd (Lauki)",
+    category: "vegetable",
+    emoji: "🥒",
+    seasons: ["summer", "monsoon"],
+    nutrients: ["Water content", "Vitamin C", "Fibre"],
+    benefits: ["Helps with hydration", "Light on digestion"],
+    sustainability: "A climbing vine that can be grown vertically on trellises, using very little ground space.",
+    iks: "A classic light, cooling vegetable recommended in summer by regional home-remedy traditions.",
+  },
+  {
+    id: "ridgegourd",
+    name: "Ridge Gourd (Turai)",
+    category: "vegetable",
+    emoji: "🥒",
+    seasons: ["summer", "monsoon"],
+    nutrients: ["Fibre", "Vitamin C", "Water content"],
+    benefits: ["Supports hydration and digestion"],
+    sustainability: "Grows well on simple bamboo or fence trellises, making it suitable for small home gardens.",
+    iks: "Widely grown as a monsoon-season climber alongside bottle gourd and bitter gourd in home plots.",
+  },
+  {
+    id: "pumpkin",
+    name: "Pumpkin (Kaddu)",
+    category: "vegetable",
+    emoji: "🎃",
+    seasons: ["autumn", "winter"],
+    nutrients: ["Beta-carotene", "Fibre", "Potassium"],
+    benefits: ["Contributes to vitamin A intake"],
+    sustainability: "Stores well for weeks without refrigeration, reducing post-harvest spoilage.",
+    iks: "Used in regional festive dishes and offerings, harvested as the monsoon ends.",
+  },
+  {
+    id: "cauliflower",
+    name: "Cauliflower (Phool Gobi)",
+    category: "vegetable",
+    emoji: "🥦",
+    seasons: ["winter"],
+    nutrients: ["Vitamin C", "Fibre", "Folate"],
+    benefits: ["Contributes vitamin C and fibre"],
+    sustainability: "A cool-season crop that thrives without the heavy irrigation summer vegetables often need.",
+    iks: "A winter market staple across much of North India, tied closely to the cool growing season.",
+  },
+  {
+    id: "cabbage",
+    name: "Cabbage (Patta Gobi)",
+    category: "vegetable",
+    emoji: "🥬",
+    seasons: ["winter"],
+    nutrients: ["Vitamin K", "Vitamin C", "Fibre"],
+    benefits: ["Contributes fibre and vitamin C"],
+    sustainability: "Stores longer than many leafy vegetables, which can reduce household food waste in winter.",
+    iks: "A common winter vegetable in home-cooked meals across many Indian regions.",
+  },
+  {
+    id: "radish",
+    name: "Radish (Mooli)",
+    category: "vegetable",
+    emoji: "🌱",
+    seasons: ["winter"],
+    nutrients: ["Vitamin C", "Fibre", "Folate"],
+    benefits: ["Contributes fibre and vitamin C"],
+    sustainability: "A fast-growing root crop needing a short growing season and modest water.",
+    iks: "Central to winter dishes like mooli paratha, tied to regional winter food calendars.",
+  },
+  {
+    id: "greenpeas",
+    name: "Green Peas (Matar)",
+    category: "vegetable",
+    emoji: "🫛",
+    seasons: ["winter"],
+    nutrients: ["Protein", "Fibre", "Vitamin K"],
+    benefits: ["Contributes plant protein and fibre"],
+    sustainability: "A legume that can improve soil nitrogen levels for crops grown afterward.",
+    iks: "A defining winter-season vegetable in North Indian cooking, from matar paneer to pulao.",
+  },
+  {
+    id: "fenugreek",
+    name: "Fenugreek Leaves (Methi)",
+    category: "vegetable",
+    emoji: "🌿",
+    seasons: ["winter"],
+    nutrients: ["Iron", "Fibre", "Vitamin A"],
+    benefits: ["Contributes iron and fibre"],
+    sustainability: "A quick-growing leafy crop suited to small kitchen-garden plots with modest water use.",
+    iks: "Used both as food and in traditional home remedies, typically grown through the cooler months.",
+  },
+  {
+    id: "mustardgreens",
+    name: "Mustard Greens (Sarson)",
+    category: "vegetable",
+    emoji: "🌿",
+    seasons: ["winter"],
+    nutrients: ["Vitamin A", "Vitamin C", "Fibre"],
+    benefits: ["Contributes vitamins A and C"],
+    sustainability: "A cold-tolerant crop that needs little irrigation compared to summer greens.",
+    iks: "The base of sarson ka saag, a Punjab winter-season dish tied to the mustard harvest.",
+  },
+  {
+    id: "drumstick",
+    name: "Drumstick (Moringa / Sahjan)",
+    category: "vegetable",
+    emoji: "🌿",
+    seasons: ["summer", "monsoon"],
+    nutrients: ["Vitamin C", "Iron", "Calcium"],
+    benefits: ["Contributes several vitamins and minerals to the diet"],
+    sustainability: "A drought-hardy tree that survives dry spells that would damage many other food crops.",
+    iks: "Both leaves and pods are used in traditional South Indian cooking, such as sambar.",
+  },
+  {
+    id: "ashgourd",
+    name: "Ash Gourd (Petha)",
+    category: "vegetable",
+    emoji: "🎃",
+    seasons: ["monsoon"],
+    nutrients: ["Water content", "Fibre"],
+    benefits: ["Supports hydration"],
+    sustainability: "Stores for months without refrigeration once mature, cutting down on spoilage.",
+    iks: "Used to make the traditional sweet petha and offered in some regional rituals.",
+  },
+  {
+    id: "banana",
+    name: "Banana (Kela)",
+    category: "fruit",
+    emoji: "🍌",
+    seasons: ["summer", "monsoon"],
+    nutrients: ["Potassium", "Vitamin B6", "Fibre"],
+    benefits: ["Contributes to daily potassium and fibre intake"],
+    sustainability: "A perennial plant that fruits repeatedly without yearly replanting, unlike many annual crops.",
+    iks: "Considered auspicious in Indian tradition; banana leaves are widely used as natural, biodegradable plates.",
+  },
+  {
+    id: "papaya",
+    name: "Papaya",
+    category: "fruit",
+    emoji: "🍈",
+    seasons: ["summer", "monsoon"],
+    nutrients: ["Vitamin C", "Vitamin A", "Fibre"],
+    benefits: ["Contributes vitamin C and fibre"],
+    sustainability: "A fast-fruiting tree that produces year-round in warm climates with little maintenance.",
+    iks: "Commonly grown in home backyards across India as a low-effort household fruit source.",
+  },
+  {
+    id: "guava",
+    name: "Guava (Amrud)",
+    category: "fruit",
+    emoji: "🍐",
+    seasons: ["autumn", "winter"],
+    nutrients: ["Vitamin C", "Fibre", "Folate"],
+    benefits: ["Contributes notably to vitamin C intake"],
+    sustainability: "A hardy tree that tolerates poor soils and needs little irrigation once established.",
+    iks: "A common roadside and backyard fruit tree across Indian towns and villages.",
+  },
+  {
+    id: "custardapple",
+    name: "Custard Apple (Sitaphal)",
+    category: "fruit",
+    emoji: "🍏",
+    seasons: ["autumn"],
+    nutrients: ["Vitamin C", "Fibre", "Potassium"],
+    benefits: ["Contributes fibre and vitamin C"],
+    sustainability: "A drought-tolerant tree well suited to dry, rocky terrain unsuitable for many crops.",
+    iks: "Associated with the post-monsoon harvest and featured in several regional festivals.",
+  },
+  {
+    id: "jackfruit",
+    name: "Jackfruit (Kathal)",
+    category: "fruit",
+    emoji: "🍈",
+    seasons: ["summer"],
+    nutrients: ["Fibre", "Vitamin C", "Potassium"],
+    benefits: ["Contributes fibre to the diet"],
+    sustainability: "One tree can yield a very large amount of food with minimal irrigation once mature.",
+    iks: "Used as a meat substitute in many traditional regional dishes, especially in Kerala.",
+  },
+  {
+    id: "litchi",
+    name: "Litchi",
+    category: "fruit",
+    emoji: "🍒",
+    seasons: ["summer"],
+    nutrients: ["Vitamin C", "Natural sugars"],
+    benefits: ["Contributes to vitamin C intake"],
+    sustainability: "Grown mainly in specific regions like Bihar, supporting regional orchard livelihoods.",
+    iks: "A short-season summer fruit eagerly awaited in North Indian markets each year.",
+  },
+  {
+    id: "jamun",
+    name: "Jamun (Java Plum)",
+    category: "fruit",
+    emoji: "🫐",
+    seasons: ["summer", "monsoon"],
+    nutrients: ["Vitamin C", "Iron", "Antioxidants"],
+    benefits: ["Contributes antioxidants and vitamin C"],
+    sustainability: "A long-living shade tree often planted along roads and in villages for both fruit and shade.",
+    iks: "Referenced in traditional Ayurvedic texts and commonly found growing wild or in home compounds.",
+  },
+  {
+    id: "grapes",
+    name: "Grapes (Angoor)",
+    category: "fruit",
+    emoji: "🍇",
+    seasons: ["winter"],
+    nutrients: ["Vitamin C", "Antioxidants"],
+    benefits: ["Contributes antioxidants to the diet"],
+    sustainability: "Grown extensively in Maharashtra vineyards, supporting a significant regional farming economy.",
+    iks: "A major winter-harvest fruit crop in western India, tied to the region's dry winter climate.",
+  },
+  {
+    id: "orange",
+    name: "Orange (Santra)",
+    category: "fruit",
+    emoji: "🍊",
+    seasons: ["winter"],
+    nutrients: ["Vitamin C", "Fibre", "Folate"],
+    benefits: ["Contributes notably to vitamin C intake"],
+    sustainability: "Citrus orchards in regions like Nagpur provide long-term, multi-year fruiting without replanting.",
+    iks: "A defining winter citrus fruit across Indian markets, tied to cool-season harvest cycles.",
+  },
+  {
+    id: "sweetlime",
+    name: "Sweet Lime (Mosambi)",
+    category: "fruit",
+    emoji: "🍋",
+    seasons: ["winter"],
+    nutrients: ["Vitamin C", "Water content"],
+    benefits: ["Contributes to vitamin C intake and hydration"],
+    sustainability: "A citrus tree that, once established, needs relatively modest ongoing water and care.",
+    iks: "A common winter fruit-juice choice in Indian households and roadside juice stalls.",
+  },
+  {
+    id: "amla",
+    name: "Amla (Indian Gooseberry)",
+    category: "fruit",
+    emoji: "🫒",
+    seasons: ["winter"],
+    nutrients: ["Vitamin C", "Antioxidants", "Fibre"],
+    benefits: ["A traditionally valued source of vitamin C"],
+    sustainability: "A hardy tree that grows in a wide range of soils with minimal irrigation needs.",
+    iks: "Central to Ayurvedic preparations such as chyawanprash, harvested in the cooler months.",
+  },
+  {
+    id: "bananaflower",
+    name: "Banana Flower",
+    category: "traditional",
+    emoji: "🌸",
+    seasons: ["monsoon"],
+    nutrients: ["Fibre", "Vitamin E", "Potassium"],
+    benefits: ["Contributes fibre to the diet"],
+    sustainability: "A by-product of banana cultivation, meaning it uses no extra land or water to produce.",
+    iks: "Used in regional dishes across South and East India, reflecting a tradition of using the whole plant.",
+  },
+  {
+    id: "tamarind",
+    name: "Tamarind (Imli)",
+    category: "traditional",
+    emoji: "🫘",
+    seasons: ["winter"],
+    nutrients: ["Fibre", "Antioxidants"],
+    benefits: ["Contributes fibre to the diet"],
+    sustainability: "A long-living, shade-giving tree that needs little maintenance once mature.",
+    iks: "A souring agent central to many regional cuisines, especially in South Indian sambar and chutneys.",
+  },
+  {
+    id: "coconut",
+    name: "Coconut (Nariyal)",
+    category: "traditional",
+    emoji: "🥥",
+    seasons: ["summer"],
+    nutrients: ["Healthy fats", "Fibre", "Minerals"],
+    benefits: ["Provides a traditional source of dietary fat and fibre"],
+    sustainability: "Nearly every part of the coconut palm is used traditionally, minimising waste.",
+    iks: "Considered auspicious in Indian rituals and central to coastal Indian cuisines.",
+  },
+  {
+    id: "rice",
+    name: "Rice (Chawal)",
+    category: "grain",
+    emoji: "🍚",
+    seasons: ["monsoon", "autumn"],
+    nutrients: ["Carbohydrates", "Trace minerals"],
+    benefits: ["A steady source of everyday energy"],
+    sustainability: "A monsoon-dependent staple crop; traditional rain-fed varieties use less irrigation than intensive strains.",
+    iks: "The primary kharif (monsoon-sown) crop across much of India, deeply tied to the seasonal calendar.",
+  },
+  {
+    id: "wheat",
+    name: "Wheat (Gehun)",
+    category: "grain",
+    emoji: "🌾",
+    seasons: ["winter"],
+    nutrients: ["Carbohydrates", "Fibre", "Protein"],
+    benefits: ["A staple source of everyday energy and fibre"],
+    sustainability: "A winter (rabi) crop that relies on residual soil moisture from the monsoon, reducing extra irrigation needs.",
+    iks: "The main rabi (winter-sown) staple across North India, harvested in spring.",
+  },
+  {
+    id: "chickpeas",
+    name: "Chickpeas (Chana)",
+    category: "legume",
+    emoji: "🫘",
+    seasons: ["winter"],
+    nutrients: ["Protein", "Fibre", "Iron"],
+    benefits: ["A traditional source of plant protein and fibre"],
+    sustainability: "A nitrogen-fixing legume that can improve soil fertility for crops grown afterward.",
+    iks: "A winter-sown staple legume across India, central to dishes like chana masala.",
+  },
+  {
+    id: "blackgram",
+    name: "Black Gram (Urad Dal)",
+    category: "legume",
+    emoji: "🫘",
+    seasons: ["autumn"],
+    nutrients: ["Protein", "Fibre", "Iron"],
+    benefits: ["A traditional source of plant protein"],
+    sustainability: "A legume that improves soil nitrogen, often grown in rotation with cereal crops.",
+    iks: "A base ingredient for idli and dosa batter, central to South Indian food traditions.",
+  },
+  {
+    id: "greengram",
+    name: "Green Gram (Moong Dal)",
+    category: "legume",
+    emoji: "🫘",
+    seasons: ["summer"],
+    nutrients: ["Protein", "Fibre", "Folate"],
+    benefits: ["Considered easy to digest in traditional practice", "A source of plant protein"],
+    sustainability: "A short-duration, low-water legume that fits well into multi-crop rotations.",
+    iks: "Ritucharya-aligned texts often recommend moong dal as a light, easily digestible summer food.",
+  },
+  {
+    id: "pigeonpea",
+    name: "Pigeon Pea (Toor / Arhar Dal)",
+    category: "legume",
+    emoji: "🫘",
+    seasons: ["autumn", "winter"],
+    nutrients: ["Protein", "Fibre", "Iron"],
+    benefits: ["A widely used traditional source of plant protein"],
+    sustainability: "A deep-rooted, drought-tolerant legume that improves soil structure and fertility.",
+    iks: "One of India's most widely eaten dals, forming the base of everyday household meals.",
+  },
+  {
+    id: "lentils",
+    name: "Lentils (Masoor Dal)",
+    category: "legume",
+    emoji: "🫘",
+    seasons: ["winter"],
+    nutrients: ["Protein", "Fibre", "Iron"],
+    benefits: ["A traditional source of plant protein and fibre"],
+    sustainability: "A short-cycle winter legume that requires relatively little water to grow.",
+    iks: "A staple winter dal across many Indian households, often paired with rice or roti.",
+  },
+  {
+    id: "kidneybeans",
+    name: "Kidney Beans (Rajma)",
+    category: "legume",
+    emoji: "🫘",
+    seasons: ["winter"],
+    nutrients: ["Protein", "Fibre", "Iron"],
+    benefits: ["A traditional source of plant protein and fibre"],
+    sustainability: "A nitrogen-fixing crop grown widely in hill regions like Jammu & Kashmir and Himachal Pradesh.",
+    iks: "The base of rajma-chawal, a beloved North Indian winter comfort meal.",
+  },
+  {
+    id: "groundnut",
+    name: "Groundnut (Peanut / Moongphali)",
+    category: "legume",
+    emoji: "🥜",
+    seasons: ["winter"],
+    nutrients: ["Protein", "Healthy fats", "Fibre"],
+    benefits: ["A traditional source of plant protein and healthy fats"],
+    sustainability: "A nitrogen-fixing crop that also improves soil quality for the next planting cycle.",
+    iks: "A popular winter street snack, often roasted and eaten for warmth in the cold months.",
+  },
+  {
+    id: "sesame",
+    name: "Sesame Seeds (Til)",
+    category: "traditional",
+    emoji: "🌰",
+    seasons: ["winter"],
+    nutrients: ["Healthy fats", "Calcium", "Iron"],
+    benefits: ["A traditional source of calcium and healthy fats"],
+    sustainability: "A drought-tolerant oilseed crop that grows well in dry regions with poor soil.",
+    iks: "Central to Makar Sankranti festivities, eaten with jaggery for traditional winter warmth.",
+  },
+  {
+    id: "mustardseed",
+    name: "Mustard Seeds (Sarson ka Beej)",
+    category: "traditional",
+    emoji: "🌱",
+    seasons: ["winter"],
+    nutrients: ["Healthy fats", "Minerals"],
+    benefits: ["Used traditionally as a cooking oil and spice source"],
+    sustainability: "A hardy winter oilseed crop requiring relatively little water compared to summer crops.",
+    iks: "Mustard oil is a traditional cooking medium across North and East India.",
+  },
+  {
+    id: "ghee",
+    name: "Ghee",
+    category: "dairy",
+    emoji: "🧈",
+    seasons: ["winter"],
+    nutrients: ["Fat-soluble vitamins"],
+    benefits: ["Traditionally used for cooking and considered warming in Ayurvedic practice"],
+    sustainability: "Made from surplus milk fat, part of a low-waste dairy tradition in many farming households.",
+    iks: "Central to Ayurvedic cooking and rituals; traditionally recommended more heavily in colder months.",
+  },
+  {
+    id: "yogurt",
+    name: "Yogurt (Dahi)",
+    category: "dairy",
+    emoji: "🥛",
+    seasons: ["summer"],
+    nutrients: ["Protein", "Calcium", "Probiotics"],
+    benefits: ["A traditional source of calcium and probiotics"],
+    sustainability: "A simple fermentation process that extends the shelf life of milk without refrigeration-heavy methods.",
+    iks: "Ritucharya recommends cooling foods like dahi in summer to balance the season's heat.",
+  },
+  {
+    id: "buttermilk",
+    name: "Buttermilk (Chaas)",
+    category: "dairy",
+    emoji: "🥛",
+    seasons: ["summer"],
+    nutrients: ["Protein", "Calcium", "Water content"],
+    benefits: ["Supports hydration in hot weather"],
+    sustainability: "A traditional by-product of butter-making, meaning little of the original milk goes to waste.",
+    iks: "A classic summer drink across Indian households, tied to the same cooling-food principle as dahi.",
+  },
+  {
+    id: "milk",
+    name: "Milk (Doodh)",
+    category: "dairy",
+    emoji: "🥛",
+    seasons: ["winter"],
+    nutrients: ["Protein", "Calcium", "Vitamin D"],
+    benefits: ["A traditional source of calcium and protein"],
+    sustainability: "Local dairy cooperatives in many regions support smallholder farmers rather than large industrial operations.",
+    iks: "Warm spiced milk is a common traditional winter drink in many Indian households.",
+  },
+  {
+    id: "paneer",
+    name: "Paneer",
+    category: "dairy",
+    emoji: "🧀",
+    seasons: ["winter"],
+    nutrients: ["Protein", "Calcium"],
+    benefits: ["A traditional source of protein and calcium"],
+    sustainability: "Made fresh at a household or local level in many regions, without long industrial supply chains.",
+    iks: "A widely used protein source in North Indian vegetarian cooking, especially in winter dishes.",
+  },
+  {
+    id: "ginger",
+    name: "Ginger (Adrak)",
+    category: "spice",
+    emoji: "🫚",
+    seasons: ["monsoon", "winter"],
+    nutrients: ["Trace minerals"],
+    benefits: ["Traditionally used in home remedies for warmth and digestion"],
+    sustainability: "A rhizome crop often intercropped with other plants on small farms.",
+    iks: "A key ingredient in traditional home remedies (kadha) used especially during monsoon and winter.",
+  },
+  {
+    id: "garlic",
+    name: "Garlic (Lehsun)",
+    category: "spice",
+    emoji: "🧄",
+    seasons: ["winter"],
+    nutrients: ["Trace minerals", "Allicin compounds"],
+    benefits: ["A traditional culinary and home-remedy ingredient"],
+    sustainability: "A hardy, low-water crop that can be grown in home gardens with minimal care.",
+    iks: "Used in both cooking and traditional Ayurvedic preparations across most Indian regions.",
+  },
+  {
+    id: "greenchilli",
+    name: "Green Chilli (Hari Mirch)",
+    category: "spice",
+    emoji: "🌶️",
+    seasons: ["monsoon"],
+    nutrients: ["Vitamin C", "Capsaicin"],
+    benefits: ["Contributes to vitamin C intake"],
+    sustainability: "A prolific plant that can be grown in small pots, reducing the need for dedicated farmland.",
+    iks: "A daily-use spice across nearly all regional Indian cuisines.",
+  },
+  {
+    id: "cumin",
+    name: "Cumin (Jeera)",
+    category: "spice",
+    emoji: "🌿",
+    seasons: ["winter"],
+    nutrients: ["Iron", "Trace minerals"],
+    benefits: ["A traditional digestive spice used across Indian cooking"],
+    sustainability: "A drought-tolerant crop suited to the dry regions of Rajasthan and Gujarat where it's widely grown.",
+    iks: "One of the most common tempering spices (tadka) in Indian households.",
+  },
+  {
+    id: "coriander",
+    name: "Coriander (Dhania)",
+    category: "spice",
+    emoji: "🌿",
+    seasons: ["winter"],
+    nutrients: ["Vitamin C", "Vitamin K"],
+    benefits: ["Contributes small amounts of vitamins C and K"],
+    sustainability: "A fast-growing herb well suited to home kitchen gardens with minimal water.",
+    iks: "Used fresh as a garnish and dried as seed spice, central to almost every regional Indian cuisine.",
+  },
+  {
+    id: "cardamom",
+    name: "Cardamom (Elaichi)",
+    category: "spice",
+    emoji: "🌿",
+    seasons: ["winter"],
+    nutrients: ["Trace minerals"],
+    benefits: ["A traditional flavouring and digestive spice"],
+    sustainability: "Often grown under forest canopy in the Western Ghats, supporting forest-friendly cultivation.",
+    iks: "A prized spice in Indian sweets, chai, and traditional Ayurvedic formulations.",
   },
 ];
 
@@ -1464,19 +2016,200 @@ const SCAN_POSSIBLE_MATCHES = [
 ];
 
 /* -------------------------- LANGUAGE (extensible) -------------------------- */
+/* Static UI chrome (nav, hero, section headers, key buttons) is translated.
+   Dynamically generated content (food details, planner plans, quiz questions,
+   wisdom cards, IKS detail text, survey questions) stays in English for now —
+   the key structure below makes it straightforward to extend later. */
 const TRANSLATIONS = {
   en: {
     langName: "English",
     tagline: "Seasonal Wisdom. Sustainable Action.",
-    heroDesc:
-      "An interactive platform connecting Indian seasonal knowledge, nutrition and sustainability with practical actions for today's world.",
+    heroDesc: "An interactive platform connecting Indian seasonal knowledge, nutrition and sustainability with practical actions for today's world.",
+    hero_eyebrow: "Indian Knowledge System × Sustainability",
+    hero_hint: "Tap a season on the wheel, or jump straight in below.",
+
+    nav_home: "Home",
+    nav_food: "Food Detective",
+    nav_plate: "Build My Plate",
+    nav_planner: "Ritu Planner",
+    nav_wisdom: "Wisdom → Action",
+    nav_scan: "Scan & Discover",
+    nav_iks: "IKS",
+    nav_quiz: "Quizzes",
+    nav_survey: "Survey",
+
+    home_action_explore: "Explore Ritu-Chakra",
+    home_action_planner: "Ritu Planner",
+    home_action_wisdom: "Wisdom → Action",
+    home_action_scan: "Scan & Discover",
+    home_action_food: "Food Detective",
+
+    flow_heading: "The Ritu-Chakra experience",
+    flow_discover: "Discover",
+    flow_learn: "Learn",
+    flow_personalize: "Personalize",
+    flow_act: "Act",
+
+    food_title: "🔎 Food Detective",
+    food_sub: "Search a seasonal food to uncover its nutrition, benefits, sustainability story and Indian knowledge connection.",
+
+    plate_title: "🥗 Build My Plate",
+    plate_sub: "Pick foods from each category to build a seasonal plate, and see it evaluated instantly.",
+    plate_build_btn: "✨ Build My Plate",
+
+    planner_title: "🌱 Ritu Planner",
+    planner_sub: "Create a personalised seasonal sustainability action plan.",
+    planner_region_label: "📍 Region",
+    planner_season_label: "🌦️ Season",
+    planner_env_label: "🏠 Environment",
+    planner_goal_label: "🎯 Goal",
+    planner_create_btn: "🌱 Create My Plan",
+
+    wisdom_title: "🪷 Wisdom → Action",
+    wisdom_sub: "What resource are you trying to protect?",
+
+    scan_title: "📸 Scan & Discover",
+    scan_sub: "Photograph or upload something around you — a plant, structure, or practice — and discover its possible connections.",
+    scan_now_btn: "📸 Scan Now",
+
+    iks_title: "🧠 Indian Knowledge System",
+    iks_sub: "Explore traditional knowledge systems and how they connect to sustainability today.",
+
+    quiz_title: "🎯 Quizzes",
+    quiz_sub: "Pick a topic and test what you know.",
+
+    survey_title: "📋 Student Survey",
+    survey_sub: "Quick yes / no questions about seasonal and sustainable living.",
   },
-  /* Additional languages (e.g. hi, kn, ta) can be added here later
-     following the same key structure, and script.js will pick them
-     up automatically once added to LANGUAGES below. */
+
+  hi: {
+    langName: "हिन्दी",
+    tagline: "मौसमी ज्ञान। सतत कार्य।",
+    heroDesc: "एक इंटरैक्टिव मंच जो भारतीय मौसमी ज्ञान, पोषण और स्थिरता को आज की दुनिया के व्यावहारिक कार्यों से जोड़ता है।",
+    hero_eyebrow: "भारतीय ज्ञान परंपरा × सततता",
+    hero_hint: "चक्र पर एक ऋतु चुनें, या सीधे नीचे शुरू करें।",
+
+    nav_home: "होम",
+    nav_food: "फूड डिटेक्टिव",
+    nav_plate: "मेरी थाली बनाएं",
+    nav_planner: "ऋतु प्लानर",
+    nav_wisdom: "ज्ञान → कार्य",
+    nav_scan: "स्कैन करें और जानें",
+    nav_iks: "भारतीय ज्ञान परंपरा",
+    nav_quiz: "प्रश्नोत्तरी",
+    nav_survey: "सर्वेक्षण",
+
+    home_action_explore: "ऋतु-चक्र को जानें",
+    home_action_planner: "ऋतु प्लानर",
+    home_action_wisdom: "ज्ञान → कार्य",
+    home_action_scan: "स्कैन करें और जानें",
+    home_action_food: "फूड डिटेक्टिव",
+
+    flow_heading: "ऋतु-चक्र अनुभव",
+    flow_discover: "खोजें",
+    flow_learn: "सीखें",
+    flow_personalize: "अनुकूलित करें",
+    flow_act: "कार्य करें",
+
+    food_title: "🔎 फूड डिटेक्टिव",
+    food_sub: "किसी मौसमी भोजन को खोजें और उसके पोषण, लाभ, स्थिरता और भारतीय ज्ञान से जुड़ाव के बारे में जानें।",
+
+    plate_title: "🥗 मेरी थाली बनाएं",
+    plate_sub: "हर श्रेणी से भोजन चुनें और तुरंत मौसमी थाली बनाएं।",
+    plate_build_btn: "✨ मेरी थाली बनाएं",
+
+    planner_title: "🌱 ऋतु प्लानर",
+    planner_sub: "अपने लिए एक व्यक्तिगत मौसमी स्थिरता कार्य योजना बनाएं।",
+    planner_region_label: "📍 क्षेत्र",
+    planner_season_label: "🌦️ ऋतु",
+    planner_env_label: "🏠 वातावरण",
+    planner_goal_label: "🎯 लक्ष्य",
+    planner_create_btn: "🌱 मेरी योजना बनाएं",
+
+    wisdom_title: "🪷 ज्ञान → कार्य",
+    wisdom_sub: "आप किस संसाधन की रक्षा करना चाहते हैं?",
+
+    scan_title: "📸 स्कैन करें और जानें",
+    scan_sub: "अपने आसपास किसी चीज़ की तस्वीर लें या अपलोड करें — पौधा, संरचना या परंपरा — और उसके संभावित संबंध जानें।",
+    scan_now_btn: "📸 अभी स्कैन करें",
+
+    iks_title: "🧠 भारतीय ज्ञान परंपरा",
+    iks_sub: "पारंपरिक ज्ञान प्रणालियों को जानें और वे आज स्थिरता से कैसे जुड़ते हैं।",
+
+    quiz_title: "🎯 प्रश्नोत्तरी",
+    quiz_sub: "एक विषय चुनें और अपना ज्ञान परखें।",
+
+    survey_title: "📋 छात्र सर्वेक्षण",
+    survey_sub: "मौसमी और सतत जीवन के बारे में त्वरित हां/नहीं प्रश्न।",
+  },
+
+  kn: {
+    langName: "ಕನ್ನಡ",
+    tagline: "ಋತುಮಾನದ ಜ್ಞಾನ. ಸುಸ್ಥಿರ ಕ್ರಿಯೆ.",
+    heroDesc: "ಭಾರತೀಯ ಋತುಮಾನದ ಜ್ಞಾನ, ಪೋಷಣೆ ಮತ್ತು ಸುಸ್ಥಿರತೆಯನ್ನು ಇಂದಿನ ಪ್ರಾಯೋಗಿಕ ಕ್ರಿಯೆಗಳೊಂದಿಗೆ ಜೋಡಿಸುವ ಸಂವಾದಾತ್ಮಕ ವೇದಿಕೆ.",
+    hero_eyebrow: "ಭಾರತೀಯ ಜ್ಞಾನ ವ್ಯವಸ್ಥೆ × ಸುಸ್ಥಿರತೆ",
+    hero_hint: "ಚಕ್ರದ ಮೇಲೆ ಒಂದು ಋತುವನ್ನು ಸ್ಪರ್ಶಿಸಿ, ಅಥವಾ ಕೆಳಗೆ ನೇರವಾಗಿ ಪ್ರಾರಂಭಿಸಿ.",
+
+    nav_home: "ಮುಖಪುಟ",
+    nav_food: "ಆಹಾರ ಪತ್ತೇದಾರಿ",
+    nav_plate: "ನನ್ನ ತಟ್ಟೆ ರಚಿಸಿ",
+    nav_planner: "ಋತು ಯೋಜಕ",
+    nav_wisdom: "ಜ್ಞಾನ → ಕ್ರಿಯೆ",
+    nav_scan: "ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಮತ್ತು ಅನ್ವೇಷಿಸಿ",
+    nav_iks: "ಭಾರತೀಯ ಜ್ಞಾನ ವ್ಯವಸ್ಥೆ",
+    nav_quiz: "ರಸಪ್ರಶ್ನೆಗಳು",
+    nav_survey: "ಸಮೀಕ್ಷೆ",
+
+    home_action_explore: "ಋತು-ಚಕ್ರವನ್ನು ಅನ್ವೇಷಿಸಿ",
+    home_action_planner: "ಋತು ಯೋಜಕ",
+    home_action_wisdom: "ಜ್ಞಾನ → ಕ್ರಿಯೆ",
+    home_action_scan: "ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಮತ್ತು ಅನ್ವೇಷಿಸಿ",
+    home_action_food: "ಆಹಾರ ಪತ್ತೇದಾರಿ",
+
+    flow_heading: "ಋತು-ಚಕ್ರ ಅನುಭವ",
+    flow_discover: "ಅನ್ವೇಷಿಸಿ",
+    flow_learn: "ಕಲಿಯಿರಿ",
+    flow_personalize: "ವೈಯಕ್ತೀಕರಿಸಿ",
+    flow_act: "ಕ್ರಿಯೆಗೈಯಿರಿ",
+
+    food_title: "🔎 ಆಹಾರ ಪತ್ತೇದಾರಿ",
+    food_sub: "ಋತುಮಾನದ ಆಹಾರವನ್ನು ಹುಡುಕಿ ಮತ್ತು ಅದರ ಪೋಷಣೆ, ಪ್ರಯೋಜನಗಳು, ಸುಸ್ಥಿರತೆ ಮತ್ತು ಭಾರತೀಯ ಜ್ಞಾನ ಸಂಪರ್ಕವನ್ನು ಅನ್ವೇಷಿಸಿ.",
+
+    plate_title: "🥗 ನನ್ನ ತಟ್ಟೆ ರಚಿಸಿ",
+    plate_sub: "ಪ್ರತಿ ವರ್ಗದಿಂದ ಆಹಾರವನ್ನು ಆರಿಸಿ ಮತ್ತು ತಕ್ಷಣ ಮೌಲ್ಯಮಾಪನ ಮಾಡಿದ ತಟ್ಟೆಯನ್ನು ನೋಡಿ.",
+    plate_build_btn: "✨ ನನ್ನ ತಟ್ಟೆ ರಚಿಸಿ",
+
+    planner_title: "🌱 ಋತು ಯೋಜಕ",
+    planner_sub: "ನಿಮಗಾಗಿ ವೈಯಕ್ತಿಕ ಋತುಮಾನದ ಸುಸ್ಥಿರತೆ ಕ್ರಿಯಾ ಯೋಜನೆಯನ್ನು ರಚಿಸಿ.",
+    planner_region_label: "📍 ಪ್ರದೇಶ",
+    planner_season_label: "🌦️ ಋತು",
+    planner_env_label: "🏠 ಪರಿಸರ",
+    planner_goal_label: "🎯 ಗುರಿ",
+    planner_create_btn: "🌱 ನನ್ನ ಯೋಜನೆ ರಚಿಸಿ",
+
+    wisdom_title: "🪷 ಜ್ಞಾನ → ಕ್ರಿಯೆ",
+    wisdom_sub: "ನೀವು ಯಾವ ಸಂಪನ್ಮೂಲವನ್ನು ರಕ್ಷಿಸಲು ಬಯಸುತ್ತೀರಿ?",
+
+    scan_title: "📸 ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಮತ್ತು ಅನ್ವೇಷಿಸಿ",
+    scan_sub: "ನಿಮ್ಮ ಸುತ್ತಮುತ್ತಲಿನ ಯಾವುದನ್ನಾದರೂ ಫೋಟೋ ತೆಗೆಯಿರಿ ಅಥವಾ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ — ಸಸ್ಯ, ರಚನೆ ಅಥವಾ ಪದ್ಧತಿ — ಮತ್ತು ಅದರ ಸಂಭಾವ್ಯ ಸಂಪರ್ಕಗಳನ್ನು ಅನ್ವೇಷಿಸಿ.",
+    scan_now_btn: "📸 ಈಗ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ",
+
+    iks_title: "🧠 ಭಾರತೀಯ ಜ್ಞಾನ ವ್ಯವಸ್ಥೆ",
+    iks_sub: "ಸಾಂಪ್ರದಾಯಿಕ ಜ್ಞಾನ ವ್ಯವಸ್ಥೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ ಮತ್ತು ಅವು ಇಂದಿನ ಸುಸ್ಥಿರತೆಗೆ ಹೇಗೆ ಸಂಪರ್ಕ ಹೊಂದಿವೆ ಎಂಬುದನ್ನು ತಿಳಿಯಿರಿ.",
+
+    quiz_title: "🎯 ರಸಪ್ರಶ್ನೆಗಳು",
+    quiz_sub: "ಒಂದು ವಿಷಯವನ್ನು ಆರಿಸಿ ಮತ್ತು ನಿಮ್ಮ ಜ್ಞಾನವನ್ನು ಪರೀಕ್ಷಿಸಿ.",
+
+    survey_title: "📋 ವಿದ್ಯಾರ್ಥಿ ಸಮೀಕ್ಷೆ",
+    survey_sub: "ಋತುಮಾನ ಮತ್ತು ಸುಸ್ಥಿರ ಜೀವನದ ಬಗ್ಗೆ ತ್ವರಿತ ಹೌದು/ಇಲ್ಲ ಪ್ರಶ್ನೆಗಳು.",
+  },
 };
 
-const LANGUAGES = [{ id: "en", label: "English" }];
+const LANGUAGES = [
+  { id: "en", label: "English" },
+  { id: "hi", label: "हिन्दी" },
+  { id: "kn", label: "ಕನ್ನಡ" },
+];
 
 
 /* ==========================================================================
@@ -1557,6 +2290,9 @@ function applyTheme() {
 
 /* -------------------------- LANGUAGE -------------------------- */
 function initLanguage() {
+  const saved = localStorage.getItem("ritu_language");
+  if (saved && LANGUAGES.some((l) => l.id === saved)) state.language = saved;
+
   const select = $("#langSelect");
   LANGUAGES.forEach((l) => {
     select.appendChild(el("option", { value: l.id }, [l.label]));
@@ -1564,14 +2300,20 @@ function initLanguage() {
   select.value = state.language;
   select.addEventListener("change", () => {
     state.language = select.value;
+    localStorage.setItem("ritu_language", state.language);
     applyLanguage();
   });
   applyLanguage();
 }
 function applyLanguage() {
   const t = TRANSLATIONS[state.language] || TRANSLATIONS.en;
-  $("#heroTagline").textContent = t.tagline;
-  $("#heroDesc").textContent = t.heroDesc;
+  const fallback = TRANSLATIONS.en;
+  $all("[data-i18n]").forEach((node) => {
+    const key = node.dataset.i18n;
+    const text = t[key] !== undefined ? t[key] : fallback[key];
+    if (text !== undefined) node.textContent = text;
+  });
+  document.documentElement.setAttribute("lang", state.language);
 }
 
 /* -------------------------- CHAKRA WHEEL (home) -------------------------- */
@@ -1921,8 +2663,78 @@ function renderScanResult(card) {
   const existing = $(".scan-result", card);
   if (existing) existing.remove();
 
-  const match = SCAN_POSSIBLE_MATCHES[Math.floor(Math.random() * SCAN_POSSIBLE_MATCHES.length)];
   const result = el("div", { class: "scan-result" });
+  card.appendChild(result);
+
+  // Best-guess food identification (demo — a real vision API would replace this pick).
+  const guess = FOODS[Math.floor(Math.random() * FOODS.length)];
+  renderScanFoodGuess(result, guess);
+}
+
+function renderScanFoodGuess(result, food) {
+  result.innerHTML = "";
+
+  result.appendChild(el("span", { class: "scan-badge" }, ["Possible match — demo identification"]));
+
+  const head = el("div", { class: "detail-head" });
+  head.appendChild(el("span", { class: "dh-emoji" }, [food.emoji]));
+  head.appendChild(el("h3", {}, [food.name]));
+  result.appendChild(head);
+
+  result.appendChild(section("🌦️ Season", food.seasons.map((s) => seasonEmoji(s) + " " + capitalize(s)).join(", ")));
+  result.appendChild(sectionList("🥗 Nutrition", food.nutrients));
+  result.appendChild(sectionList("💪 Benefits to the body", food.benefits));
+  result.appendChild(section("🌱 Sustainability", food.sustainability));
+  result.appendChild(section("🪷 Indian Knowledge connection", food.iks));
+
+  result.appendChild(el("p", { class: "view-sub", style: "margin-top:10px;" }, [
+    "This is a demo best-guess, not a certain identification. The app is structured so a real image-recognition service could be connected here later."
+  ]));
+
+  renderScanCorrection(result);
+
+  const notFoodBtn = el("button", { class: "glass-btn", style: "margin-top:14px;" }, [
+    "🌳 This isn't food — show a general possible match instead"
+  ]);
+  notFoodBtn.addEventListener("click", () => renderScanGenericMatch(result));
+  result.appendChild(notFoodBtn);
+}
+
+function renderScanCorrection(result) {
+  const wrap = el("div", { class: "glass-panel", style: "padding:16px; margin-top:18px;" });
+  wrap.appendChild(el("p", { style: "font-weight:700; margin-bottom:10px;" }, ["Not quite right? Find the correct food:"]));
+
+  const searchRow = el("div", { class: "search-row" });
+  const input = el("input", { type: "text", class: "glass-input", placeholder: "Search a food… e.g. mango, spinach, jaggery" });
+  searchRow.appendChild(input);
+  wrap.appendChild(searchRow);
+
+  const chipGrid = el("div", { class: "chip-row", style: "margin-top:12px; flex-wrap:wrap;" });
+  wrap.appendChild(chipGrid);
+
+  function renderChips(query) {
+    chipGrid.innerHTML = "";
+    const q = (query || "").trim().toLowerCase();
+    const matches = (q ? FOODS.filter((f) => f.name.toLowerCase().includes(q)) : FOODS).slice(0, 18);
+    if (matches.length === 0) {
+      chipGrid.appendChild(el("span", { class: "gc-sub" }, ["No foods match that search."]));
+      return;
+    }
+    matches.forEach((f) => {
+      const chip = el("button", { class: "chip" }, [f.emoji + " " + f.name]);
+      chip.addEventListener("click", () => renderScanFoodGuess(result, f));
+      chipGrid.appendChild(chip);
+    });
+  }
+  input.addEventListener("input", () => renderChips(input.value));
+  renderChips("");
+
+  result.appendChild(wrap);
+}
+
+function renderScanGenericMatch(result) {
+  result.innerHTML = "";
+  const match = SCAN_POSSIBLE_MATCHES[Math.floor(Math.random() * SCAN_POSSIBLE_MATCHES.length)];
   result.appendChild(el("span", { class: "scan-badge" }, ["Possible match — demo identification"]));
   result.appendChild(el("h4", {}, [match.label]));
   result.appendChild(section("🪷 Indian Knowledge connection", match.iks));
@@ -1931,7 +2743,14 @@ function renderScanResult(card) {
   result.appendChild(el("p", { class: "view-sub", style: "margin-top:10px;" }, [
     "This is a demo fallback, not a certain identification. The app is structured so a real image-recognition service could be connected here later."
   ]));
-  card.appendChild(result);
+  const foodInsteadBtn = el("button", { class: "glass-btn", style: "margin-top:14px;" }, [
+    "🍎 This is food — identify it as a food item instead"
+  ]);
+  foodInsteadBtn.addEventListener("click", () => {
+    const guess = FOODS[Math.floor(Math.random() * FOODS.length)];
+    renderScanFoodGuess(result, guess);
+  });
+  result.appendChild(foodInsteadBtn);
 }
 
 /* ========================================================================
