@@ -34,11 +34,12 @@
   --ink-soft:#3A4A44;
   --paper:#FBF9F3;
 
-  --glass-bg:rgba(255,255,255,0.30);
-  --glass-bg-strong:rgba(255,255,255,0.42);
-  --glass-border:rgba(255,255,255,0.55);
-  --glass-shadow:0 8px 32px rgba(15,61,62,0.18);
-  --glass-blur:16px;
+  --glass-bg:linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.08) 55%, rgba(255,255,255,0.2)), rgba(255,255,255,0.24);
+  --glass-bg-strong:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.12) 55%, rgba(255,255,255,0.26)), rgba(255,255,255,0.36);
+  --glass-border:rgba(255,255,255,0.6);
+  --glass-border-top:rgba(255,255,255,0.85);
+  --glass-shadow:0 8px 32px rgba(15,61,62,0.2);
+  --glass-blur:18px;
 
   --radius-lg:26px;
   --radius-md:18px;
@@ -55,9 +56,10 @@
   --ink-soft:#C9D8CF;
   --paper:#0B1A17;
 
-  --glass-bg:rgba(20,40,38,0.45);
-  --glass-bg-strong:rgba(20,40,38,0.6);
-  --glass-border:rgba(255,255,255,0.16);
+  --glass-bg:linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02) 55%, rgba(255,255,255,0.07)), rgba(20,40,38,0.5);
+  --glass-bg-strong:linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.03) 55%, rgba(255,255,255,0.09)), rgba(20,40,38,0.65);
+  --glass-border:rgba(255,255,255,0.18);
+  --glass-border-top:rgba(255,255,255,0.32);
   --glass-shadow:0 8px 36px rgba(0,0,0,0.5);
   color-scheme: dark;
 }
@@ -80,26 +82,83 @@ button{ font-family:var(--font-body); cursor:pointer; }
 input,select{ font-family:var(--font-body); }
 
 /* ---------------------------------------------------------------------- */
-/* AMBIENT BACKGROUND                                                      */
+/* AMBIENT BACKGROUND — bold color-mesh glass backdrop                    */
 /* ---------------------------------------------------------------------- */
 .bg-scene{
   position:fixed; inset:0; z-index:-2; overflow:hidden;
-  background:linear-gradient(160deg,#EAF3E6 0%,#DCEFEA 38%,#F4EAD3 100%);
+  background:linear-gradient(150deg,#BFE0D6 0%,#AEDDE0 28%,#E8D9A8 62%,#EFC9A3 100%);
   transition:background 1s ease;
 }
 [data-theme="night"] .bg-scene{
-  background:linear-gradient(160deg,#0B1A17 0%,#0E2422 45%,#1A2338 100%);
+  background:linear-gradient(150deg,#061512 0%,#0A2A28 30%,#152048 65%,#2B1440 100%);
 }
 .bg-blob{
   position:absolute; border-radius:50%;
-  filter:blur(70px);
-  opacity:.55;
+  filter:blur(60px);
+  opacity:.85;
   transition:opacity 1s ease;
+  will-change:transform;
 }
-.blob-teal{ width:46vw; height:46vw; top:-12vw; left:-10vw; background:var(--teal-mid); }
-.blob-green{ width:38vw; height:38vw; bottom:-14vw; right:-8vw; background:var(--moss-light); }
-.blob-gold{ width:30vw; height:30vw; top:35vh; right:12vw; background:var(--gold-soft); opacity:.35; }
-[data-theme="night"] .bg-blob{ opacity:.28; }
+[data-theme="night"] .bg-blob{ opacity:.65; filter:blur(70px); }
+
+.blob-teal{
+  width:48vw; height:48vw; top:-14vw; left:-12vw;
+  background:radial-gradient(circle at 35% 35%, var(--teal-mid) 0%, rgba(31,92,87,0) 70%);
+  animation:floatA 26s ease-in-out infinite alternate;
+}
+.blob-green{
+  width:44vw; height:44vw; bottom:-16vw; right:-10vw;
+  background:radial-gradient(circle at 60% 60%, var(--moss-light) 0%, rgba(111,163,107,0) 70%);
+  animation:floatB 32s ease-in-out infinite alternate;
+}
+.blob-gold{
+  width:36vw; height:36vw; top:12vh; right:-8vw;
+  background:radial-gradient(circle at 50% 50%, var(--gold) 0%, rgba(217,164,65,0) 70%);
+  opacity:.7;
+  animation:floatC 22s ease-in-out infinite alternate;
+}
+.blob-indigo{
+  width:36vw; height:36vw; top:-10vw; left:0vw;
+  background:radial-gradient(circle at 50% 50%, var(--indigo) 0%, rgba(44,71,112,0) 70%);
+  opacity:.55;
+  animation:floatA 38s ease-in-out infinite alternate-reverse;
+}
+.blob-clay{
+  width:36vw; height:36vw; bottom:2vh; left:2vw;
+  background:radial-gradient(circle at 50% 50%, var(--clay) 0%, rgba(181,101,29,0) 70%);
+  opacity:.6;
+  animation:floatB 29s ease-in-out infinite alternate;
+}
+[data-theme="night"] .blob-gold{ opacity:.5; }
+[data-theme="night"] .blob-indigo{ opacity:.7; }
+[data-theme="night"] .blob-clay{ opacity:.4; }
+
+@keyframes floatA{
+  0%{ transform:translate(0,0) scale(1); }
+  100%{ transform:translate(4vw, 3vh) scale(1.08); }
+}
+@keyframes floatB{
+  0%{ transform:translate(0,0) scale(1); }
+  100%{ transform:translate(-3vw, -4vh) scale(1.06); }
+}
+@keyframes floatC{
+  0%{ transform:translate(0,0) scale(1); }
+  100%{ transform:translate(-2.5vw, 3vh) scale(1.1); }
+}
+@media (prefers-reduced-motion: reduce){
+  .bg-blob{ animation:none !important; }
+}
+
+.bg-sheen{
+  position:absolute; inset:0;
+  background:linear-gradient(115deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 30%, rgba(255,255,255,0) 70%, rgba(255,255,255,0.22) 100%);
+  mix-blend-mode:overlay;
+  pointer-events:none;
+}
+[data-theme="night"] .bg-sheen{
+  background:linear-gradient(115deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 35%, rgba(255,255,255,0) 65%, rgba(255,255,255,0.06) 100%);
+}
+
 .bg-grain{
   position:absolute; inset:0;
   background-image:radial-gradient(rgba(255,255,255,0.5) 1px, transparent 1px);
@@ -109,20 +168,24 @@ input,select{ font-family:var(--font-body); }
 }
 
 /* ---------------------------------------------------------------------- */
-/* GLASS PRIMITIVES                                                        */
+/* GLASS PRIMITIVES — frosted glass with a visible edge-light & sheen     */
 /* ---------------------------------------------------------------------- */
 .glass{
+  position:relative;
   background:var(--glass-bg);
-  backdrop-filter:blur(var(--glass-blur)) saturate(140%);
-  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(140%);
+  backdrop-filter:blur(var(--glass-blur)) saturate(190%);
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(190%);
   border:1px solid var(--glass-border);
+  border-top-color:var(--glass-border-top);
   box-shadow:var(--glass-shadow);
 }
 .glass-panel{
+  position:relative;
   background:var(--glass-bg);
-  backdrop-filter:blur(var(--glass-blur)) saturate(140%);
-  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(140%);
+  backdrop-filter:blur(var(--glass-blur)) saturate(190%);
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(190%);
   border:1px solid var(--glass-border);
+  border-top-color:var(--glass-border-top);
   box-shadow:var(--glass-shadow);
   border-radius:var(--radius-lg);
   padding:28px;
@@ -130,8 +193,8 @@ input,select{ font-family:var(--font-body); }
 }
 .glass-input, .glass-select{
   background:var(--glass-bg-strong);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px) saturate(175%);
+  -webkit-backdrop-filter:blur(10px) saturate(175%);
   border:1px solid var(--glass-border);
   border-radius:var(--radius-sm);
   padding:12px 16px;
@@ -148,10 +211,11 @@ input,select{ font-family:var(--font-body); }
 
 .glass-btn{
   display:inline-flex; align-items:center; gap:10px;
-  background:linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.22));
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
+  background:var(--glass-bg-strong);
+  backdrop-filter:blur(14px) saturate(185%);
+  -webkit-backdrop-filter:blur(14px) saturate(185%);
   border:1px solid var(--glass-border);
+  border-top-color:var(--glass-border-top);
   border-radius:999px;
   padding:14px 22px;
   color:var(--ink);
@@ -312,8 +376,8 @@ main{ max-width:1120px; margin:0 auto; padding:20px 20px 100px; }
 .glass-card{
   border-radius:var(--radius-md);
   background:var(--glass-bg);
-  backdrop-filter:blur(var(--glass-blur)) saturate(140%);
-  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(140%);
+  backdrop-filter:blur(var(--glass-blur)) saturate(190%);
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(190%);
   border:1px solid var(--glass-border);
   box-shadow:var(--glass-shadow);
   padding:18px;
@@ -337,8 +401,8 @@ main{ max-width:1120px; margin:0 auto; padding:20px 20px 100px; }
 .detail-card{
   border-radius:var(--radius-lg);
   background:var(--glass-bg-strong);
-  backdrop-filter:blur(20px) saturate(150%);
-  -webkit-backdrop-filter:blur(20px) saturate(150%);
+  backdrop-filter:blur(20px) saturate(190%);
+  -webkit-backdrop-filter:blur(20px) saturate(190%);
   border:1px solid var(--glass-border);
   box-shadow:var(--glass-shadow);
   padding:28px;
@@ -506,19 +570,175 @@ main{ max-width:1120px; margin:0 auto; padding:20px 20px 100px; }
 .quiz-score .score-num{ font-size:3rem; font-family:var(--font-display); color:var(--moss); }
 
 /* ---------------------------------------------------------------------- */
-/* SURVEY                                                                  */
+/* ECOGRAM — Sustainable School Simulator                                  */
 /* ---------------------------------------------------------------------- */
-.survey-question{ padding:16px 0; border-bottom:1px solid var(--glass-border); }
-.survey-question:last-of-type{ border-bottom:none; }
-.survey-question p{ font-weight:600; margin-bottom:10px; }
-.survey-yn{ display:flex; gap:10px; }
-.yn-btn{
-  padding:9px 20px; border-radius:999px; font-weight:700; font-size:0.88rem;
-  background:var(--glass-bg-strong); border:1px solid var(--glass-border); color:var(--ink);
+.ecogram-hud{
+  display:flex; flex-wrap:wrap; gap:22px; align-items:center; justify-content:space-between;
+  padding:20px 26px;
 }
-.yn-btn.selected-yes{ background:linear-gradient(135deg, var(--moss), var(--teal-mid)); color:#fff; }
-.yn-btn.selected-no{ background:linear-gradient(135deg, var(--clay), #8a4712); color:#fff; }
-.survey-results{ margin-top:18px; padding-top:18px; border-top:1px dashed var(--glass-border); }
+.eh-item{ display:flex; flex-direction:column; }
+.eh-label{ font-size:0.74rem; font-weight:800; letter-spacing:.03em; color:var(--ink-soft); text-transform:uppercase; }
+.eh-value{ font-family:var(--font-display); font-size:1.6rem; font-weight:700; color:var(--teal-deep); }
+[data-theme="night"] .eh-value{ color:var(--gold-soft); }
+
+.ecogram-layout{ display:grid; grid-template-columns:1fr 1.3fr; gap:20px; align-items:start; }
+@media (max-width:900px){ .ecogram-layout{ grid-template-columns:1fr; } }
+
+.ecogram-meters{ display:flex; flex-direction:column; gap:18px; }
+.eco-meter-row{ display:flex; flex-direction:column; gap:6px; }
+.eco-meter-top{ display:flex; justify-content:space-between; align-items:center; gap:10px; font-weight:700; font-size:0.92rem; }
+.eco-meter-top span:first-child{ flex:1; min-width:0; }
+.eco-meter-top span:last-child{ flex:0 0 auto; }
+.eco-meter-track{
+  width:100%; height:14px; border-radius:999px; overflow:hidden;
+  background:rgba(255,255,255,0.35); border:1px solid var(--glass-border);
+}
+[data-theme="night"] .eco-meter-track{ background:rgba(255,255,255,0.08); }
+.eco-meter-fill{
+  height:100%; border-radius:999px;
+  transition:width .6s cubic-bezier(.4,0,.2,1);
+}
+.eco-meter-fill.water{ background:linear-gradient(90deg, var(--indigo), #5C86C4); }
+.eco-meter-fill.energy{ background:linear-gradient(90deg, var(--gold), var(--gold-soft)); }
+.eco-meter-fill.biodiversity{ background:linear-gradient(90deg, var(--teal-mid), var(--moss-light)); }
+.eco-meter-fill.waste{ background:linear-gradient(90deg, var(--clay), #D98A4E); }
+.eco-meter-delta{ font-size:0.76rem; font-weight:700; }
+.eco-meter-delta.up{ color:var(--moss); }
+.eco-meter-delta.down{ color:var(--clay); }
+
+.ecogram-interventions{ display:flex; flex-direction:column; gap:12px; }
+.eco-card{
+  display:flex; gap:14px; align-items:flex-start;
+  padding:14px 16px; border-radius:var(--radius-md);
+  background:var(--glass-bg-strong); border:1px solid var(--glass-border);
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.eco-card.installed{
+  border-color:rgba(60,110,71,0.6);
+  box-shadow:0 0 0 2px rgba(60,110,71,0.3) inset;
+}
+.eco-card-emoji{ font-size:1.7rem; flex:0 0 auto; }
+.eco-card-body{ flex:1; }
+.eco-card-title-row{ display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.eco-card-title{ font-weight:700; font-family:var(--font-display); font-size:1rem; }
+.eco-card-cost{ font-size:0.8rem; font-weight:800; color:var(--clay); white-space:nowrap; }
+.eco-card-note{ font-size:0.82rem; color:var(--ink-soft); margin-top:4px; line-height:1.4; }
+.eco-card-tradeoff{ font-size:0.78rem; color:var(--clay); margin-top:4px; font-style:italic; }
+.eco-card-btn{
+  margin-top:10px; padding:7px 16px; border-radius:999px; font-size:0.8rem; font-weight:700;
+  background:linear-gradient(135deg, var(--moss), var(--teal-mid)); color:#fff; border:none;
+}
+.eco-card-btn:disabled{
+  background:rgba(120,120,120,0.3); color:var(--ink-soft); cursor:not-allowed;
+}
+.eco-card-btn.installed-label{
+  background:transparent; border:1px solid var(--moss); color:var(--moss); cursor:default;
+}
+[data-theme="night"] .eco-card-btn.installed-label{ color:var(--moss-light); border-color:var(--moss-light); }
+
+.ecogram-actions{ display:flex; gap:12px; flex-wrap:wrap; margin:22px 0; }
+.ecogram-actions .glass-btn.wide{ flex:1 1 260px; }
+
+.eco-log-entry{
+  padding:14px 18px; border-radius:var(--radius-md);
+  background:var(--glass-bg); border:1px solid var(--glass-border);
+  margin-bottom:10px; font-size:0.88rem; color:var(--ink);
+}
+.eco-log-entry .elog-year{ font-weight:800; color:var(--teal-deep); margin-right:6px; }
+[data-theme="night"] .eco-log-entry .elog-year{ color:var(--gold-soft); }
+
+.eco-summary-card{
+  border-radius:var(--radius-lg); padding:32px; margin-top:22px; text-align:center;
+  background:var(--glass-bg-strong); border:1px solid var(--glass-border); box-shadow:var(--glass-shadow);
+  animation:fadeUp .5s ease;
+}
+.eco-summary-emoji{ font-size:3rem; }
+.eco-summary-label{ font-family:var(--font-display); font-size:1.7rem; font-weight:700; color:var(--teal-deep); margin-top:6px; }
+[data-theme="night"] .eco-summary-label{ color:var(--gold-soft); }
+.eco-summary-score{ font-size:1.05rem; color:var(--ink-soft); margin-top:8px; }
+.eco-summary-blurb{ max-width:520px; margin:14px auto 0; color:var(--ink); line-height:1.55; }
+
+/* ---- EcoGram animated school visual ---- */
+.ecogram-visual{ text-align:center; padding:20px; }
+#ecoSceneSvg{ width:100%; max-width:820px; height:auto; border-radius:var(--radius-md); display:block; margin:0 auto; }
+.eco-legend{ justify-content:center; margin-top:14px; }
+.eco-legend .chip{ opacity:.55; transition:all .3s ease; }
+.eco-legend .chip.active{ opacity:1; background:linear-gradient(135deg, var(--moss), var(--teal-mid)); color:#fff; }
+
+/* Rainwater Harvesting — tank fill rises */
+.eco-tank-fill{
+  transition: y .9s cubic-bezier(.4,0,.2,1), height .9s cubic-bezier(.4,0,.2,1);
+}
+.eco-tank.installed .eco-tank-fill{ y:188px; height:89px; }
+
+/* Native Plants — trees grow up from the ground, staggered */
+.eco-tree{
+  transform: scale(0.15);
+  opacity:.28;
+  filter:grayscale(1) brightness(1.25);
+  transition: transform .7s cubic-bezier(.34,1.56,.64,1), opacity .5s ease, filter .5s ease;
+  transform-box: fill-box;
+}
+.eco-trees.installed .eco-tree{ transform:scale(1); opacity:1; filter:grayscale(0); }
+.eco-trees.installed .eco-tree:nth-child(2){ transition-delay:.12s; }
+.eco-trees.installed .eco-tree:nth-child(3){ transition-delay:.24s; }
+.eco-trees.installed .eco-tree:nth-child(4){ transition-delay:.36s; }
+
+/* Shaded Courtyards — pergola fades and settles into place, casting shade */
+.eco-courtyard{
+  opacity:0;
+  transform:translateY(-18px);
+  transform-box:fill-box;
+  transition: opacity .6s ease, transform .6s cubic-bezier(.34,1.56,.64,1);
+}
+.eco-courtyard.installed{ opacity:1; transform:translateY(0); }
+
+/* Local Crops — rows of crop blades grow up from tilled soil, staggered */
+.eco-crop-blade{
+  transform: scaleY(0.05);
+  opacity:.4;
+  transform-box: fill-box;
+  transition: transform .6s cubic-bezier(.34,1.56,.64,1), opacity .4s ease;
+}
+.eco-crops.installed .eco-crop-blade{ transform:scaleY(1); opacity:1; }
+.eco-crops.installed .eco-crop-blade:nth-child(3){ transition-delay:.08s; }
+.eco-crops.installed .eco-crop-blade:nth-child(4){ transition-delay:.16s; }
+.eco-crops.installed .eco-crop-blade:nth-child(5){ transition-delay:.24s; }
+.eco-crops.installed .eco-crop-blade:nth-child(6){ transition-delay:.32s; }
+.eco-crops.installed .eco-crop-blade:nth-child(7){ transition-delay:.4s; }
+
+/* Composting — bin gains colour, recycling swirl fades in and spins */
+.eco-compost-bin{
+  filter:grayscale(1) brightness(1.2);
+  opacity:.55;
+  transition: filter .5s ease, opacity .5s ease;
+}
+.eco-compost.installed .eco-compost-bin{ filter:grayscale(0); opacity:1; }
+.eco-compost-swirl{
+  opacity:0;
+  transform-box:fill-box;
+  transform-origin:center;
+  transition: opacity .5s ease;
+}
+.eco-compost.installed .eco-compost-swirl{ opacity:1; animation: ecoSpin 5s linear infinite; }
+@keyframes ecoSpin{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
+
+/* Solar Power — panels settle onto the roof, glow pulses gently */
+.eco-solar{
+  opacity:0;
+  transform:translateY(-12px);
+  transform-box:fill-box;
+  transition: opacity .6s ease, transform .6s cubic-bezier(.34,1.56,.64,1);
+}
+.eco-solar.installed{ opacity:1; transform:translateY(0); }
+.eco-solar-glow{ opacity:0; transition:opacity .8s ease; }
+.eco-solar.installed .eco-solar-glow{ opacity:.5; animation: ecoPulse 3s ease-in-out infinite; }
+@keyframes ecoPulse{ 0%,100%{ opacity:.32; } 50%{ opacity:.6; } }
+
+@media (prefers-reduced-motion: reduce){
+  .eco-tree, .eco-crop-blade, .eco-courtyard, .eco-solar, .eco-tank-fill{ transition:none !important; }
+  .eco-compost-swirl, .eco-solar-glow{ animation:none !important; }
+}
 
 /* ---------------------------------------------------------------------- */
 /* CHALLENGES DOCK / MODAL                                                 */
@@ -576,6 +796,9 @@ a{ color:inherit; }
   <div class="bg-blob blob-teal"></div>
   <div class="bg-blob blob-green"></div>
   <div class="bg-blob blob-gold"></div>
+  <div class="bg-blob blob-indigo"></div>
+  <div class="bg-blob blob-clay"></div>
+  <div class="bg-sheen"></div>
   <div class="bg-grain"></div>
 </div>
 
@@ -598,7 +821,7 @@ a{ color:inherit; }
     <button class="nav-link" data-nav="scan" data-i18n="nav_scan">Scan & Discover</button>
     <button class="nav-link" data-nav="iks" data-i18n="nav_iks">IKS</button>
     <button class="nav-link" data-nav="quizzes" data-i18n="nav_quiz">Quizzes</button>
-    <button class="nav-link" data-nav="survey" data-i18n="nav_survey">Survey</button>
+    <button class="nav-link" data-nav="ecogram" data-i18n="nav_ecogram">EcoGram</button>
   </nav>
 
   <div class="nav-controls">
@@ -645,6 +868,9 @@ a{ color:inherit; }
       </button>
       <button class="glass-btn action-btn" data-nav="scan">
         <span class="ab-emoji">📸</span><span data-i18n="home_action_scan">Scan & Discover</span>
+      </button>
+      <button class="glass-btn action-btn" data-nav="ecogram">
+        <span class="ab-emoji">🌍</span><span>EcoGram</span>
       </button>
       <button class="glass-btn action-btn" data-nav="food-detective" data-food-open="true">
         <span class="ab-emoji">🥗</span><span data-i18n="home_action_food">Food Detective</span>
@@ -805,11 +1031,142 @@ a{ color:inherit; }
     <div id="quizPlayZone"></div>
   </section>
 
-  <!-- ================= SURVEY ================= -->
-  <section class="view" id="view-survey" data-view="survey">
-    <h2 class="view-title" data-i18n="survey_title">📋 Student Survey</h2>
-    <p class="view-sub" data-i18n="survey_sub">Quick yes / no questions about seasonal and sustainable living.</p>
-    <div class="glass-panel survey-panel" id="surveyPanel"></div>
+  <!-- ================= ECOGRAM ================= -->
+  <section class="view" id="view-ecogram" data-view="ecogram">
+    <h2 class="view-title" data-i18n="ecogram_title">🌍 EcoGram — Sustainable School Simulator</h2>
+    <p class="view-sub" data-i18n="ecogram_sub">Improve a virtual school with limited resources across several years, and watch water, energy, biodiversity and waste respond to your choices.</p>
+
+    <div class="glass-panel ecogram-hud" id="ecogramHud"></div>
+
+    <div class="ecogram-layout">
+      <div class="ecogram-meters glass-panel" id="ecogramMeters"></div>
+      <div class="ecogram-interventions glass-panel" id="ecogramInterventions"></div>
+    </div>
+
+    <div class="ecogram-actions">
+      <button class="glass-btn primary wide" id="ecogramEndRoundBtn">🌤️ End Year & See Results</button>
+      <button class="glass-btn" id="ecogramResetBtn">↺ Restart Simulation</button>
+    </div>
+
+    <button class="glass-btn wide" id="ecogramVisualToggleBtn" style="margin-bottom:18px;">👀 See Visual</button>
+
+    <div class="glass-panel ecogram-visual hidden" id="ecogramVisualPanel">
+      <svg id="ecoSceneSvg" viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrated view of the school campus">
+
+        <!-- Sky -->
+        <rect x="0" y="0" width="900" height="330" fill="#CFEAEE"></rect>
+        <rect x="0" y="0" width="900" height="330" fill="url(#ecoSkyFade)"></rect>
+        <defs>
+          <linearGradient id="ecoSkyFade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#BFE4E0"></stop>
+            <stop offset="1" stop-color="#EFE3B8"></stop>
+          </linearGradient>
+        </defs>
+
+        <!-- Ground -->
+        <rect x="0" y="330" width="900" height="130" fill="#AFCB93"></rect>
+        <rect x="0" y="330" width="900" height="18" fill="#9DBD80"></rect>
+
+        <!-- Sun -->
+        <circle cx="805" cy="70" r="34" fill="#F3C969"></circle>
+
+        <!-- ============ NATIVE PLANTS (trees) ============ -->
+        <g class="eco-trees" id="ecoTrees">
+          <g class="eco-tree" style="transform-origin:100px 340px;">
+            <rect x="96" y="308" width="8" height="32" rx="2" fill="#8A5A2B"></rect>
+            <circle cx="100" cy="298" r="26" fill="#3C6E47"></circle>
+            <circle cx="86" cy="308" r="17" fill="#6FA36B"></circle>
+          </g>
+          <g class="eco-tree" style="transform-origin:162px 340px;">
+            <rect x="158" y="314" width="7" height="26" rx="2" fill="#8A5A2B"></rect>
+            <circle cx="162" cy="306" r="21" fill="#6FA36B"></circle>
+          </g>
+          <g class="eco-tree" style="transform-origin:800px 340px;">
+            <rect x="796" y="311" width="8" height="29" rx="2" fill="#8A5A2B"></rect>
+            <circle cx="800" cy="302" r="23" fill="#3C6E47"></circle>
+          </g>
+          <g class="eco-tree" style="transform-origin:855px 340px;">
+            <rect x="851" y="317" width="7" height="23" rx="2" fill="#8A5A2B"></rect>
+            <circle cx="855" cy="309" r="18" fill="#6FA36B"></circle>
+          </g>
+        </g>
+
+        <!-- ============ LOCAL CROPS ============ -->
+        <g class="eco-crops" id="ecoCrops">
+          <rect x="182" y="333" width="130" height="10" rx="3" fill="#B5651D" opacity="0.55"></rect>
+          <g class="eco-crop-blade" style="transform-origin:196px 335px;"><rect x="193" y="309" width="6" height="26" rx="3" fill="#3C6E47"></rect></g>
+          <g class="eco-crop-blade" style="transform-origin:216px 335px;"><rect x="213" y="305" width="6" height="30" rx="3" fill="#6FA36B"></rect></g>
+          <g class="eco-crop-blade" style="transform-origin:236px 335px;"><rect x="233" y="311" width="6" height="24" rx="3" fill="#3C6E47"></rect></g>
+          <g class="eco-crop-blade" style="transform-origin:256px 335px;"><rect x="253" y="306" width="6" height="29" rx="3" fill="#6FA36B"></rect></g>
+          <g class="eco-crop-blade" style="transform-origin:276px 335px;"><rect x="273" y="310" width="6" height="25" rx="3" fill="#3C6E47"></rect></g>
+          <g class="eco-crop-blade" style="transform-origin:296px 335px;"><rect x="293" y="304" width="6" height="31" rx="3" fill="#6FA36B"></rect></g>
+        </g>
+
+        <!-- ============ SCHOOL BUILDING (always present) ============ -->
+        <g id="ecoBuilding">
+          <rect x="340" y="200" width="220" height="140" fill="#F4EFE4"></rect>
+          <polygon points="330,200 385,150 515,150 560,200" fill="#1F5C57"></polygon>
+          <rect x="420" y="278" width="50" height="62" fill="#0F3D3E"></rect>
+          <rect x="362" y="230" width="34" height="34" fill="#BFE4E0" stroke="#0F3D3E" stroke-width="3"></rect>
+          <rect x="504" y="230" width="34" height="34" fill="#BFE4E0" stroke="#0F3D3E" stroke-width="3"></rect>
+        </g>
+
+        <!-- ============ SOLAR POWER (roof panels) ============ -->
+        <g class="eco-solar" id="ecoSolar">
+          <circle class="eco-solar-glow" cx="450" cy="160" r="70" fill="#F3C969"></circle>
+          <g fill="#2C4770" stroke="#BFE4E0" stroke-width="1.5">
+            <rect x="392" y="156" width="26" height="16" rx="2"></rect>
+            <rect x="422" y="156" width="26" height="16" rx="2"></rect>
+            <rect x="452" y="156" width="26" height="16" rx="2"></rect>
+            <rect x="482" y="156" width="26" height="16" rx="2"></rect>
+          </g>
+        </g>
+
+        <!-- ============ SHADED COURTYARD ============ -->
+        <g class="eco-courtyard" id="ecoCourtyard">
+          <ellipse cx="450" cy="424" rx="72" ry="13" fill="#0F3D3E" opacity="0.18"></ellipse>
+          <rect x="395" y="345" width="8" height="62" fill="#B5651D"></rect>
+          <rect x="497" y="345" width="8" height="62" fill="#B5651D"></rect>
+          <rect x="385" y="333" width="130" height="13" rx="4" fill="#D9A441"></rect>
+        </g>
+
+        <!-- ============ RAINWATER HARVESTING (tank) ============ -->
+        <g class="eco-tank" id="ecoTank">
+          <rect x="638" y="270" width="6" height="70" fill="#8A5A2B"></rect>
+          <rect x="686" y="270" width="6" height="70" fill="#8A5A2B"></rect>
+          <rect x="617" y="185" width="70" height="95" rx="8" fill="#E7F1F2" stroke="#2C4770" stroke-width="3"></rect>
+          <clipPath id="ecoTankClip">
+            <rect x="620" y="188" width="64" height="89" rx="6"></rect>
+          </clipPath>
+          <rect class="eco-tank-fill" x="620" y="232" width="64" height="45" fill="#2C4770" clip-path="url(#ecoTankClip)"></rect>
+        </g>
+
+        <!-- ============ COMPOSTING ============ -->
+        <g class="eco-compost" id="ecoCompost">
+          <g class="eco-compost-bin">
+            <rect x="758" y="306" width="42" height="34" rx="6" fill="#B5651D"></rect>
+            <ellipse cx="779" cy="306" rx="23" ry="6" fill="#8A5A2B"></ellipse>
+          </g>
+          <g class="eco-compost-swirl" style="transform-origin:779px 300px;">
+            <path d="M 779 280 A 22 22 0 1 1 760 296" fill="none" stroke="#3C6E47" stroke-width="3" stroke-linecap="round"></path>
+            <path d="M 760 296 l -6 -9 l 11 -2 z" fill="#3C6E47"></path>
+          </g>
+        </g>
+
+      </svg>
+
+      <div class="chip-row eco-legend" id="ecoLegend">
+        <span class="chip" data-intervention="rainwater">💧 Rainwater Tank</span>
+        <span class="chip" data-intervention="nativeplants">🌳 Native Plants</span>
+        <span class="chip" data-intervention="courtyards">🏛️ Shaded Courtyard</span>
+        <span class="chip" data-intervention="localcrops">🌾 Local Crops</span>
+        <span class="chip" data-intervention="composting">♻️ Composting</span>
+        <span class="chip" data-intervention="solar">☀️ Solar Power</span>
+      </div>
+    </div>
+
+    <div id="ecogramLog"></div>
+    <div id="ecogramSummaryZone"></div>
   </section>
 
 </main>
@@ -841,704 +1198,437 @@ const SEASONS = [
 ];
 
 /* -------------------------- FOOD DATABASE -------------------------- */
-/* Each food: id, name, category, emoji, seasons[], nutrients[], benefits[],
-   sustainability, iks (Indian knowledge connection) */
 const FOODS = [
   {
-    id: "bittergourd",
-    name: "Bitter Gourd (Karela)",
-    category: "vegetable",
-    emoji: "🥒",
-    seasons: ["monsoon", "summer"],
-    nutrients: ["Vitamin C", "Fibre", "Folate"],
-    benefits: [
-      "Supports digestion due to its fibre content",
-      "Contributes to daily vitamin C intake",
-    ],
-    sustainability:
-      "A low-water, fast-growing climber that is often grown on home fences and terraces, needing very little dedicated farmland.",
+    id: "bittergourd", name: "Bitter Gourd (Karela)", category: "vegetable", emoji: "🥒",
+    seasons: ["monsoon", "summer"], nutrients: ["Vitamin C", "Fibre", "Folate"],
+    benefits: ["Supports digestion due to its fibre content", "Contributes to daily vitamin C intake"],
+    sustainability: "A low-water, fast-growing climber that is often grown on home fences and terraces, needing very little dedicated farmland.",
     iks: "Classical Ayurvedic seasonal-eating guidance (Ritucharya) associates bitter tastes with the monsoon, when digestion is considered naturally weaker.",
   },
   {
-    id: "corn",
-    name: "Corn (Makka)",
-    category: "grain",
-    emoji: "🌽",
-    seasons: ["monsoon"],
-    nutrients: ["Carbohydrates", "Fibre", "Vitamin B"],
+    id: "corn", name: "Corn (Makka)", category: "grain", emoji: "🌽",
+    seasons: ["monsoon"], nutrients: ["Carbohydrates", "Fibre", "Vitamin B"],
     benefits: ["A steady source of everyday energy", "Provides dietary fibre"],
-    sustainability:
-      "A traditional monsoon-rainfed crop in many regions, meaning it relies mainly on natural rain rather than heavy irrigation.",
+    sustainability: "A traditional monsoon-rainfed crop in many regions, meaning it relies mainly on natural rain rather than heavy irrigation.",
     iks: "Roasted corn on the cob is a well-known monsoon street food across India, timed to the harvest of rain-fed kharif crops.",
   },
   {
-    id: "mango",
-    name: "Mango (Aam)",
-    category: "fruit",
-    emoji: "🥭",
-    seasons: ["summer"],
-    nutrients: ["Vitamin A", "Vitamin C", "Natural sugars"],
+    id: "mango", name: "Mango (Aam)", category: "fruit", emoji: "🥭",
+    seasons: ["summer"], nutrients: ["Vitamin A", "Vitamin C", "Natural sugars"],
     benefits: ["Contributes to vitamin A and C intake", "A natural source of quick energy"],
-    sustainability:
-      "A long-living tree crop — a single mango tree can bear fruit for decades, storing carbon and needing no yearly replanting.",
+    sustainability: "A long-living tree crop — a single mango tree can bear fruit for decades, storing carbon and needing no yearly replanting.",
     iks: "Considered the 'king of fruits' in Indian tradition; mango leaves are used in auspicious door decorations (toran), linking the fruiting season to festivals.",
   },
   {
-    id: "watermelon",
-    name: "Watermelon (Tarbooz)",
-    category: "fruit",
-    emoji: "🍉",
-    seasons: ["summer"],
-    nutrients: ["Water content", "Vitamin C", "Lycopene"],
+    id: "watermelon", name: "Watermelon (Tarbooz)", category: "fruit", emoji: "🍉",
+    seasons: ["summer"], nutrients: ["Water content", "Vitamin C", "Lycopene"],
     benefits: ["Helps with hydration in hot weather", "Contributes antioxidants"],
-    sustainability:
-      "Its high water content traditionally helped desert and dry-region communities meet hydration needs without extra water carrying.",
+    sustainability: "Its high water content traditionally helped desert and dry-region communities meet hydration needs without extra water carrying.",
     iks: "Ritucharya recommends water-rich, cooling foods in Grishma (summer) to balance the season's heat.",
   },
   {
-    id: "cucumber",
-    name: "Cucumber (Kheera)",
-    category: "vegetable",
-    emoji: "🥒",
-    seasons: ["summer"],
-    nutrients: ["Water content", "Vitamin K", "Potassium"],
+    id: "cucumber", name: "Cucumber (Kheera)", category: "vegetable", emoji: "🥒",
+    seasons: ["summer"], nutrients: ["Water content", "Vitamin K", "Potassium"],
     benefits: ["Supports hydration", "Light on digestion in hot months"],
-    sustainability:
-      "A fast-growing, short-cycle crop that can be grown in home kitchen gardens with minimal space.",
+    sustainability: "A fast-growing, short-cycle crop that can be grown in home kitchen gardens with minimal space.",
     iks: "Served as a cooling raita accompaniment in many regional summer meals, following the seasonal-cooling food principle.",
   },
   {
-    id: "spinach",
-    name: "Spinach (Palak)",
-    category: "vegetable",
-    emoji: "🥬",
-    seasons: ["winter"],
-    nutrients: ["Iron", "Vitamin A", "Folate"],
+    id: "spinach", name: "Spinach (Palak)", category: "vegetable", emoji: "🥬",
+    seasons: ["winter"], nutrients: ["Iron", "Vitamin A", "Folate"],
     benefits: ["Contributes to daily iron intake", "Supports general nutrition"],
-    sustainability:
-      "A leafy green that grows well in cooler weather with less irrigation than summer vegetables, and composts easily if unsold.",
+    sustainability: "A leafy green that grows well in cooler weather with less irrigation than summer vegetables, and composts easily if unsold.",
     iks: "Winter (Shishira/Hemanta) is traditionally considered the season for building strength (bala) through nourishing greens, per Ritucharya.",
   },
   {
-    id: "jaggery",
-    name: "Jaggery (Gur)",
-    category: "traditional",
-    emoji: "🍯",
-    seasons: ["winter"],
-    nutrients: ["Iron", "Minerals"],
+    id: "jaggery", name: "Jaggery (Gur)", category: "traditional", emoji: "🍯",
+    seasons: ["winter"], nutrients: ["Iron", "Minerals"],
     benefits: ["An unrefined sweetener that retains some minerals lost in refining sugar"],
-    sustainability:
-      "Made from sugarcane juice through low-energy open-pan boiling in many villages, using fewer industrial processing steps than refined sugar.",
+    sustainability: "Made from sugarcane juice through low-energy open-pan boiling in many villages, using fewer industrial processing steps than refined sugar.",
     iks: "Traditionally eaten with sesame (til) in winter festivals like Makar Sankranti, believed to generate warmth in the body.",
   },
   {
-    id: "carrot",
-    name: "Carrot (Gajar)",
-    category: "vegetable",
-    emoji: "🥕",
-    seasons: ["winter"],
-    nutrients: ["Beta-carotene", "Fibre", "Vitamin A"],
+    id: "carrot", name: "Carrot (Gajar)", category: "vegetable", emoji: "🥕",
+    seasons: ["winter"], nutrients: ["Beta-carotene", "Fibre", "Vitamin A"],
     benefits: ["Contributes to vitamin A intake", "Adds dietary fibre"],
-    sustainability:
-      "A root vegetable that stores well without refrigeration, historically reducing winter food waste.",
+    sustainability: "A root vegetable that stores well without refrigeration, historically reducing winter food waste.",
     iks: "The base of gajar ka halwa, a winter-specific festive dish tied to the carrot's short harvest window.",
   },
   {
-    id: "millet",
-    name: "Millets (Ragi / Bajra / Jowar)",
-    category: "grain",
-    emoji: "🌾",
-    seasons: ["autumn", "winter"],
-    nutrients: ["Fibre", "Iron", "Calcium (ragi)"],
+    id: "millet", name: "Millets (Ragi / Bajra / Jowar)", category: "grain", emoji: "🌾",
+    seasons: ["autumn", "winter"], nutrients: ["Fibre", "Iron", "Calcium (ragi)"],
     benefits: ["A steady-release source of energy", "Contributes fibre and minerals"],
-    sustainability:
-      "Millets need far less water than rice or wheat and tolerate poor soil, making them a traditionally drought-resilient crop.",
+    sustainability: "Millets need far less water than rice or wheat and tolerate poor soil, making them a traditionally drought-resilient crop.",
     iks: "Millets were staple grains across much of India for centuries before being displaced by rice and wheat during the Green Revolution; many regional traditions are now reviving them.",
   },
   {
-    id: "pomegranate",
-    name: "Pomegranate (Anaar)",
-    category: "fruit",
-    emoji: "🌰",
-    seasons: ["autumn", "winter"],
-    nutrients: ["Vitamin C", "Antioxidants", "Fibre"],
+    id: "pomegranate", name: "Pomegranate (Anaar)", category: "fruit", emoji: "🌰",
+    seasons: ["autumn", "winter"], nutrients: ["Vitamin C", "Antioxidants", "Fibre"],
     benefits: ["Contributes antioxidants and vitamin C"],
-    sustainability:
-      "A hardy, drought-tolerant tree that can grow in relatively dry, rocky soils unsuitable for many other fruit crops.",
+    sustainability: "A hardy, drought-tolerant tree that can grow in relatively dry, rocky soils unsuitable for many other fruit crops.",
     iks: "Featured in classical Ayurvedic texts as a fruit balancing multiple constitutions (doshas), and often given during recovery from illness.",
   },
   {
-    id: "sweetpotato",
-    name: "Sweet Potato (Shakarkandi)",
-    category: "vegetable",
-    emoji: "🍠",
-    seasons: ["autumn", "winter"],
-    nutrients: ["Beta-carotene", "Fibre", "Potassium"],
+    id: "sweetpotato", name: "Sweet Potato (Shakarkandi)", category: "vegetable", emoji: "🍠",
+    seasons: ["autumn", "winter"], nutrients: ["Beta-carotene", "Fibre", "Potassium"],
     benefits: ["Contributes to vitamin A intake", "A filling source of fibre"],
-    sustainability:
-      "Grows in a wide range of soils with modest water needs and stores well after harvest.",
+    sustainability: "Grows in a wide range of soils with modest water needs and stores well after harvest.",
     iks: "Traditionally eaten during fasting days (vrat) in many regions, prepared as a simple roasted or boiled dish.",
   },
   {
-    id: "turmeric",
-    name: "Turmeric (Haldi)",
-    category: "traditional",
-    emoji: "🫙",
-    seasons: ["monsoon", "autumn"],
-    nutrients: ["Curcumin", "Manganese"],
+    id: "turmeric", name: "Turmeric (Haldi)", category: "traditional", emoji: "🫙",
+    seasons: ["monsoon", "autumn"], nutrients: ["Curcumin", "Manganese"],
     benefits: ["A traditional culinary spice used across Indian cooking"],
-    sustainability:
-      "A rhizome crop that can be intercropped with other plants, supporting more diverse, resilient small farms.",
+    sustainability: "A rhizome crop that can be intercropped with other plants, supporting more diverse, resilient small farms.",
     iks: "Central to Indian households for cooking and rituals alike; harvested largely in the post-monsoon months.",
   },
-
-  /* ---- expanded list (62+ total) ---- */
   {
-    id: "okra",
-    name: "Okra (Bhindi)",
-    category: "vegetable",
-    emoji: "🫛",
-    seasons: ["monsoon", "summer"],
-    nutrients: ["Fibre", "Vitamin C", "Folate"],
+    id: "okra", name: "Okra (Bhindi)", category: "vegetable", emoji: "🫛",
+    seasons: ["monsoon", "summer"], nutrients: ["Fibre", "Vitamin C", "Folate"],
     benefits: ["Contributes dietary fibre", "Supports general nutrition"],
     sustainability: "A warm-weather crop that grows quickly with modest water needs compared to many vegetables.",
     iks: "A staple vegetable across regional Indian cuisines, typically harvested through the warmer, wetter months.",
   },
   {
-    id: "eggplant",
-    name: "Eggplant (Baingan)",
-    category: "vegetable",
-    emoji: "🍆",
-    seasons: ["monsoon", "autumn"],
-    nutrients: ["Fibre", "Antioxidants", "Potassium"],
+    id: "eggplant", name: "Eggplant (Baingan)", category: "vegetable", emoji: "🍆",
+    seasons: ["monsoon", "autumn"], nutrients: ["Fibre", "Antioxidants", "Potassium"],
     benefits: ["Contributes dietary fibre and antioxidants"],
     sustainability: "A hardy plant that can be grown across many soil types with relatively low water demand.",
     iks: "Featured in regional dishes like baingan bharta, tied to post-monsoon harvest calendars in many areas.",
   },
   {
-    id: "greenbeans",
-    name: "Green Beans (Phalli)",
-    category: "vegetable",
-    emoji: "🫛",
-    seasons: ["monsoon"],
-    nutrients: ["Fibre", "Vitamin K", "Folate"],
+    id: "greenbeans", name: "Green Beans (Phalli)", category: "vegetable", emoji: "🫛",
+    seasons: ["monsoon"], nutrients: ["Fibre", "Vitamin K", "Folate"],
     benefits: ["Contributes fibre and folate to the diet"],
     sustainability: "A legume-family crop that can fix some nitrogen in soil, reducing fertiliser needs for future crops.",
     iks: "Commonly grown as a monsoon kitchen-garden crop across many Indian households.",
   },
   {
-    id: "bottlegourd",
-    name: "Bottle Gourd (Lauki)",
-    category: "vegetable",
-    emoji: "🥒",
-    seasons: ["summer", "monsoon"],
-    nutrients: ["Water content", "Vitamin C", "Fibre"],
+    id: "bottlegourd", name: "Bottle Gourd (Lauki)", category: "vegetable", emoji: "🥒",
+    seasons: ["summer", "monsoon"], nutrients: ["Water content", "Vitamin C", "Fibre"],
     benefits: ["Helps with hydration", "Light on digestion"],
     sustainability: "A climbing vine that can be grown vertically on trellises, using very little ground space.",
     iks: "A classic light, cooling vegetable recommended in summer by regional home-remedy traditions.",
   },
   {
-    id: "ridgegourd",
-    name: "Ridge Gourd (Turai)",
-    category: "vegetable",
-    emoji: "🥒",
-    seasons: ["summer", "monsoon"],
-    nutrients: ["Fibre", "Vitamin C", "Water content"],
+    id: "ridgegourd", name: "Ridge Gourd (Turai)", category: "vegetable", emoji: "🥒",
+    seasons: ["summer", "monsoon"], nutrients: ["Fibre", "Vitamin C", "Water content"],
     benefits: ["Supports hydration and digestion"],
     sustainability: "Grows well on simple bamboo or fence trellises, making it suitable for small home gardens.",
     iks: "Widely grown as a monsoon-season climber alongside bottle gourd and bitter gourd in home plots.",
   },
   {
-    id: "pumpkin",
-    name: "Pumpkin (Kaddu)",
-    category: "vegetable",
-    emoji: "🎃",
-    seasons: ["autumn", "winter"],
-    nutrients: ["Beta-carotene", "Fibre", "Potassium"],
+    id: "pumpkin", name: "Pumpkin (Kaddu)", category: "vegetable", emoji: "🎃",
+    seasons: ["autumn", "winter"], nutrients: ["Beta-carotene", "Fibre", "Potassium"],
     benefits: ["Contributes to vitamin A intake"],
     sustainability: "Stores well for weeks without refrigeration, reducing post-harvest spoilage.",
     iks: "Used in regional festive dishes and offerings, harvested as the monsoon ends.",
   },
   {
-    id: "cauliflower",
-    name: "Cauliflower (Phool Gobi)",
-    category: "vegetable",
-    emoji: "🥦",
-    seasons: ["winter"],
-    nutrients: ["Vitamin C", "Fibre", "Folate"],
+    id: "cauliflower", name: "Cauliflower (Phool Gobi)", category: "vegetable", emoji: "🥦",
+    seasons: ["winter"], nutrients: ["Vitamin C", "Fibre", "Folate"],
     benefits: ["Contributes vitamin C and fibre"],
     sustainability: "A cool-season crop that thrives without the heavy irrigation summer vegetables often need.",
     iks: "A winter market staple across much of North India, tied closely to the cool growing season.",
   },
   {
-    id: "cabbage",
-    name: "Cabbage (Patta Gobi)",
-    category: "vegetable",
-    emoji: "🥬",
-    seasons: ["winter"],
-    nutrients: ["Vitamin K", "Vitamin C", "Fibre"],
+    id: "cabbage", name: "Cabbage (Patta Gobi)", category: "vegetable", emoji: "🥬",
+    seasons: ["winter"], nutrients: ["Vitamin K", "Vitamin C", "Fibre"],
     benefits: ["Contributes fibre and vitamin C"],
     sustainability: "Stores longer than many leafy vegetables, which can reduce household food waste in winter.",
     iks: "A common winter vegetable in home-cooked meals across many Indian regions.",
   },
   {
-    id: "radish",
-    name: "Radish (Mooli)",
-    category: "vegetable",
-    emoji: "🌱",
-    seasons: ["winter"],
-    nutrients: ["Vitamin C", "Fibre", "Folate"],
+    id: "radish", name: "Radish (Mooli)", category: "vegetable", emoji: "🌱",
+    seasons: ["winter"], nutrients: ["Vitamin C", "Fibre", "Folate"],
     benefits: ["Contributes fibre and vitamin C"],
     sustainability: "A fast-growing root crop needing a short growing season and modest water.",
     iks: "Central to winter dishes like mooli paratha, tied to regional winter food calendars.",
   },
   {
-    id: "greenpeas",
-    name: "Green Peas (Matar)",
-    category: "vegetable",
-    emoji: "🫛",
-    seasons: ["winter"],
-    nutrients: ["Protein", "Fibre", "Vitamin K"],
+    id: "greenpeas", name: "Green Peas (Matar)", category: "vegetable", emoji: "🫛",
+    seasons: ["winter"], nutrients: ["Protein", "Fibre", "Vitamin K"],
     benefits: ["Contributes plant protein and fibre"],
     sustainability: "A legume that can improve soil nitrogen levels for crops grown afterward.",
     iks: "A defining winter-season vegetable in North Indian cooking, from matar paneer to pulao.",
   },
   {
-    id: "fenugreek",
-    name: "Fenugreek Leaves (Methi)",
-    category: "vegetable",
-    emoji: "🌿",
-    seasons: ["winter"],
-    nutrients: ["Iron", "Fibre", "Vitamin A"],
+    id: "fenugreek", name: "Fenugreek Leaves (Methi)", category: "vegetable", emoji: "🌿",
+    seasons: ["winter"], nutrients: ["Iron", "Fibre", "Vitamin A"],
     benefits: ["Contributes iron and fibre"],
     sustainability: "A quick-growing leafy crop suited to small kitchen-garden plots with modest water use.",
     iks: "Used both as food and in traditional home remedies, typically grown through the cooler months.",
   },
   {
-    id: "mustardgreens",
-    name: "Mustard Greens (Sarson)",
-    category: "vegetable",
-    emoji: "🌿",
-    seasons: ["winter"],
-    nutrients: ["Vitamin A", "Vitamin C", "Fibre"],
+    id: "mustardgreens", name: "Mustard Greens (Sarson)", category: "vegetable", emoji: "🌿",
+    seasons: ["winter"], nutrients: ["Vitamin A", "Vitamin C", "Fibre"],
     benefits: ["Contributes vitamins A and C"],
     sustainability: "A cold-tolerant crop that needs little irrigation compared to summer greens.",
     iks: "The base of sarson ka saag, a Punjab winter-season dish tied to the mustard harvest.",
   },
   {
-    id: "drumstick",
-    name: "Drumstick (Moringa / Sahjan)",
-    category: "vegetable",
-    emoji: "🌿",
-    seasons: ["summer", "monsoon"],
-    nutrients: ["Vitamin C", "Iron", "Calcium"],
+    id: "drumstick", name: "Drumstick (Moringa / Sahjan)", category: "vegetable", emoji: "🌿",
+    seasons: ["summer", "monsoon"], nutrients: ["Vitamin C", "Iron", "Calcium"],
     benefits: ["Contributes several vitamins and minerals to the diet"],
     sustainability: "A drought-hardy tree that survives dry spells that would damage many other food crops.",
     iks: "Both leaves and pods are used in traditional South Indian cooking, such as sambar.",
   },
   {
-    id: "ashgourd",
-    name: "Ash Gourd (Petha)",
-    category: "vegetable",
-    emoji: "🎃",
-    seasons: ["monsoon"],
-    nutrients: ["Water content", "Fibre"],
+    id: "ashgourd", name: "Ash Gourd (Petha)", category: "vegetable", emoji: "🎃",
+    seasons: ["monsoon"], nutrients: ["Water content", "Fibre"],
     benefits: ["Supports hydration"],
     sustainability: "Stores for months without refrigeration once mature, cutting down on spoilage.",
     iks: "Used to make the traditional sweet petha and offered in some regional rituals.",
   },
   {
-    id: "banana",
-    name: "Banana (Kela)",
-    category: "fruit",
-    emoji: "🍌",
-    seasons: ["summer", "monsoon"],
-    nutrients: ["Potassium", "Vitamin B6", "Fibre"],
+    id: "banana", name: "Banana (Kela)", category: "fruit", emoji: "🍌",
+    seasons: ["summer", "monsoon"], nutrients: ["Potassium", "Vitamin B6", "Fibre"],
     benefits: ["Contributes to daily potassium and fibre intake"],
     sustainability: "A perennial plant that fruits repeatedly without yearly replanting, unlike many annual crops.",
     iks: "Considered auspicious in Indian tradition; banana leaves are widely used as natural, biodegradable plates.",
   },
   {
-    id: "papaya",
-    name: "Papaya",
-    category: "fruit",
-    emoji: "🍈",
-    seasons: ["summer", "monsoon"],
-    nutrients: ["Vitamin C", "Vitamin A", "Fibre"],
+    id: "papaya", name: "Papaya", category: "fruit", emoji: "🍈",
+    seasons: ["summer", "monsoon"], nutrients: ["Vitamin C", "Vitamin A", "Fibre"],
     benefits: ["Contributes vitamin C and fibre"],
     sustainability: "A fast-fruiting tree that produces year-round in warm climates with little maintenance.",
     iks: "Commonly grown in home backyards across India as a low-effort household fruit source.",
   },
   {
-    id: "guava",
-    name: "Guava (Amrud)",
-    category: "fruit",
-    emoji: "🍐",
-    seasons: ["autumn", "winter"],
-    nutrients: ["Vitamin C", "Fibre", "Folate"],
+    id: "guava", name: "Guava (Amrud)", category: "fruit", emoji: "🍐",
+    seasons: ["autumn", "winter"], nutrients: ["Vitamin C", "Fibre", "Folate"],
     benefits: ["Contributes notably to vitamin C intake"],
     sustainability: "A hardy tree that tolerates poor soils and needs little irrigation once established.",
     iks: "A common roadside and backyard fruit tree across Indian towns and villages.",
   },
   {
-    id: "custardapple",
-    name: "Custard Apple (Sitaphal)",
-    category: "fruit",
-    emoji: "🍏",
-    seasons: ["autumn"],
-    nutrients: ["Vitamin C", "Fibre", "Potassium"],
+    id: "custardapple", name: "Custard Apple (Sitaphal)", category: "fruit", emoji: "🍏",
+    seasons: ["autumn"], nutrients: ["Vitamin C", "Fibre", "Potassium"],
     benefits: ["Contributes fibre and vitamin C"],
     sustainability: "A drought-tolerant tree well suited to dry, rocky terrain unsuitable for many crops.",
     iks: "Associated with the post-monsoon harvest and featured in several regional festivals.",
   },
   {
-    id: "jackfruit",
-    name: "Jackfruit (Kathal)",
-    category: "fruit",
-    emoji: "🍈",
-    seasons: ["summer"],
-    nutrients: ["Fibre", "Vitamin C", "Potassium"],
+    id: "jackfruit", name: "Jackfruit (Kathal)", category: "fruit", emoji: "🍈",
+    seasons: ["summer"], nutrients: ["Fibre", "Vitamin C", "Potassium"],
     benefits: ["Contributes fibre to the diet"],
     sustainability: "One tree can yield a very large amount of food with minimal irrigation once mature.",
     iks: "Used as a meat substitute in many traditional regional dishes, especially in Kerala.",
   },
   {
-    id: "litchi",
-    name: "Litchi",
-    category: "fruit",
-    emoji: "🍒",
-    seasons: ["summer"],
-    nutrients: ["Vitamin C", "Natural sugars"],
+    id: "litchi", name: "Litchi", category: "fruit", emoji: "🍒",
+    seasons: ["summer"], nutrients: ["Vitamin C", "Natural sugars"],
     benefits: ["Contributes to vitamin C intake"],
     sustainability: "Grown mainly in specific regions like Bihar, supporting regional orchard livelihoods.",
     iks: "A short-season summer fruit eagerly awaited in North Indian markets each year.",
   },
   {
-    id: "jamun",
-    name: "Jamun (Java Plum)",
-    category: "fruit",
-    emoji: "🫐",
-    seasons: ["summer", "monsoon"],
-    nutrients: ["Vitamin C", "Iron", "Antioxidants"],
+    id: "jamun", name: "Jamun (Java Plum)", category: "fruit", emoji: "🫐",
+    seasons: ["summer", "monsoon"], nutrients: ["Vitamin C", "Iron", "Antioxidants"],
     benefits: ["Contributes antioxidants and vitamin C"],
     sustainability: "A long-living shade tree often planted along roads and in villages for both fruit and shade.",
     iks: "Referenced in traditional Ayurvedic texts and commonly found growing wild or in home compounds.",
   },
   {
-    id: "grapes",
-    name: "Grapes (Angoor)",
-    category: "fruit",
-    emoji: "🍇",
-    seasons: ["winter"],
-    nutrients: ["Vitamin C", "Antioxidants"],
+    id: "grapes", name: "Grapes (Angoor)", category: "fruit", emoji: "🍇",
+    seasons: ["winter"], nutrients: ["Vitamin C", "Antioxidants"],
     benefits: ["Contributes antioxidants to the diet"],
     sustainability: "Grown extensively in Maharashtra vineyards, supporting a significant regional farming economy.",
     iks: "A major winter-harvest fruit crop in western India, tied to the region's dry winter climate.",
   },
   {
-    id: "orange",
-    name: "Orange (Santra)",
-    category: "fruit",
-    emoji: "🍊",
-    seasons: ["winter"],
-    nutrients: ["Vitamin C", "Fibre", "Folate"],
+    id: "orange", name: "Orange (Santra)", category: "fruit", emoji: "🍊",
+    seasons: ["winter"], nutrients: ["Vitamin C", "Fibre", "Folate"],
     benefits: ["Contributes notably to vitamin C intake"],
     sustainability: "Citrus orchards in regions like Nagpur provide long-term, multi-year fruiting without replanting.",
     iks: "A defining winter citrus fruit across Indian markets, tied to cool-season harvest cycles.",
   },
   {
-    id: "sweetlime",
-    name: "Sweet Lime (Mosambi)",
-    category: "fruit",
-    emoji: "🍋",
-    seasons: ["winter"],
-    nutrients: ["Vitamin C", "Water content"],
+    id: "sweetlime", name: "Sweet Lime (Mosambi)", category: "fruit", emoji: "🍋",
+    seasons: ["winter"], nutrients: ["Vitamin C", "Water content"],
     benefits: ["Contributes to vitamin C intake and hydration"],
     sustainability: "A citrus tree that, once established, needs relatively modest ongoing water and care.",
     iks: "A common winter fruit-juice choice in Indian households and roadside juice stalls.",
   },
   {
-    id: "amla",
-    name: "Amla (Indian Gooseberry)",
-    category: "fruit",
-    emoji: "🫒",
-    seasons: ["winter"],
-    nutrients: ["Vitamin C", "Antioxidants", "Fibre"],
+    id: "amla", name: "Amla (Indian Gooseberry)", category: "fruit", emoji: "🫒",
+    seasons: ["winter"], nutrients: ["Vitamin C", "Antioxidants", "Fibre"],
     benefits: ["A traditionally valued source of vitamin C"],
     sustainability: "A hardy tree that grows in a wide range of soils with minimal irrigation needs.",
     iks: "Central to Ayurvedic preparations such as chyawanprash, harvested in the cooler months.",
   },
   {
-    id: "bananaflower",
-    name: "Banana Flower",
-    category: "traditional",
-    emoji: "🌸",
-    seasons: ["monsoon"],
-    nutrients: ["Fibre", "Vitamin E", "Potassium"],
+    id: "bananaflower", name: "Banana Flower", category: "traditional", emoji: "🌸",
+    seasons: ["monsoon"], nutrients: ["Fibre", "Vitamin E", "Potassium"],
     benefits: ["Contributes fibre to the diet"],
     sustainability: "A by-product of banana cultivation, meaning it uses no extra land or water to produce.",
     iks: "Used in regional dishes across South and East India, reflecting a tradition of using the whole plant.",
   },
   {
-    id: "tamarind",
-    name: "Tamarind (Imli)",
-    category: "traditional",
-    emoji: "🫘",
-    seasons: ["winter"],
-    nutrients: ["Fibre", "Antioxidants"],
+    id: "tamarind", name: "Tamarind (Imli)", category: "traditional", emoji: "🫘",
+    seasons: ["winter"], nutrients: ["Fibre", "Antioxidants"],
     benefits: ["Contributes fibre to the diet"],
     sustainability: "A long-living, shade-giving tree that needs little maintenance once mature.",
     iks: "A souring agent central to many regional cuisines, especially in South Indian sambar and chutneys.",
   },
   {
-    id: "coconut",
-    name: "Coconut (Nariyal)",
-    category: "traditional",
-    emoji: "🥥",
-    seasons: ["summer"],
-    nutrients: ["Healthy fats", "Fibre", "Minerals"],
+    id: "coconut", name: "Coconut (Nariyal)", category: "traditional", emoji: "🥥",
+    seasons: ["summer"], nutrients: ["Healthy fats", "Fibre", "Minerals"],
     benefits: ["Provides a traditional source of dietary fat and fibre"],
     sustainability: "Nearly every part of the coconut palm is used traditionally, minimising waste.",
     iks: "Considered auspicious in Indian rituals and central to coastal Indian cuisines.",
   },
   {
-    id: "rice",
-    name: "Rice (Chawal)",
-    category: "grain",
-    emoji: "🍚",
-    seasons: ["monsoon", "autumn"],
-    nutrients: ["Carbohydrates", "Trace minerals"],
+    id: "rice", name: "Rice (Chawal)", category: "grain", emoji: "🍚",
+    seasons: ["monsoon", "autumn"], nutrients: ["Carbohydrates", "Trace minerals"],
     benefits: ["A steady source of everyday energy"],
     sustainability: "A monsoon-dependent staple crop; traditional rain-fed varieties use less irrigation than intensive strains.",
     iks: "The primary kharif (monsoon-sown) crop across much of India, deeply tied to the seasonal calendar.",
   },
   {
-    id: "wheat",
-    name: "Wheat (Gehun)",
-    category: "grain",
-    emoji: "🌾",
-    seasons: ["winter"],
-    nutrients: ["Carbohydrates", "Fibre", "Protein"],
+    id: "wheat", name: "Wheat (Gehun)", category: "grain", emoji: "🌾",
+    seasons: ["winter"], nutrients: ["Carbohydrates", "Fibre", "Protein"],
     benefits: ["A staple source of everyday energy and fibre"],
     sustainability: "A winter (rabi) crop that relies on residual soil moisture from the monsoon, reducing extra irrigation needs.",
     iks: "The main rabi (winter-sown) staple across North India, harvested in spring.",
   },
   {
-    id: "chickpeas",
-    name: "Chickpeas (Chana)",
-    category: "legume",
-    emoji: "🫘",
-    seasons: ["winter"],
-    nutrients: ["Protein", "Fibre", "Iron"],
+    id: "chickpeas", name: "Chickpeas (Chana)", category: "legume", emoji: "🫘",
+    seasons: ["winter"], nutrients: ["Protein", "Fibre", "Iron"],
     benefits: ["A traditional source of plant protein and fibre"],
     sustainability: "A nitrogen-fixing legume that can improve soil fertility for crops grown afterward.",
     iks: "A winter-sown staple legume across India, central to dishes like chana masala.",
   },
   {
-    id: "blackgram",
-    name: "Black Gram (Urad Dal)",
-    category: "legume",
-    emoji: "🫘",
-    seasons: ["autumn"],
-    nutrients: ["Protein", "Fibre", "Iron"],
+    id: "blackgram", name: "Black Gram (Urad Dal)", category: "legume", emoji: "🫘",
+    seasons: ["autumn"], nutrients: ["Protein", "Fibre", "Iron"],
     benefits: ["A traditional source of plant protein"],
     sustainability: "A legume that improves soil nitrogen, often grown in rotation with cereal crops.",
     iks: "A base ingredient for idli and dosa batter, central to South Indian food traditions.",
   },
   {
-    id: "greengram",
-    name: "Green Gram (Moong Dal)",
-    category: "legume",
-    emoji: "🫘",
-    seasons: ["summer"],
-    nutrients: ["Protein", "Fibre", "Folate"],
+    id: "greengram", name: "Green Gram (Moong Dal)", category: "legume", emoji: "🫘",
+    seasons: ["summer"], nutrients: ["Protein", "Fibre", "Folate"],
     benefits: ["Considered easy to digest in traditional practice", "A source of plant protein"],
     sustainability: "A short-duration, low-water legume that fits well into multi-crop rotations.",
     iks: "Ritucharya-aligned texts often recommend moong dal as a light, easily digestible summer food.",
   },
   {
-    id: "pigeonpea",
-    name: "Pigeon Pea (Toor / Arhar Dal)",
-    category: "legume",
-    emoji: "🫘",
-    seasons: ["autumn", "winter"],
-    nutrients: ["Protein", "Fibre", "Iron"],
+    id: "pigeonpea", name: "Pigeon Pea (Toor / Arhar Dal)", category: "legume", emoji: "🫘",
+    seasons: ["autumn", "winter"], nutrients: ["Protein", "Fibre", "Iron"],
     benefits: ["A widely used traditional source of plant protein"],
     sustainability: "A deep-rooted, drought-tolerant legume that improves soil structure and fertility.",
     iks: "One of India's most widely eaten dals, forming the base of everyday household meals.",
   },
   {
-    id: "lentils",
-    name: "Lentils (Masoor Dal)",
-    category: "legume",
-    emoji: "🫘",
-    seasons: ["winter"],
-    nutrients: ["Protein", "Fibre", "Iron"],
+    id: "lentils", name: "Lentils (Masoor Dal)", category: "legume", emoji: "🫘",
+    seasons: ["winter"], nutrients: ["Protein", "Fibre", "Iron"],
     benefits: ["A traditional source of plant protein and fibre"],
     sustainability: "A short-cycle winter legume that requires relatively little water to grow.",
     iks: "A staple winter dal across many Indian households, often paired with rice or roti.",
   },
   {
-    id: "kidneybeans",
-    name: "Kidney Beans (Rajma)",
-    category: "legume",
-    emoji: "🫘",
-    seasons: ["winter"],
-    nutrients: ["Protein", "Fibre", "Iron"],
+    id: "kidneybeans", name: "Kidney Beans (Rajma)", category: "legume", emoji: "🫘",
+    seasons: ["winter"], nutrients: ["Protein", "Fibre", "Iron"],
     benefits: ["A traditional source of plant protein and fibre"],
     sustainability: "A nitrogen-fixing crop grown widely in hill regions like Jammu & Kashmir and Himachal Pradesh.",
     iks: "The base of rajma-chawal, a beloved North Indian winter comfort meal.",
   },
   {
-    id: "groundnut",
-    name: "Groundnut (Peanut / Moongphali)",
-    category: "legume",
-    emoji: "🥜",
-    seasons: ["winter"],
-    nutrients: ["Protein", "Healthy fats", "Fibre"],
+    id: "groundnut", name: "Groundnut (Peanut / Moongphali)", category: "legume", emoji: "🥜",
+    seasons: ["winter"], nutrients: ["Protein", "Healthy fats", "Fibre"],
     benefits: ["A traditional source of plant protein and healthy fats"],
     sustainability: "A nitrogen-fixing crop that also improves soil quality for the next planting cycle.",
     iks: "A popular winter street snack, often roasted and eaten for warmth in the cold months.",
   },
   {
-    id: "sesame",
-    name: "Sesame Seeds (Til)",
-    category: "traditional",
-    emoji: "🌰",
-    seasons: ["winter"],
-    nutrients: ["Healthy fats", "Calcium", "Iron"],
+    id: "sesame", name: "Sesame Seeds (Til)", category: "traditional", emoji: "🌰",
+    seasons: ["winter"], nutrients: ["Healthy fats", "Calcium", "Iron"],
     benefits: ["A traditional source of calcium and healthy fats"],
     sustainability: "A drought-tolerant oilseed crop that grows well in dry regions with poor soil.",
     iks: "Central to Makar Sankranti festivities, eaten with jaggery for traditional winter warmth.",
   },
   {
-    id: "mustardseed",
-    name: "Mustard Seeds (Sarson ka Beej)",
-    category: "traditional",
-    emoji: "🌱",
-    seasons: ["winter"],
-    nutrients: ["Healthy fats", "Minerals"],
+    id: "mustardseed", name: "Mustard Seeds (Sarson ka Beej)", category: "traditional", emoji: "🌱",
+    seasons: ["winter"], nutrients: ["Healthy fats", "Minerals"],
     benefits: ["Used traditionally as a cooking oil and spice source"],
     sustainability: "A hardy winter oilseed crop requiring relatively little water compared to summer crops.",
     iks: "Mustard oil is a traditional cooking medium across North and East India.",
   },
   {
-    id: "ghee",
-    name: "Ghee",
-    category: "dairy",
-    emoji: "🧈",
-    seasons: ["winter"],
-    nutrients: ["Fat-soluble vitamins"],
+    id: "ghee", name: "Ghee", category: "dairy", emoji: "🧈",
+    seasons: ["winter"], nutrients: ["Fat-soluble vitamins"],
     benefits: ["Traditionally used for cooking and considered warming in Ayurvedic practice"],
     sustainability: "Made from surplus milk fat, part of a low-waste dairy tradition in many farming households.",
     iks: "Central to Ayurvedic cooking and rituals; traditionally recommended more heavily in colder months.",
   },
   {
-    id: "yogurt",
-    name: "Yogurt (Dahi)",
-    category: "dairy",
-    emoji: "🥛",
-    seasons: ["summer"],
-    nutrients: ["Protein", "Calcium", "Probiotics"],
+    id: "yogurt", name: "Yogurt (Dahi)", category: "dairy", emoji: "🥛",
+    seasons: ["summer"], nutrients: ["Protein", "Calcium", "Probiotics"],
     benefits: ["A traditional source of calcium and probiotics"],
     sustainability: "A simple fermentation process that extends the shelf life of milk without refrigeration-heavy methods.",
     iks: "Ritucharya recommends cooling foods like dahi in summer to balance the season's heat.",
   },
   {
-    id: "buttermilk",
-    name: "Buttermilk (Chaas)",
-    category: "dairy",
-    emoji: "🥛",
-    seasons: ["summer"],
-    nutrients: ["Protein", "Calcium", "Water content"],
+    id: "buttermilk", name: "Buttermilk (Chaas)", category: "dairy", emoji: "🥛",
+    seasons: ["summer"], nutrients: ["Protein", "Calcium", "Water content"],
     benefits: ["Supports hydration in hot weather"],
     sustainability: "A traditional by-product of butter-making, meaning little of the original milk goes to waste.",
     iks: "A classic summer drink across Indian households, tied to the same cooling-food principle as dahi.",
   },
   {
-    id: "milk",
-    name: "Milk (Doodh)",
-    category: "dairy",
-    emoji: "🥛",
-    seasons: ["winter"],
-    nutrients: ["Protein", "Calcium", "Vitamin D"],
+    id: "milk", name: "Milk (Doodh)", category: "dairy", emoji: "🥛",
+    seasons: ["winter"], nutrients: ["Protein", "Calcium", "Vitamin D"],
     benefits: ["A traditional source of calcium and protein"],
     sustainability: "Local dairy cooperatives in many regions support smallholder farmers rather than large industrial operations.",
     iks: "Warm spiced milk is a common traditional winter drink in many Indian households.",
   },
   {
-    id: "paneer",
-    name: "Paneer",
-    category: "dairy",
-    emoji: "🧀",
-    seasons: ["winter"],
-    nutrients: ["Protein", "Calcium"],
+    id: "paneer", name: "Paneer", category: "dairy", emoji: "🧀",
+    seasons: ["winter"], nutrients: ["Protein", "Calcium"],
     benefits: ["A traditional source of protein and calcium"],
     sustainability: "Made fresh at a household or local level in many regions, without long industrial supply chains.",
     iks: "A widely used protein source in North Indian vegetarian cooking, especially in winter dishes.",
   },
   {
-    id: "ginger",
-    name: "Ginger (Adrak)",
-    category: "spice",
-    emoji: "🫚",
-    seasons: ["monsoon", "winter"],
-    nutrients: ["Trace minerals"],
+    id: "ginger", name: "Ginger (Adrak)", category: "spice", emoji: "🫚",
+    seasons: ["monsoon", "winter"], nutrients: ["Trace minerals"],
     benefits: ["Traditionally used in home remedies for warmth and digestion"],
     sustainability: "A rhizome crop often intercropped with other plants on small farms.",
     iks: "A key ingredient in traditional home remedies (kadha) used especially during monsoon and winter.",
   },
   {
-    id: "garlic",
-    name: "Garlic (Lehsun)",
-    category: "spice",
-    emoji: "🧄",
-    seasons: ["winter"],
-    nutrients: ["Trace minerals", "Allicin compounds"],
+    id: "garlic", name: "Garlic (Lehsun)", category: "spice", emoji: "🧄",
+    seasons: ["winter"], nutrients: ["Trace minerals", "Allicin compounds"],
     benefits: ["A traditional culinary and home-remedy ingredient"],
     sustainability: "A hardy, low-water crop that can be grown in home gardens with minimal care.",
     iks: "Used in both cooking and traditional Ayurvedic preparations across most Indian regions.",
   },
   {
-    id: "greenchilli",
-    name: "Green Chilli (Hari Mirch)",
-    category: "spice",
-    emoji: "🌶️",
-    seasons: ["monsoon"],
-    nutrients: ["Vitamin C", "Capsaicin"],
+    id: "greenchilli", name: "Green Chilli (Hari Mirch)", category: "spice", emoji: "🌶️",
+    seasons: ["monsoon"], nutrients: ["Vitamin C", "Capsaicin"],
     benefits: ["Contributes to vitamin C intake"],
     sustainability: "A prolific plant that can be grown in small pots, reducing the need for dedicated farmland.",
     iks: "A daily-use spice across nearly all regional Indian cuisines.",
   },
   {
-    id: "cumin",
-    name: "Cumin (Jeera)",
-    category: "spice",
-    emoji: "🌿",
-    seasons: ["winter"],
-    nutrients: ["Iron", "Trace minerals"],
+    id: "cumin", name: "Cumin (Jeera)", category: "spice", emoji: "🌿",
+    seasons: ["winter"], nutrients: ["Iron", "Trace minerals"],
     benefits: ["A traditional digestive spice used across Indian cooking"],
     sustainability: "A drought-tolerant crop suited to the dry regions of Rajasthan and Gujarat where it's widely grown.",
     iks: "One of the most common tempering spices (tadka) in Indian households.",
   },
   {
-    id: "coriander",
-    name: "Coriander (Dhania)",
-    category: "spice",
-    emoji: "🌿",
-    seasons: ["winter"],
-    nutrients: ["Vitamin C", "Vitamin K"],
+    id: "coriander", name: "Coriander (Dhania)", category: "spice", emoji: "🌿",
+    seasons: ["winter"], nutrients: ["Vitamin C", "Vitamin K"],
     benefits: ["Contributes small amounts of vitamins C and K"],
     sustainability: "A fast-growing herb well suited to home kitchen gardens with minimal water.",
     iks: "Used fresh as a garnish and dried as seed spice, central to almost every regional Indian cuisine.",
   },
   {
-    id: "cardamom",
-    name: "Cardamom (Elaichi)",
-    category: "spice",
-    emoji: "🌿",
-    seasons: ["winter"],
-    nutrients: ["Trace minerals"],
+    id: "cardamom", name: "Cardamom (Elaichi)", category: "spice", emoji: "🌿",
+    seasons: ["winter"], nutrients: ["Trace minerals"],
     benefits: ["A traditional flavouring and digestive spice"],
     sustainability: "Often grown under forest canopy in the Western Ghats, supporting forest-friendly cultivation.",
     iks: "A prized spice in Indian sweets, chai, and traditional Ayurvedic formulations.",
@@ -1546,540 +1636,344 @@ const FOODS = [
 
   /* ---- expanded fruit list, for Scan & Discover (60+ fruits total) ---- */
   {
-    id: "apple",
-    name: "Apple (Seb)",
-    category: "fruit",
-    emoji: "🍎",
-    seasons: ["autumn", "winter"],
-    nutrients: ["Fibre", "Vitamin C", "Antioxidants"],
+    id: "apple", name: "Apple (Seb)", category: "fruit", emoji: "🍎",
+    seasons: ["autumn", "winter"], nutrients: ["Fibre", "Vitamin C", "Antioxidants"],
     benefits: ["Contributes dietary fibre and vitamin C"],
     sustainability: "Grown mainly in Himachal Pradesh, Uttarakhand and Kashmir orchards that can bear fruit for decades.",
     iks: "A major hill-region harvest crop, supporting mountain farming economies through the cooler months.",
   },
   {
-    id: "pear",
-    name: "Pear (Nashpati)",
-    category: "fruit",
-    emoji: "🍐",
-    seasons: ["autumn"],
-    nutrients: ["Fibre", "Vitamin C"],
+    id: "pear", name: "Pear (Nashpati)", category: "fruit", emoji: "🍐",
+    seasons: ["autumn"], nutrients: ["Fibre", "Vitamin C"],
     benefits: ["Contributes dietary fibre"],
     sustainability: "Grown in temperate hill orchards, often alongside apples, using similar low-input cultivation.",
     iks: "A common autumn hill-fruit across parts of North India.",
   },
   {
-    id: "peach",
-    name: "Peach (Aadu)",
-    category: "fruit",
-    emoji: "🍑",
-    seasons: ["summer"],
-    nutrients: ["Vitamin C", "Vitamin A", "Fibre"],
+    id: "peach", name: "Peach (Aadu)", category: "fruit", emoji: "🍑",
+    seasons: ["summer"], nutrients: ["Vitamin C", "Vitamin A", "Fibre"],
     benefits: ["Contributes vitamin C and fibre"],
     sustainability: "Grown in hill regions where cooler summer temperatures reduce irrigation needs compared to plains crops.",
     iks: "A summer hill-fruit found in Himachal Pradesh and parts of Jammu & Kashmir.",
   },
   {
-    id: "plum",
-    name: "Plum (Aloo Bukhara)",
-    category: "fruit",
-    emoji: "🍇",
-    seasons: ["summer"],
-    nutrients: ["Vitamin C", "Fibre", "Antioxidants"],
+    id: "plum", name: "Plum (Aloo Bukhara)", category: "fruit", emoji: "🍇",
+    seasons: ["summer"], nutrients: ["Vitamin C", "Fibre", "Antioxidants"],
     benefits: ["Contributes fibre and antioxidants"],
     sustainability: "A hardy temperate fruit tree requiring relatively modest water once established.",
     iks: "Grown across hill orchards, often processed into traditional dried and pickled forms.",
   },
   {
-    id: "apricot",
-    name: "Apricot (Khubani)",
-    category: "fruit",
-    emoji: "🍑",
-    seasons: ["summer"],
-    nutrients: ["Vitamin A", "Fibre", "Potassium"],
+    id: "apricot", name: "Apricot (Khubani)", category: "fruit", emoji: "🍑",
+    seasons: ["summer"], nutrients: ["Vitamin A", "Fibre", "Potassium"],
     benefits: ["Contributes to vitamin A intake"],
     sustainability: "Widely grown in Ladakh and Himachal Pradesh, where it is also traditionally sun-dried to reduce waste.",
     iks: "A staple summer fruit in Ladakhi households, dried for use through the long winter.",
   },
   {
-    id: "cherry",
-    name: "Cherry (Cheri)",
-    category: "fruit",
-    emoji: "🍒",
-    seasons: ["summer"],
-    nutrients: ["Vitamin C", "Antioxidants"],
+    id: "cherry", name: "Cherry (Cheri)", category: "fruit", emoji: "🍒",
+    seasons: ["summer"], nutrients: ["Vitamin C", "Antioxidants"],
     benefits: ["Contributes antioxidants and vitamin C"],
     sustainability: "Grown in cool hill orchards of Himachal Pradesh and Jammu & Kashmir with short local supply chains.",
     iks: "A short-season summer fruit prized in Himalayan hill-station markets.",
   },
   {
-    id: "strawberry",
-    name: "Strawberry",
-    category: "fruit",
-    emoji: "🍓",
-    seasons: ["winter"],
-    nutrients: ["Vitamin C", "Fibre", "Antioxidants"],
+    id: "strawberry", name: "Strawberry", category: "fruit", emoji: "🍓",
+    seasons: ["winter"], nutrients: ["Vitamin C", "Fibre", "Antioxidants"],
     benefits: ["Contributes notably to vitamin C intake"],
     sustainability: "Grown extensively around Mahabaleshwar, supporting a concentrated local farming economy.",
     iks: "A well-known winter hill-produce crop in Maharashtra's Western Ghats.",
   },
   {
-    id: "pineapple",
-    name: "Pineapple (Ananas)",
-    category: "fruit",
-    emoji: "🍍",
-    seasons: ["summer", "monsoon"],
-    nutrients: ["Vitamin C", "Manganese", "Fibre"],
+    id: "pineapple", name: "Pineapple (Ananas)", category: "fruit", emoji: "🍍",
+    seasons: ["summer", "monsoon"], nutrients: ["Vitamin C", "Manganese", "Fibre"],
     benefits: ["Contributes notably to vitamin C intake"],
     sustainability: "A major crop of India's North-East, often grown on sloped land unsuitable for many other fruits.",
     iks: "A signature fruit of Tripura, Assam and Meghalaya, tied closely to regional farming traditions.",
   },
   {
-    id: "kiwi",
-    name: "Kiwi",
-    category: "fruit",
-    emoji: "🥝",
-    seasons: ["autumn", "winter"],
-    nutrients: ["Vitamin C", "Vitamin K", "Fibre"],
+    id: "kiwi", name: "Kiwi", category: "fruit", emoji: "🥝",
+    seasons: ["autumn", "winter"], nutrients: ["Vitamin C", "Vitamin K", "Fibre"],
     benefits: ["Contributes notably to vitamin C intake"],
     sustainability: "An increasingly grown hill-orchard crop in Himachal Pradesh, Sikkim and Arunachal Pradesh.",
     iks: "A newer addition to Indian hill agriculture, reflecting adaptation of farming to changing markets.",
   },
   {
-    id: "fig",
-    name: "Fig (Anjeer)",
-    category: "fruit",
-    emoji: "🫒",
-    seasons: ["summer", "autumn"],
-    nutrients: ["Fibre", "Calcium", "Potassium"],
+    id: "fig", name: "Fig (Anjeer)", category: "fruit", emoji: "🫒",
+    seasons: ["summer", "autumn"], nutrients: ["Fibre", "Calcium", "Potassium"],
     benefits: ["Contributes dietary fibre and calcium"],
     sustainability: "A drought-tolerant tree that can grow in dry regions like Maharashtra with limited irrigation.",
     iks: "Widely dried and stored for year-round use, reflecting a low-waste preservation tradition.",
   },
   {
-    id: "date",
-    name: "Date (Khajur)",
-    category: "fruit",
-    emoji: "🌴",
-    seasons: ["summer"],
-    nutrients: ["Fibre", "Potassium", "Natural sugars"],
+    id: "date", name: "Date (Khajur)", category: "fruit", emoji: "🌴",
+    seasons: ["summer"], nutrients: ["Fibre", "Potassium", "Natural sugars"],
     benefits: ["A traditional source of quick energy and fibre"],
     sustainability: "A hardy desert palm well suited to the arid climate of Rajasthan and Gujarat, needing little water once mature.",
     iks: "An important dry-region fruit tree, providing food and shade in desert farming communities.",
   },
   {
-    id: "dragonfruit",
-    name: "Dragon Fruit (Kamalam)",
-    category: "fruit",
-    emoji: "🐉",
-    seasons: ["monsoon", "autumn"],
-    nutrients: ["Vitamin C", "Fibre", "Antioxidants"],
+    id: "dragonfruit", name: "Dragon Fruit (Kamalam)", category: "fruit", emoji: "🐉",
+    seasons: ["monsoon", "autumn"], nutrients: ["Vitamin C", "Fibre", "Antioxidants"],
     benefits: ["Contributes fibre and antioxidants"],
     sustainability: "A cactus-family plant that survives on relatively little water, suited to dry, marginal farmland.",
     iks: "A newer crop being promoted in states like Gujarat as a low-water alternative for dry-land farmers.",
   },
   {
-    id: "starfruit",
-    name: "Star Fruit (Kamrakh)",
-    category: "fruit",
-    emoji: "⭐",
-    seasons: ["autumn", "winter"],
-    nutrients: ["Vitamin C", "Fibre"],
+    id: "starfruit", name: "Star Fruit (Kamrakh)", category: "fruit", emoji: "⭐",
+    seasons: ["autumn", "winter"], nutrients: ["Vitamin C", "Fibre"],
     benefits: ["Contributes to vitamin C intake"],
     sustainability: "A backyard tree in many regions, requiring little dedicated farmland to produce fruit.",
     iks: "Commonly grown in home gardens across South and East India.",
   },
   {
-    id: "sapota",
-    name: "Sapota (Chikoo)",
-    category: "fruit",
-    emoji: "🟤",
-    seasons: ["winter"],
-    nutrients: ["Fibre", "Vitamin A", "Natural sugars"],
+    id: "sapota", name: "Sapota (Chikoo)", category: "fruit", emoji: "🟤",
+    seasons: ["winter"], nutrients: ["Fibre", "Vitamin A", "Natural sugars"],
     benefits: ["Contributes dietary fibre"],
     sustainability: "A long-living tree that can bear fruit for many decades once established.",
     iks: "Widely cultivated in Maharashtra and Gujarat, forming part of many traditional orchard mixes.",
   },
   {
-    id: "woodapple",
-    name: "Wood Apple (Bael)",
-    category: "fruit",
-    emoji: "🟠",
-    seasons: ["summer"],
-    nutrients: ["Fibre", "Vitamin C", "Beta-carotene"],
+    id: "woodapple", name: "Wood Apple (Bael)", category: "fruit", emoji: "🟠",
+    seasons: ["summer"], nutrients: ["Fibre", "Vitamin C", "Beta-carotene"],
     benefits: ["Contributes dietary fibre"],
     sustainability: "A hardy tree tolerant of poor soils and drought, needing minimal irrigation.",
     iks: "Considered sacred in some traditions and used to make a traditional cooling summer drink (bael sherbet).",
   },
   {
-    id: "indianjujube",
-    name: "Indian Jujube (Ber)",
-    category: "fruit",
-    emoji: "🫐",
-    seasons: ["winter"],
-    nutrients: ["Vitamin C", "Fibre"],
+    id: "indianjujube", name: "Indian Jujube (Ber)", category: "fruit", emoji: "🫐",
+    seasons: ["winter"], nutrients: ["Vitamin C", "Fibre"],
     benefits: ["Contributes to vitamin C intake"],
     sustainability: "A drought-hardy tree that grows well in semi-arid regions with minimal care.",
     iks: "A common winter fruit found growing wild or in home compounds across many regions.",
   },
   {
-    id: "passionfruit",
-    name: "Passion Fruit (Krishna Phal)",
-    category: "fruit",
-    emoji: "🟣",
-    seasons: ["monsoon", "autumn"],
-    nutrients: ["Vitamin C", "Fibre", "Vitamin A"],
+    id: "passionfruit", name: "Passion Fruit (Krishna Phal)", category: "fruit", emoji: "🟣",
+    seasons: ["monsoon", "autumn"], nutrients: ["Vitamin C", "Fibre", "Vitamin A"],
     benefits: ["Contributes fibre and vitamin C"],
     sustainability: "A vigorous climbing vine that can be trellised on fences, needing little dedicated ground space.",
     iks: "Increasingly grown in North-East India and the Nilgiris as a smallholder cash crop.",
   },
   {
-    id: "mulberry",
-    name: "Mulberry (Shahtoot)",
-    category: "fruit",
-    emoji: "🫐",
-    seasons: ["summer"],
-    nutrients: ["Vitamin C", "Iron", "Antioxidants"],
+    id: "mulberry", name: "Mulberry (Shahtoot)", category: "fruit", emoji: "🫐",
+    seasons: ["summer"], nutrients: ["Vitamin C", "Iron", "Antioxidants"],
     benefits: ["Contributes iron and antioxidants"],
     sustainability: "The same tree used for silk cultivation (sericulture), giving it a dual traditional purpose.",
     iks: "Central to India's traditional silk-farming regions, where the leaves feed silkworms and the fruit is eaten.",
   },
   {
-    id: "kokum",
-    name: "Kokum",
-    category: "fruit",
-    emoji: "🟥",
-    seasons: ["summer"],
-    nutrients: ["Antioxidants", "Vitamin C"],
+    id: "kokum", name: "Kokum", category: "fruit", emoji: "🟥",
+    seasons: ["summer"], nutrients: ["Antioxidants", "Vitamin C"],
     benefits: ["A traditional souring and cooling ingredient"],
     sustainability: "A native Western Ghats tree that grows well without heavy chemical inputs.",
     iks: "Used to make a traditional cooling summer drink (kokum sherbet) along the Konkan coast.",
   },
   {
-    id: "karonda",
-    name: "Karonda",
-    category: "fruit",
-    emoji: "🔴",
-    seasons: ["monsoon"],
-    nutrients: ["Vitamin C", "Iron"],
+    id: "karonda", name: "Karonda", category: "fruit", emoji: "🔴",
+    seasons: ["monsoon"], nutrients: ["Vitamin C", "Iron"],
     benefits: ["Contributes to vitamin C intake"],
     sustainability: "A thorny, hardy shrub often used as a natural fencing hedge, giving fruit as a useful by-product.",
     iks: "Traditionally used in pickles and chutneys across several Indian regions.",
   },
   {
-    id: "phalsa",
-    name: "Phalsa",
-    category: "fruit",
-    emoji: "🟣",
-    seasons: ["summer"],
-    nutrients: ["Vitamin C", "Antioxidants"],
+    id: "phalsa", name: "Phalsa", category: "fruit", emoji: "🟣",
+    seasons: ["summer"], nutrients: ["Vitamin C", "Antioxidants"],
     benefits: ["Contributes antioxidants"],
     sustainability: "A drought-tolerant shrub that survives dry summer conditions with minimal watering.",
     iks: "Used in a traditional cooling summer drink believed to help beat the heat.",
   },
   {
-    id: "hogplum",
-    name: "Hog Plum (Amra)",
-    category: "fruit",
-    emoji: "🟢",
-    seasons: ["monsoon"],
-    nutrients: ["Vitamin C", "Fibre"],
+    id: "hogplum", name: "Hog Plum (Amra)", category: "fruit", emoji: "🟢",
+    seasons: ["monsoon"], nutrients: ["Vitamin C", "Fibre"],
     benefits: ["Contributes to vitamin C intake"],
     sustainability: "A hardy tree that grows with minimal care across Eastern India.",
     iks: "Used in traditional chutneys and pickles in Bengal and Odisha.",
   },
   {
-    id: "rambutan",
-    name: "Rambutan",
-    category: "fruit",
-    emoji: "🔴",
-    seasons: ["monsoon"],
-    nutrients: ["Vitamin C", "Fibre"],
+    id: "rambutan", name: "Rambutan", category: "fruit", emoji: "🔴",
+    seasons: ["monsoon"], nutrients: ["Vitamin C", "Fibre"],
     benefits: ["Contributes to vitamin C intake"],
     sustainability: "Grown mainly in the humid climate of Kerala's Western Ghats with minimal irrigation.",
     iks: "A relatively recent introduction to South Indian orchards, adapting global fruit species to local conditions.",
   },
   {
-    id: "mangosteen",
-    name: "Mangosteen",
-    category: "fruit",
-    emoji: "🟣",
-    seasons: ["monsoon"],
-    nutrients: ["Vitamin C", "Antioxidants"],
+    id: "mangosteen", name: "Mangosteen", category: "fruit", emoji: "🟣",
+    seasons: ["monsoon"], nutrients: ["Vitamin C", "Antioxidants"],
     benefits: ["Contributes antioxidants and vitamin C"],
     sustainability: "Grown in select humid pockets of Kerala and Tamil Nadu, a niche but locally rooted orchard crop.",
     iks: "Cultivated in a few South Indian micro-regions with climate suited to the tree's needs.",
   },
   {
-    id: "avocado",
-    name: "Avocado",
-    category: "fruit",
-    emoji: "🥑",
-    seasons: ["monsoon"],
-    nutrients: ["Healthy fats", "Fibre", "Potassium"],
+    id: "avocado", name: "Avocado", category: "fruit", emoji: "🥑",
+    seasons: ["monsoon"], nutrients: ["Healthy fats", "Fibre", "Potassium"],
     benefits: ["Contributes healthy fats and fibre"],
     sustainability: "A growing hill-region crop in Kerala, Karnataka and the North-East, though it needs consistent water.",
     iks: "A newer fruit in Indian farming, showing how global crops are being adapted regionally.",
   },
   {
-    id: "cashewapple",
-    name: "Cashew Apple",
-    category: "fruit",
-    emoji: "🍎",
-    seasons: ["summer"],
-    nutrients: ["Vitamin C", "Fibre"],
+    id: "cashewapple", name: "Cashew Apple", category: "fruit", emoji: "🍎",
+    seasons: ["summer"], nutrients: ["Vitamin C", "Fibre"],
     benefits: ["Contributes notably to vitamin C intake"],
     sustainability: "A by-product of cashew nut farming — using the apple as well as the nut reduces overall crop waste.",
     iks: "Used in Goan feni-making and regional chutneys, reflecting whole-crop use traditions.",
   },
   {
-    id: "elephantapple",
-    name: "Elephant Apple (Chalta)",
-    category: "fruit",
-    emoji: "🟤",
-    seasons: ["autumn"],
-    nutrients: ["Vitamin C", "Fibre", "Pectin"],
+    id: "elephantapple", name: "Elephant Apple (Chalta)", category: "fruit", emoji: "🟤",
+    seasons: ["autumn"], nutrients: ["Vitamin C", "Fibre", "Pectin"],
     benefits: ["Contributes dietary fibre"],
     sustainability: "A hardy wetland-adapted tree found in North-East India, supporting local biodiversity.",
     iks: "Used in traditional pickles and chutneys across Assam and neighbouring states.",
   },
   {
-    id: "longan",
-    name: "Longan",
-    category: "fruit",
-    emoji: "🟤",
-    seasons: ["summer"],
-    nutrients: ["Vitamin C", "Fibre"],
+    id: "longan", name: "Longan", category: "fruit", emoji: "🟤",
+    seasons: ["summer"], nutrients: ["Vitamin C", "Fibre"],
     benefits: ["Contributes to vitamin C intake"],
     sustainability: "Grown in small orchard pockets in North-East India, similar to lychee cultivation.",
     iks: "A regional fruit tree found mainly in parts of North-East India.",
   },
   {
-    id: "persimmon",
-    name: "Persimmon (Japani Phal)",
-    category: "fruit",
-    emoji: "🟠",
-    seasons: ["autumn"],
-    nutrients: ["Vitamin A", "Fibre", "Vitamin C"],
+    id: "persimmon", name: "Persimmon (Japani Phal)", category: "fruit", emoji: "🟠",
+    seasons: ["autumn"], nutrients: ["Vitamin A", "Fibre", "Vitamin C"],
     benefits: ["Contributes to vitamin A intake"],
     sustainability: "Grown in Himachal Pradesh hill orchards, often on terraced land unsuitable for row crops.",
     iks: "A relatively recently established hill-fruit crop supporting mountain farming livelihoods.",
   },
   {
-    id: "loquat",
-    name: "Loquat (Lokat)",
-    category: "fruit",
-    emoji: "🟡",
-    seasons: ["summer"],
-    nutrients: ["Vitamin A", "Fibre"],
+    id: "loquat", name: "Loquat (Lokat)", category: "fruit", emoji: "🟡",
+    seasons: ["summer"], nutrients: ["Vitamin A", "Fibre"],
     benefits: ["Contributes to vitamin A intake"],
     sustainability: "A hardy hill-fruit tree grown in Kashmir needing relatively little irrigation once established.",
     iks: "A well-known early-summer fruit in Kashmir Valley orchards.",
   },
   {
-    id: "roseapple",
-    name: "Rose Apple (Jamrul)",
-    category: "fruit",
-    emoji: "🍏",
-    seasons: ["summer"],
-    nutrients: ["Water content", "Vitamin C"],
+    id: "roseapple", name: "Rose Apple (Jamrul)", category: "fruit", emoji: "🍏",
+    seasons: ["summer"], nutrients: ["Water content", "Vitamin C"],
     benefits: ["Supports hydration in hot weather"],
     sustainability: "A fast-growing backyard tree needing little maintenance once established.",
     iks: "A common home-garden fruit across East and South India, eaten fresh for its watery texture.",
   },
   {
-    id: "pomelo",
-    name: "Pomelo (Chakotra)",
-    category: "fruit",
-    emoji: "🍈",
-    seasons: ["winter"],
-    nutrients: ["Vitamin C", "Fibre"],
+    id: "pomelo", name: "Pomelo (Chakotra)", category: "fruit", emoji: "🍈",
+    seasons: ["winter"], nutrients: ["Vitamin C", "Fibre"],
     benefits: ["Contributes notably to vitamin C intake"],
     sustainability: "A citrus tree that can bear fruit for many years, reducing the need for repeated replanting.",
     iks: "A large winter citrus fruit found in North-East Indian and Southern markets.",
   },
   {
-    id: "kinnow",
-    name: "Kinnow",
-    category: "fruit",
-    emoji: "🍊",
-    seasons: ["winter"],
-    nutrients: ["Vitamin C", "Fibre"],
+    id: "kinnow", name: "Kinnow", category: "fruit", emoji: "🍊",
+    seasons: ["winter"], nutrients: ["Vitamin C", "Fibre"],
     benefits: ["Contributes notably to vitamin C intake"],
     sustainability: "A major Punjab citrus crop, supporting a significant regional smallholder farming economy.",
     iks: "One of North India's most widely grown winter citrus fruits.",
   },
   {
-    id: "hilllemon",
-    name: "Hill Lemon (Galgal)",
-    category: "fruit",
-    emoji: "🍋",
-    seasons: ["winter"],
-    nutrients: ["Vitamin C"],
+    id: "hilllemon", name: "Hill Lemon (Galgal)", category: "fruit", emoji: "🍋",
+    seasons: ["winter"], nutrients: ["Vitamin C"],
     benefits: ["Contributes to vitamin C intake"],
     sustainability: "A hardy hill citrus that grows with minimal care in Himachal Pradesh and Uttarakhand.",
     iks: "Used in traditional hill-region pickles and chutneys.",
   },
   {
-    id: "lemon",
-    name: "Lemon (Nimbu)",
-    category: "fruit",
-    emoji: "🍋",
-    seasons: ["summer"],
-    nutrients: ["Vitamin C"],
+    id: "lemon", name: "Lemon (Nimbu)", category: "fruit", emoji: "🍋",
+    seasons: ["summer"], nutrients: ["Vitamin C"],
     benefits: ["Contributes notably to vitamin C intake"],
     sustainability: "A small, low-water citrus tree that can be grown even in home pots.",
     iks: "Central to the traditional summer cooler nimbu paani, aligning with Ritucharya's cooling-food guidance.",
   },
   {
-    id: "bilimbi",
-    name: "Bilimbi",
-    category: "fruit",
-    emoji: "🟢",
-    seasons: ["monsoon"],
-    nutrients: ["Vitamin C", "Fibre"],
+    id: "bilimbi", name: "Bilimbi", category: "fruit", emoji: "🟢",
+    seasons: ["monsoon"], nutrients: ["Vitamin C", "Fibre"],
     benefits: ["Contributes to vitamin C intake"],
     sustainability: "A hardy tropical tree suited to Kerala's humid climate with little extra care needed.",
     iks: "Used as a sour ingredient in Kerala's traditional coastal cuisine.",
   },
   {
-    id: "ceylongooseberry",
-    name: "Ceylon Gooseberry",
-    category: "fruit",
-    emoji: "🔴",
-    seasons: ["winter"],
-    nutrients: ["Vitamin C", "Antioxidants"],
+    id: "ceylongooseberry", name: "Ceylon Gooseberry", category: "fruit", emoji: "🔴",
+    seasons: ["winter"], nutrients: ["Vitamin C", "Antioxidants"],
     benefits: ["Contributes antioxidants"],
     sustainability: "A hardy shrub found in South Indian hill regions requiring minimal cultivation input.",
     iks: "A lesser-known hill-region fruit found in parts of the Western Ghats.",
   },
   {
-    id: "seabuckthorn",
-    name: "Sea Buckthorn (Leh Berry)",
-    category: "fruit",
-    emoji: "🟠",
-    seasons: ["autumn"],
-    nutrients: ["Vitamin C", "Antioxidants"],
+    id: "seabuckthorn", name: "Sea Buckthorn (Leh Berry)", category: "fruit", emoji: "🟠",
+    seasons: ["autumn"], nutrients: ["Vitamin C", "Antioxidants"],
     benefits: ["A traditionally valued high-altitude source of vitamin C"],
     sustainability: "A cold-desert shrub that survives Ladakh's harsh climate where few other fruits can grow.",
     iks: "Traditionally used by Ladakhi communities for its resilience in an extreme high-altitude environment.",
   },
   {
-    id: "muskmelon",
-    name: "Muskmelon (Kharbooja)",
-    category: "fruit",
-    emoji: "🍈",
-    seasons: ["summer"],
-    nutrients: ["Water content", "Vitamin A", "Vitamin C"],
+    id: "muskmelon", name: "Muskmelon (Kharbooja)", category: "fruit", emoji: "🍈",
+    seasons: ["summer"], nutrients: ["Water content", "Vitamin A", "Vitamin C"],
     benefits: ["Supports hydration in hot weather"],
     sustainability: "A short-cycle vine crop that makes efficient use of summer irrigation on riverbank farmland.",
     iks: "Grown extensively on sandy riverbeds in North India during summer, following traditional cultivation methods.",
   },
   {
-    id: "iceapple",
-    name: "Ice Apple (Taal/Nungu)",
-    category: "fruit",
-    emoji: "🤍",
-    seasons: ["summer"],
-    nutrients: ["Water content", "Vitamin A"],
+    id: "iceapple", name: "Ice Apple (Taal/Nungu)", category: "fruit", emoji: "🤍",
+    seasons: ["summer"], nutrients: ["Water content", "Vitamin A"],
     benefits: ["Supports hydration in peak summer heat"],
     sustainability: "Harvested from palmyra palms that also provide shade, fibre and jaggery, reflecting whole-tree use.",
     iks: "A traditional South Indian summer coolant sold fresh from palmyra palms.",
   },
   {
-    id: "tendufruit",
-    name: "Tendu Fruit",
-    category: "fruit",
-    emoji: "🟠",
-    seasons: ["summer"],
-    nutrients: ["Vitamin C", "Fibre"],
+    id: "tendufruit", name: "Tendu Fruit", category: "fruit", emoji: "🟠",
+    seasons: ["summer"], nutrients: ["Vitamin C", "Fibre"],
     benefits: ["Contributes dietary fibre"],
     sustainability: "The same tree whose leaves are used for bidi-making, showing a traditional multi-use forest resource.",
     iks: "An important forest-collected fruit for many tribal and forest-dwelling communities in Central India.",
   },
   {
-    id: "capegooseberry",
-    name: "Cape Gooseberry (Rasbhari)",
-    category: "fruit",
-    emoji: "🟡",
-    seasons: ["winter"],
-    nutrients: ["Vitamin C", "Vitamin A", "Antioxidants"],
+    id: "capegooseberry", name: "Cape Gooseberry (Rasbhari)", category: "fruit", emoji: "🟡",
+    seasons: ["winter"], nutrients: ["Vitamin C", "Vitamin A", "Antioxidants"],
     benefits: ["Contributes vitamin C and antioxidants"],
     sustainability: "A hardy self-seeding plant that grows easily with minimal care in home gardens.",
     iks: "Traditionally foraged in the wild across many Indian hill regions before being cultivated commercially.",
   },
   {
-    id: "pricklypear",
-    name: "Indian Fig Opuntia (Nagphani)",
-    category: "fruit",
-    emoji: "🌵",
-    seasons: ["summer"],
-    nutrients: ["Vitamin C", "Fibre"],
+    id: "pricklypear", name: "Indian Fig Opuntia (Nagphani)", category: "fruit", emoji: "🌵",
+    seasons: ["summer"], nutrients: ["Vitamin C", "Fibre"],
     benefits: ["Contributes dietary fibre"],
     sustainability: "An extremely drought-tolerant cactus suited to arid, water-scarce land where few crops survive.",
     iks: "Found growing wild across dry regions of Western and Central India, used occasionally as a famine-resistant food source.",
   },
   {
-    id: "chironji",
-    name: "Chironji Fruit (Char)",
-    category: "fruit",
-    emoji: "🟤",
-    seasons: ["summer"],
-    nutrients: ["Healthy fats", "Protein"],
+    id: "chironji", name: "Chironji Fruit (Char)", category: "fruit", emoji: "🟤",
+    seasons: ["summer"], nutrients: ["Healthy fats", "Protein"],
     benefits: ["A traditional source of edible seeds used in Indian sweets"],
     sustainability: "A forest tree traditionally harvested by tribal communities in Central India without felling the tree.",
     iks: "The seeds are a valued forest-collected ingredient in traditional Indian desserts.",
   },
   {
-    id: "grapefruit",
-    name: "Grapefruit",
-    category: "fruit",
-    emoji: "🍊",
-    seasons: ["winter"],
-    nutrients: ["Vitamin C", "Fibre"],
+    id: "grapefruit", name: "Grapefruit", category: "fruit", emoji: "🍊",
+    seasons: ["winter"], nutrients: ["Vitamin C", "Fibre"],
     benefits: ["Contributes notably to vitamin C intake"],
     sustainability: "A citrus tree that, once established, needs relatively modest seasonal care.",
     iks: "Grown in a few Indian citrus belts alongside orange and kinnow.",
   },
   {
-    id: "wildcherry",
-    name: "Wild Himalayan Cherry (Padam)",
-    category: "fruit",
-    emoji: "🌸",
-    seasons: ["summer"],
-    nutrients: ["Vitamin C", "Antioxidants"],
+    id: "wildcherry", name: "Wild Himalayan Cherry (Padam)", category: "fruit", emoji: "🌸",
+    seasons: ["summer"], nutrients: ["Vitamin C", "Antioxidants"],
     benefits: ["Contributes antioxidants"],
     sustainability: "A native Himalayan tree that supports local pollinators and forest biodiversity.",
     iks: "Found growing wild in Himalayan forest regions, tied to local ecological knowledge of the hills.",
   },
   {
-    id: "tamarillo",
-    name: "Tamarillo (Tree Tomato)",
-    category: "fruit",
-    emoji: "🍅",
-    seasons: ["winter"],
-    nutrients: ["Vitamin A", "Vitamin C", "Fibre"],
+    id: "tamarillo", name: "Tamarillo (Tree Tomato)", category: "fruit", emoji: "🍅",
+    seasons: ["winter"], nutrients: ["Vitamin A", "Vitamin C", "Fibre"],
     benefits: ["Contributes vitamins A and C"],
     sustainability: "Grown in the cool climate of the Nilgiris, often on small terraced hill farms.",
     iks: "A niche hill-fruit crop grown in South India's Nilgiri hills.",
   },
   {
-    id: "ramphal",
-    name: "Ramphal (Bullock's Heart)",
-    category: "fruit",
-    emoji: "🍏",
-    seasons: ["autumn"],
-    nutrients: ["Vitamin C", "Fibre", "Iron"],
+    id: "ramphal", name: "Ramphal (Bullock's Heart)", category: "fruit", emoji: "🍏",
+    seasons: ["autumn"], nutrients: ["Vitamin C", "Fibre", "Iron"],
     benefits: ["Contributes dietary fibre and vitamin C"],
     sustainability: "A hardy tree related to custard apple, tolerant of relatively poor soils.",
     iks: "A close relative of sitaphal, harvested in the same post-monsoon season across similar regions.",
   },
   {
-    id: "hanumanphal",
-    name: "Hanuman Phal (Soursop)",
-    category: "fruit",
-    emoji: "🍈",
-    seasons: ["autumn"],
-    nutrients: ["Vitamin C", "Fibre"],
+    id: "hanumanphal", name: "Hanuman Phal (Soursop)", category: "fruit", emoji: "🍈",
+    seasons: ["autumn"], nutrients: ["Vitamin C", "Fibre"],
     benefits: ["Contributes notably to vitamin C intake"],
     sustainability: "A tropical tree grown in home orchards across South India with modest water requirements.",
     iks: "Named for its association with Hanuman in local folklore, grown in home gardens in parts of South India.",
@@ -2089,72 +1983,56 @@ const FOODS = [
 /* -------------------------- IKS TOPICS -------------------------- */
 const IKS_TOPICS = [
   {
-    id: "ritucharya",
-    emoji: "🪷",
-    title: "Ritucharya (Seasonal Regimen)",
+    id: "ritucharya", emoji: "🪷", title: "Ritucharya (Seasonal Regimen)",
     what: "An Ayurvedic framework describing how diet, routine and lifestyle should shift across six traditional seasons.",
     practice: "Adjusting food choices, sleep timing and activity level to match each season's qualities — e.g. light, cooling foods in summer and warming, nourishing foods in winter.",
     relevance: "It is essentially a seasonal-living system: eating what is naturally available in each season reduces reliance on out-of-season, long-transport food.",
     adapt: "Students can plan meals using locally grown, in-season produce identified in Food Detective, instead of defaulting to whatever is available year-round in a store.",
   },
   {
-    id: "water",
-    emoji: "💧",
-    title: "Traditional Water Conservation",
+    id: "water", emoji: "💧", title: "Traditional Water Conservation",
     what: "A family of region-specific structures built to capture and store rainwater — stepwells (baolis), tanks (eri), and check dams (johad).",
     practice: "Communities built shared water infrastructure sized to local rainfall patterns, often maintained collectively rather than by a single owner.",
     relevance: "These systems show low-energy, gravity-based water harvesting that reduces dependence on groundwater pumping.",
     adapt: "A school or home can install a simple rain barrel or diversion channel that mimics the same principle: catch water where it falls, store it for the dry months.",
   },
   {
-    id: "agriculture",
-    emoji: "🌾",
-    title: "Traditional Agriculture",
+    id: "agriculture", emoji: "🌾", title: "Traditional Agriculture",
     what: "Cropping patterns built around India's monsoon cycle, such as mixed cropping and rain-fed millet cultivation.",
     practice: "Growing several complementary crops together (e.g. cereals with pulses) rather than one single crop over a large area.",
     relevance: "Mixed cropping naturally reduces pest outbreaks and keeps soil healthier than growing one crop repeatedly.",
     adapt: "A school garden bed can grow two or three complementary vegetables together instead of a single crop, as a small-scale version of the same idea.",
   },
   {
-    id: "soil",
-    emoji: "🌱",
-    title: "Soil Conservation",
+    id: "soil", emoji: "🌱", title: "Soil Conservation",
     what: "Practices that protect topsoil from erosion and depletion, including contour bunding and organic composting.",
     practice: "Farmers historically built small earthen ridges along slopes to slow water runoff and prevent topsoil from washing away.",
     relevance: "Healthy topsoil is essential for long-term food production; erosion is a leading cause of farmland loss.",
     adapt: "Starting a compost bin for kitchen or garden waste applies the same soil-nourishing principle at a household scale.",
   },
   {
-    id: "biodiversity",
-    emoji: "🐦",
-    title: "Biodiversity & Sacred Groves",
+    id: "biodiversity", emoji: "🐦", title: "Biodiversity & Sacred Groves",
     what: "Sacred groves — patches of forest protected for generations due to cultural or religious significance.",
     practice: "Communities set aside forest areas as protected space, often linked to a local deity, where cutting trees was traditionally avoided.",
     relevance: "These groves have preserved native plant and animal species that are rare elsewhere in the region.",
     adapt: "Identifying and learning about a local tree, plant or bird — as in the Autumn planner challenge — builds the same habit of noticing nearby biodiversity.",
   },
   {
-    id: "architecture",
-    emoji: "🏛️",
-    title: "Traditional Architecture",
+    id: "architecture", emoji: "🏛️", title: "Traditional Architecture",
     what: "Climate-responsive building elements such as thick mud walls, courtyards (angan), and jaali (perforated screens).",
     practice: "Buildings were designed using local materials and shapes that naturally kept interiors cool or warm across seasons.",
     relevance: "This is an early form of passive design — reducing the need for mechanical heating or cooling.",
     adapt: "At home, using cross-ventilation, shading, or curtains instead of air conditioning during hot months applies the same passive-cooling idea.",
   },
   {
-    id: "food",
-    emoji: "🥗",
-    title: "Seasonal Food Practices",
+    id: "food", emoji: "🥗", title: "Seasonal Food Practices",
     what: "Regional food calendars built around what grows locally in each season, tied closely to Ritucharya.",
     practice: "Festivals and everyday meals both centred on whatever crop had just been harvested nearby.",
     relevance: "Eating what's in season locally usually means less long-distance transport and storage, and often fresher produce.",
     adapt: "Use Food Detective or Build My Plate to choose a meal from foods that are actually in season right now.",
   },
   {
-    id: "resources",
-    emoji: "🌳",
-    title: "Natural Resource Management",
+    id: "resources", emoji: "🌳", title: "Natural Resource Management",
     what: "Community-managed common resources such as village forests, grazing land, and shared water bodies.",
     practice: "Local rules (often unwritten) governed how much of a shared resource each family could use, to avoid overuse.",
     relevance: "This is an early example of managing a shared resource sustainably rather than depleting it for individual gain.",
@@ -2165,40 +2043,35 @@ const IKS_TOPICS = [
 /* -------------------------- WISDOM → ACTION -------------------------- */
 const WISDOM_ACTIONS = {
   water: {
-    resource: "Water",
-    emoji: "💧",
+    resource: "Water", emoji: "💧",
     knowledge: "Communities historically built stepwells and small check dams to capture monsoon rain close to where it fell, rather than relying only on distant rivers.",
     modern: "This is decentralised water harvesting — collecting water at the source reduces transport loss and eases pressure on centralised supply systems.",
     action: "Check whether your home or school roof drains rainwater into a drain rather than a tank or plant bed, and note one place a simple diversion could help.",
     benefit: "Even a small amount of captured rainwater reduces demand on groundwater and municipal supply during dry months.",
   },
   energy: {
-    resource: "Energy",
-    emoji: "⚡",
+    resource: "Energy", emoji: "⚡",
     knowledge: "Traditional homes used thick walls, courtyards and jaali screens to stay cool or warm without any electricity.",
     modern: "This is passive design — shaping a space so it naturally regulates temperature, cutting the energy otherwise needed for heating or cooling.",
     action: "For one day, try keeping a room comfortable using ventilation, shading or curtains before switching on a fan or AC.",
     benefit: "Reducing appliance run-time even for part of the day lowers electricity use and the associated carbon footprint.",
   },
   food: {
-    resource: "Food",
-    emoji: "🌾",
+    resource: "Food", emoji: "🌾",
     knowledge: "Ritucharya and regional food calendars guided people to eat what was locally in season rather than importing food year-round.",
     modern: "Seasonal, local eating typically means less refrigerated transport and storage, and supports crop diversity.",
     action: "Pick one seasonal, locally grown food this week using Food Detective and include it in a meal.",
     benefit: "Choosing in-season food can reduce the distance food travels and support local farmers growing diverse crops.",
   },
   soil: {
-    resource: "Soil",
-    emoji: "🌱",
+    resource: "Soil", emoji: "🌱",
     knowledge: "Farmers used contour bunding and composting to slow erosion and keep topsoil fertile across many growing seasons.",
     modern: "Healthy soil structure and organic matter are the foundation of long-term food production — lose the soil, and yields fall permanently.",
     action: "Start a small compost container for fruit and vegetable scraps, or find out if your school already composts.",
     benefit: "Composting returns nutrients to soil instead of sending organic waste to a landfill, where it produces methane.",
   },
   biodiversity: {
-    resource: "Biodiversity",
-    emoji: "🐦",
+    resource: "Biodiversity", emoji: "🐦",
     knowledge: "Sacred groves protected patches of forest for generations, preserving native species that vanished elsewhere.",
     modern: "Protecting even small habitat patches helps maintain the range of species an ecosystem depends on.",
     action: "Identify one tree, plant or bird near your home and find out what role it plays locally (shade, food source, pollination, etc).",
@@ -2230,192 +2103,44 @@ const SEASON_META = {
   winter: { title: "WINTER ACTION PLAN", emoji: "❄️", focus: "Food + Soil + Resource Efficiency" },
 };
 
-/* today / this week / this month action text, keyed by [season][goal][environment] with
-   a generic fallback per [season][goal] if the specific environment isn't defined. */
 const PLANNER_ACTIONS = {
   monsoon: {
     water: {
-      generic: {
-        today: "Check whether rainwater from your roof or yard is flowing directly into a drain.",
-        week: "Identify one suitable place where rainwater could potentially be collected.",
-        month: "Estimate how much rainwater could realistically be collected there over the season.",
-      },
-      school: {
-        today: "Walk around the school building and note where roof water currently drains away unused.",
-        week: "Suggest one downpipe that could be redirected into a storage drum, to a teacher or facilities staff.",
-        month: "Track rainfall for the month and estimate the volume that passed through that one downpipe.",
-      },
-      farm: {
-        today: "Check if field bunds are holding rainwater or letting it run off unused.",
-        week: "Identify one low-lying spot where a small farm pond could capture runoff.",
-        month: "Estimate how many irrigation days that captured water could replace.",
-      },
+      generic: { today: "Check whether rainwater from your roof or yard is flowing directly into a drain.", week: "Identify one suitable place where rainwater could potentially be collected.", month: "Estimate how much rainwater could realistically be collected there over the season." },
+      school: { today: "Walk around the school building and note where roof water currently drains away unused.", week: "Suggest one downpipe that could be redirected into a storage drum, to a teacher or facilities staff.", month: "Track rainfall for the month and estimate the volume that passed through that one downpipe." },
+      farm: { today: "Check if field bunds are holding rainwater or letting it run off unused.", week: "Identify one low-lying spot where a small farm pond could capture runoff.", month: "Estimate how many irrigation days that captured water could replace." },
     },
-    soil: {
-      generic: {
-        today: "Look for one patch of bare soil in your yard or nearby that rain is washing away.",
-        week: "Cover that patch with mulch, leaves or ground cover to slow erosion.",
-        month: "Check whether the covered patch shows less soil loss than before.",
-      },
-    },
-    biodiversity: {
-      generic: {
-        today: "Notice which insects or birds appear after the first rains near your home.",
-        week: "Keep a simple log of the species you spot over a week.",
-        month: "Compare your log to see which species were only present during monsoon.",
-      },
-    },
-    foodwaste: {
-      generic: {
-        today: "Check your fridge or kitchen for produce that spoils fast in humid weather.",
-        week: "Plan meals that use humidity-sensitive produce within a few days of buying it.",
-        month: "Track how much less produce was thrown out compared to a typical month.",
-      },
-    },
-    food: {
-      generic: {
-        today: "Look up one monsoon-season food in Food Detective.",
-        week: "Cook one meal built around monsoon vegetables like bitter gourd or corn.",
-        month: "Keep a running list of monsoon foods you tried this season.",
-      },
-    },
+    soil: { generic: { today: "Look for one patch of bare soil in your yard or nearby that rain is washing away.", week: "Cover that patch with mulch, leaves or ground cover to slow erosion.", month: "Check whether the covered patch shows less soil loss than before." } },
+    biodiversity: { generic: { today: "Notice which insects or birds appear after the first rains near your home.", week: "Keep a simple log of the species you spot over a week.", month: "Compare your log to see which species were only present during monsoon." } },
+    foodwaste: { generic: { today: "Check your fridge or kitchen for produce that spoils fast in humid weather.", week: "Plan meals that use humidity-sensitive produce within a few days of buying it.", month: "Track how much less produce was thrown out compared to a typical month." } },
+    food: { generic: { today: "Look up one monsoon-season food in Food Detective.", week: "Cook one meal built around monsoon vegetables like bitter gourd or corn.", month: "Keep a running list of monsoon foods you tried this season." } },
   },
   summer: {
-    water: {
-      generic: {
-        today: "Time how long your household's longest daily water use (like a shower) takes.",
-        week: "Find one small way to shorten that water use without losing effectiveness.",
-        month: "Track whether the change becomes a habit by month's end.",
-      },
-    },
+    water: { generic: { today: "Time how long your household's longest daily water use (like a shower) takes.", week: "Find one small way to shorten that water use without losing effectiveness.", month: "Track whether the change becomes a habit by month's end." } },
     energy: {
-      generic: {
-        today: "Find one way to keep a room comfortable using less electricity — a fan, shade or ventilation instead of AC.",
-        week: "Try that method for a few afternoons and note how comfortable it feels.",
-        month: "Compare an estimated electricity bill change if the household kept up the habit.",
-      },
-      home: {
-        today: "Close curtains on sun-facing windows during the hottest hours instead of raising the AC.",
-        week: "Track which rooms stay cooler naturally and use those more during peak heat.",
-        month: "Estimate how many hours of AC use were avoided this month.",
-      },
+      generic: { today: "Find one way to keep a room comfortable using less electricity — a fan, shade or ventilation instead of AC.", week: "Try that method for a few afternoons and note how comfortable it feels.", month: "Compare an estimated electricity bill change if the household kept up the habit." },
+      home: { today: "Close curtains on sun-facing windows during the hottest hours instead of raising the AC.", week: "Track which rooms stay cooler naturally and use those more during peak heat.", month: "Estimate how many hours of AC use were avoided this month." },
     },
-    soil: {
-      generic: {
-        today: "Check if any garden soil looks dry and cracked from summer heat.",
-        week: "Add mulch or dry leaves over that soil to reduce water loss.",
-        month: "See if the mulched soil holds moisture noticeably longer.",
-      },
-    },
-    biodiversity: {
-      generic: {
-        today: "Note which plants or trees near you are providing shade for animals in the heat.",
-        week: "Consider adding one shade-giving or drought-hardy native plant.",
-        month: "Observe whether more birds or insects visit that shaded area.",
-      },
-    },
-    foodwaste: {
-      generic: {
-        today: "Check which fresh produce spoils fastest in summer heat at home.",
-        week: "Store that produce properly or buy it in smaller quantities.",
-        month: "Compare food waste levels to a typical summer month.",
-      },
-    },
-    food: {
-      generic: {
-        today: "Look up a cooling, in-season summer food in Food Detective.",
-        week: "Replace one processed snack with a seasonal fruit like watermelon or mango.",
-        month: "Track how many seasonal swaps you made across the month.",
-      },
-    },
+    soil: { generic: { today: "Check if any garden soil looks dry and cracked from summer heat.", week: "Add mulch or dry leaves over that soil to reduce water loss.", month: "See if the mulched soil holds moisture noticeably longer." } },
+    biodiversity: { generic: { today: "Note which plants or trees near you are providing shade for animals in the heat.", week: "Consider adding one shade-giving or drought-hardy native plant.", month: "Observe whether more birds or insects visit that shaded area." } },
+    foodwaste: { generic: { today: "Check which fresh produce spoils fastest in summer heat at home.", week: "Store that produce properly or buy it in smaller quantities.", month: "Compare food waste levels to a typical summer month." } },
+    food: { generic: { today: "Look up a cooling, in-season summer food in Food Detective.", week: "Replace one processed snack with a seasonal fruit like watermelon or mango.", month: "Track how many seasonal swaps you made across the month." } },
   },
   autumn: {
-    soil: {
-      generic: {
-        today: "Look at the soil in a garden bed or pot — is it loose and dark, or hard and pale?",
-        week: "Add compost or dry leaves to one patch to improve it naturally.",
-        month: "Compare plant growth in the improved patch versus an untouched one.",
-      },
-    },
-    biodiversity: {
-      generic: {
-        today: "Identify a local plant or tree and note its name.",
-        week: "Research its ecological role — shade, food source, pollination or soil support.",
-        month: "Share what you learned about it with a classmate or family member.",
-      },
-    },
-    food: {
-      generic: {
-        today: "Look up one post-monsoon harvest crop in Food Detective.",
-        week: "Try including a traditional grain or millet in one meal.",
-        month: "Track how many meals included a seasonal autumn crop.",
-      },
-    },
-    water: {
-      generic: {
-        today: "Check how much water is left in any rainwater storage from the monsoon.",
-        week: "Plan how that stored water could be used for one household or garden need.",
-        month: "Track how long the stored water lasted before running out.",
-      },
-    },
-    energy: {
-      generic: {
-        today: "Notice whether cooler autumn weather lets you use less fan or AC than in summer.",
-        week: "Track your household's daily electricity habits for a week.",
-        month: "Compare this month's estimated usage to a summer month.",
-      },
-    },
-    foodwaste: {
-      generic: {
-        today: "Check what happens to leftover harvest produce at home or nearby.",
-        week: "Try one way to use up produce before it spoils — pickling, freezing, or sharing.",
-        month: "Track how much less was discarded this month.",
-      },
-    },
+    soil: { generic: { today: "Look at the soil in a garden bed or pot — is it loose and dark, or hard and pale?", week: "Add compost or dry leaves to one patch to improve it naturally.", month: "Compare plant growth in the improved patch versus an untouched one." } },
+    biodiversity: { generic: { today: "Identify a local plant or tree and note its name.", week: "Research its ecological role — shade, food source, pollination or soil support.", month: "Share what you learned about it with a classmate or family member." } },
+    food: { generic: { today: "Look up one post-monsoon harvest crop in Food Detective.", week: "Try including a traditional grain or millet in one meal.", month: "Track how many meals included a seasonal autumn crop." } },
+    water: { generic: { today: "Check how much water is left in any rainwater storage from the monsoon.", week: "Plan how that stored water could be used for one household or garden need.", month: "Track how long the stored water lasted before running out." } },
+    energy: { generic: { today: "Notice whether cooler autumn weather lets you use less fan or AC than in summer.", week: "Track your household's daily electricity habits for a week.", month: "Compare this month's estimated usage to a summer month." } },
+    foodwaste: { generic: { today: "Check what happens to leftover harvest produce at home or nearby.", week: "Try one way to use up produce before it spoils — pickling, freezing, or sharing.", month: "Track how much less was discarded this month." } },
   },
   winter: {
-    food: {
-      generic: {
-        today: "Find one locally available seasonal winter food and note where it comes from.",
-        week: "Cook or eat a meal built around that seasonal food.",
-        month: "Keep a short list of the winter foods you tried.",
-      },
-    },
-    soil: {
-      generic: {
-        today: "Check if garden soil is being left bare over winter.",
-        week: "Cover bare soil with mulch or plant a quick winter cover crop.",
-        month: "See whether the covered soil looks healthier by season's end.",
-      },
-    },
-    energy: {
-      generic: {
-        today: "Note which rooms get the most natural winter sunlight during the day.",
-        week: "Use those rooms during the day instead of turning on lights or heaters early.",
-        month: "Estimate how much heating or lighting time was saved.",
-      },
-    },
-    water: {
-      generic: {
-        today: "Check whether winter crops nearby are watered efficiently or wastefully.",
-        week: "Suggest one water-saving idea, like watering early morning to reduce evaporation.",
-        month: "Track whether the suggestion was adopted and its effect.",
-      },
-    },
-    biodiversity: {
-      generic: {
-        today: "Notice which birds are present locally in winter that weren't around in summer.",
-        week: "Keep a short log of winter bird sightings.",
-        month: "Compare your winter list with an autumn or summer list if you have one.",
-      },
-    },
-    foodwaste: {
-      generic: {
-        today: "Check how winter produce like root vegetables is being stored at home.",
-        week: "Improve storage for one item so it lasts longer without spoiling.",
-        month: "Track how much less was wasted from better storage.",
-      },
-    },
+    food: { generic: { today: "Find one locally available seasonal winter food and note where it comes from.", week: "Cook or eat a meal built around that seasonal food.", month: "Keep a short list of the winter foods you tried." } },
+    soil: { generic: { today: "Check if garden soil is being left bare over winter.", week: "Cover bare soil with mulch or plant a quick winter cover crop.", month: "See whether the covered soil looks healthier by season's end." } },
+    energy: { generic: { today: "Note which rooms get the most natural winter sunlight during the day.", week: "Use those rooms during the day instead of turning on lights or heaters early.", month: "Estimate how much heating or lighting time was saved." } },
+    water: { generic: { today: "Check whether winter crops nearby are watered efficiently or wastefully.", week: "Suggest one water-saving idea, like watering early morning to reduce evaporation.", month: "Track whether the suggestion was adopted and its effect." } },
+    biodiversity: { generic: { today: "Notice which birds are present locally in winter that weren't around in summer.", week: "Keep a short log of winter bird sightings.", month: "Compare your winter list with an autumn or summer list if you have one." } },
+    foodwaste: { generic: { today: "Check how winter produce like root vegetables is being stored at home.", week: "Improve storage for one item so it lasts longer without spoiling.", month: "Track how much less was wasted from better storage." } },
   },
 };
 
@@ -2436,8 +2161,7 @@ const SEASON_CHALLENGES = {
 /* -------------------------- QUIZZES -------------------------- */
 const QUIZZES = {
   iks: {
-    title: "Indian Knowledge System",
-    emoji: "🪷",
+    title: "Indian Knowledge System", emoji: "🪷",
     questions: [
       { q: "What does 'Ritucharya' refer to?", options: ["A festival calendar", "A seasonal lifestyle & diet regimen", "A type of stepwell", "A farming tool"], correct: 1 },
       { q: "What is a 'baoli'?", options: ["A traditional stepwell", "A seasonal fruit", "A type of grain", "A farming festival"], correct: 0 },
@@ -2445,8 +2169,7 @@ const QUIZZES = {
     ],
   },
   seasons: {
-    title: "Seasons",
-    emoji: "🌦️",
+    title: "Seasons", emoji: "🌦️",
     questions: [
       { q: "Which season typically runs roughly June to September in most of India?", options: ["Summer", "Monsoon", "Winter", "Autumn"], correct: 1 },
       { q: "Mangoes are most associated with which season?", options: ["Winter", "Monsoon", "Summer", "Autumn"], correct: 2 },
@@ -2454,8 +2177,7 @@ const QUIZZES = {
     ],
   },
   nutrition: {
-    title: "Nutrition",
-    emoji: "🥗",
+    title: "Nutrition", emoji: "🥗",
     questions: [
       { q: "Spinach is a good source of which nutrient highlighted in this app?", options: ["Vitamin C only", "Iron", "Sodium", "Sugar"], correct: 1 },
       { q: "Watermelon is especially useful in summer mainly because of its:", options: ["Protein content", "High water content", "Iron content", "Fat content"], correct: 1 },
@@ -2463,8 +2185,7 @@ const QUIZZES = {
     ],
   },
   sustainability: {
-    title: "Sustainability",
-    emoji: "🌱",
+    title: "Sustainability", emoji: "🌱",
     questions: [
       { q: "Eating locally seasonal food generally helps sustainability because it:", options: ["Requires more packaging", "Often needs less long-distance transport", "Always costs more", "Has no effect"], correct: 1 },
       { q: "Composting kitchen waste mainly helps by:", options: ["Returning nutrients to soil instead of landfill", "Increasing electricity use", "Wasting more water", "Reducing biodiversity"], correct: 0 },
@@ -2472,8 +2193,7 @@ const QUIZZES = {
     ],
   },
   food: {
-    title: "Food",
-    emoji: "🍽️",
+    title: "Food", emoji: "🍽️",
     questions: [
       { q: "Jaggery is traditionally eaten with which seed during winter festivals?", options: ["Sesame (til)", "Sunflower", "Poppy", "Mustard"], correct: 0 },
       { q: "Which of these is a traditional grain highlighted in the app?", options: ["Pasta", "Millet", "White bread", "Instant noodles"], correct: 1 },
@@ -2481,8 +2201,7 @@ const QUIZZES = {
     ],
   },
   water: {
-    title: "Water",
-    emoji: "💧",
+    title: "Water", emoji: "💧",
     questions: [
       { q: "A 'check dam' is primarily used to:", options: ["Generate electricity", "Slow and capture rainwater runoff", "Purify drinking water chemically", "Store grain"], correct: 1 },
       { q: "Stepwells were historically built mainly for:", options: ["Decoration only", "Water storage and access", "Farming tools", "Religious festivals only"], correct: 1 },
@@ -2490,8 +2209,7 @@ const QUIZZES = {
     ],
   },
   soil: {
-    title: "Soil",
-    emoji: "🌍",
+    title: "Soil", emoji: "🌍",
     questions: [
       { q: "Contour bunding is used mainly to:", options: ["Increase soil erosion", "Slow water runoff and protect topsoil", "Remove all plants", "Add plastic to soil"], correct: 1 },
       { q: "Mulching a bare soil patch mainly helps by:", options: ["Increasing erosion", "Reducing water loss and erosion", "Removing nutrients", "Attracting no benefit"], correct: 1 },
@@ -2499,8 +2217,7 @@ const QUIZZES = {
     ],
   },
   biodiversity: {
-    title: "Biodiversity",
-    emoji: "🐦",
+    title: "Biodiversity", emoji: "🐦",
     questions: [
       { q: "Sacred groves helped biodiversity mainly by:", options: ["Encouraging tree cutting", "Protecting forest patches over generations", "Introducing only new species", "Draining wetlands"], correct: 1 },
       { q: "Noticing which birds appear only in a certain season is an example of:", options: ["Wasting time", "Observing local biodiversity patterns", "Farming", "Cooking"], correct: 1 },
@@ -2509,17 +2226,7 @@ const QUIZZES = {
   },
 };
 
-/* -------------------------- SURVEY -------------------------- */
-const SURVEY_QUESTIONS = [
-  "Do you know which fruits and vegetables are seasonal?",
-  "Do you consider the environmental impact of your food choices?",
-  "Do you know any traditional Indian methods of conserving water?",
-  "Would you like to learn more about seasonal Indian foods?",
-  "Would you use an app that gives seasonal sustainability recommendations?",
-];
-
 /* -------------------------- SCAN & DISCOVER (demo fallback data) -------------------------- */
-/* Structured so a real vision API could replace pickRandomMatch() later. */
 const SCAN_POSSIBLE_MATCHES = [
   {
     label: "Plant / Leafy Greenery",
@@ -2560,10 +2267,6 @@ const SCAN_POSSIBLE_MATCHES = [
 ];
 
 /* -------------------------- LANGUAGE (extensible) -------------------------- */
-/* Static UI chrome (nav, hero, section headers, key buttons) is translated.
-   Dynamically generated content (food details, planner plans, quiz questions,
-   wisdom cards, IKS detail text, survey questions) stays in English for now —
-   the key structure below makes it straightforward to extend later. */
 const TRANSLATIONS = {
   en: {
     langName: "English",
@@ -2572,27 +2275,14 @@ const TRANSLATIONS = {
     hero_eyebrow: "Indian Knowledge System × Sustainability",
     hero_hint: "Tap a season on the wheel, or jump straight in below.",
 
-    nav_home: "Home",
-    nav_food: "Food Detective",
-    nav_plate: "Build My Plate",
-    nav_planner: "Ritu Planner",
-    nav_wisdom: "Wisdom → Action",
-    nav_scan: "Scan & Discover",
-    nav_iks: "IKS",
-    nav_quiz: "Quizzes",
-    nav_survey: "Survey",
+    nav_home: "Home", nav_food: "Food Detective", nav_plate: "Build My Plate", nav_planner: "Ritu Planner",
+    nav_wisdom: "Wisdom → Action", nav_scan: "Scan & Discover", nav_iks: "IKS", nav_quiz: "Quizzes",
+    nav_ecogram: "EcoGram",
 
-    home_action_explore: "Explore Ritu-Chakra",
-    home_action_planner: "Ritu Planner",
-    home_action_wisdom: "Wisdom → Action",
-    home_action_scan: "Scan & Discover",
-    home_action_food: "Food Detective",
+    home_action_explore: "Explore Ritu-Chakra", home_action_planner: "Ritu Planner", home_action_wisdom: "Wisdom → Action",
+    home_action_scan: "Scan & Discover", home_action_food: "Food Detective",
 
-    flow_heading: "The Ritu-Chakra experience",
-    flow_discover: "Discover",
-    flow_learn: "Learn",
-    flow_personalize: "Personalize",
-    flow_act: "Act",
+    flow_heading: "The Ritu-Chakra experience", flow_discover: "Discover", flow_learn: "Learn", flow_personalize: "Personalize", flow_act: "Act",
 
     food_title: "🔎 Food Detective",
     food_sub: "Search a seasonal food to uncover its nutrition, benefits, sustainability story and Indian knowledge connection.",
@@ -2603,10 +2293,7 @@ const TRANSLATIONS = {
 
     planner_title: "🌱 Ritu Planner",
     planner_sub: "Create a personalised seasonal sustainability action plan.",
-    planner_region_label: "📍 Region",
-    planner_season_label: "🌦️ Season",
-    planner_env_label: "🏠 Environment",
-    planner_goal_label: "🎯 Goal",
+    planner_region_label: "📍 Region", planner_season_label: "🌦️ Season", planner_env_label: "🏠 Environment", planner_goal_label: "🎯 Goal",
     planner_create_btn: "🌱 Create My Plan",
 
     wisdom_title: "🪷 Wisdom → Action",
@@ -2622,8 +2309,8 @@ const TRANSLATIONS = {
     quiz_title: "🎯 Quizzes",
     quiz_sub: "Pick a topic and test what you know.",
 
-    survey_title: "📋 Student Survey",
-    survey_sub: "Quick yes / no questions about seasonal and sustainable living.",
+    ecogram_title: "🌍 EcoGram — Sustainable School Simulator",
+    ecogram_sub: "Improve a virtual school with limited resources across several years, and watch water, energy, biodiversity and waste respond to your choices.",
   },
 
   hi: {
@@ -2633,27 +2320,14 @@ const TRANSLATIONS = {
     hero_eyebrow: "भारतीय ज्ञान परंपरा × सततता",
     hero_hint: "चक्र पर एक ऋतु चुनें, या सीधे नीचे शुरू करें।",
 
-    nav_home: "होम",
-    nav_food: "फूड डिटेक्टिव",
-    nav_plate: "मेरी थाली बनाएं",
-    nav_planner: "ऋतु प्लानर",
-    nav_wisdom: "ज्ञान → कार्य",
-    nav_scan: "स्कैन करें और जानें",
-    nav_iks: "भारतीय ज्ञान परंपरा",
-    nav_quiz: "प्रश्नोत्तरी",
-    nav_survey: "सर्वेक्षण",
+    nav_home: "होम", nav_food: "फूड डिटेक्टिव", nav_plate: "मेरी थाली बनाएं", nav_planner: "ऋतु प्लानर",
+    nav_wisdom: "ज्ञान → कार्य", nav_scan: "स्कैन करें और जानें", nav_iks: "भारतीय ज्ञान परंपरा", nav_quiz: "प्रश्नोत्तरी",
+    nav_ecogram: "इकोग्राम",
 
-    home_action_explore: "ऋतु-चक्र को जानें",
-    home_action_planner: "ऋतु प्लानर",
-    home_action_wisdom: "ज्ञान → कार्य",
-    home_action_scan: "स्कैन करें और जानें",
-    home_action_food: "फूड डिटेक्टिव",
+    home_action_explore: "ऋतु-चक्र को जानें", home_action_planner: "ऋतु प्लानर", home_action_wisdom: "ज्ञान → कार्य",
+    home_action_scan: "स्कैन करें और जानें", home_action_food: "फूड डिटेक्टिव",
 
-    flow_heading: "ऋतु-चक्र अनुभव",
-    flow_discover: "खोजें",
-    flow_learn: "सीखें",
-    flow_personalize: "अनुकूलित करें",
-    flow_act: "कार्य करें",
+    flow_heading: "ऋतु-चक्र अनुभव", flow_discover: "खोजें", flow_learn: "सीखें", flow_personalize: "अनुकूलित करें", flow_act: "कार्य करें",
 
     food_title: "🔎 फूड डिटेक्टिव",
     food_sub: "किसी मौसमी भोजन को खोजें और उसके पोषण, लाभ, स्थिरता और भारतीय ज्ञान से जुड़ाव के बारे में जानें।",
@@ -2664,10 +2338,7 @@ const TRANSLATIONS = {
 
     planner_title: "🌱 ऋतु प्लानर",
     planner_sub: "अपने लिए एक व्यक्तिगत मौसमी स्थिरता कार्य योजना बनाएं।",
-    planner_region_label: "📍 क्षेत्र",
-    planner_season_label: "🌦️ ऋतु",
-    planner_env_label: "🏠 वातावरण",
-    planner_goal_label: "🎯 लक्ष्य",
+    planner_region_label: "📍 क्षेत्र", planner_season_label: "🌦️ ऋतु", planner_env_label: "🏠 वातावरण", planner_goal_label: "🎯 लक्ष्य",
     planner_create_btn: "🌱 मेरी योजना बनाएं",
 
     wisdom_title: "🪷 ज्ञान → कार्य",
@@ -2683,8 +2354,8 @@ const TRANSLATIONS = {
     quiz_title: "🎯 प्रश्नोत्तरी",
     quiz_sub: "एक विषय चुनें और अपना ज्ञान परखें।",
 
-    survey_title: "📋 छात्र सर्वेक्षण",
-    survey_sub: "मौसमी और सतत जीवन के बारे में त्वरित हां/नहीं प्रश्न।",
+    ecogram_title: "🌍 इकोग्राम — सतत विद्यालय सिम्युलेटर",
+    ecogram_sub: "सीमित संसाधनों के साथ कई वर्षों में एक आभासी विद्यालय को सुधारें, और देखें कि पानी, ऊर्जा, जैव विविधता और अपशिष्ट आपके निर्णयों पर कैसे प्रतिक्रिया करते हैं।",
   },
 
   kn: {
@@ -2694,27 +2365,14 @@ const TRANSLATIONS = {
     hero_eyebrow: "ಭಾರತೀಯ ಜ್ಞಾನ ವ್ಯವಸ್ಥೆ × ಸುಸ್ಥಿರತೆ",
     hero_hint: "ಚಕ್ರದ ಮೇಲೆ ಒಂದು ಋತುವನ್ನು ಸ್ಪರ್ಶಿಸಿ, ಅಥವಾ ಕೆಳಗೆ ನೇರವಾಗಿ ಪ್ರಾರಂಭಿಸಿ.",
 
-    nav_home: "ಮುಖಪುಟ",
-    nav_food: "ಆಹಾರ ಪತ್ತೇದಾರಿ",
-    nav_plate: "ನನ್ನ ತಟ್ಟೆ ರಚಿಸಿ",
-    nav_planner: "ಋತು ಯೋಜಕ",
-    nav_wisdom: "ಜ್ಞಾನ → ಕ್ರಿಯೆ",
-    nav_scan: "ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಮತ್ತು ಅನ್ವೇಷಿಸಿ",
-    nav_iks: "ಭಾರತೀಯ ಜ್ಞಾನ ವ್ಯವಸ್ಥೆ",
-    nav_quiz: "ರಸಪ್ರಶ್ನೆಗಳು",
-    nav_survey: "ಸಮೀಕ್ಷೆ",
+    nav_home: "ಮುಖಪುಟ", nav_food: "ಆಹಾರ ಪತ್ತೇದಾರಿ", nav_plate: "ನನ್ನ ತಟ್ಟೆ ರಚಿಸಿ", nav_planner: "ಋತು ಯೋಜಕ",
+    nav_wisdom: "ಜ್ಞಾನ → ಕ್ರಿಯೆ", nav_scan: "ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಮತ್ತು ಅನ್ವೇಷಿಸಿ", nav_iks: "ಭಾರತೀಯ ಜ್ಞಾನ ವ್ಯವಸ್ಥೆ", nav_quiz: "ರಸಪ್ರಶ್ನೆಗಳು",
+    nav_ecogram: "ಇಕೋಗ್ರಾಮ್",
 
-    home_action_explore: "ಋತು-ಚಕ್ರವನ್ನು ಅನ್ವೇಷಿಸಿ",
-    home_action_planner: "ಋತು ಯೋಜಕ",
-    home_action_wisdom: "ಜ್ಞಾನ → ಕ್ರಿಯೆ",
-    home_action_scan: "ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಮತ್ತು ಅನ್ವೇಷಿಸಿ",
-    home_action_food: "ಆಹಾರ ಪತ್ತೇದಾರಿ",
+    home_action_explore: "ಋತು-ಚಕ್ರವನ್ನು ಅನ್ವೇಷಿಸಿ", home_action_planner: "ಋತು ಯೋಜಕ", home_action_wisdom: "ಜ್ಞಾನ → ಕ್ರಿಯೆ",
+    home_action_scan: "ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಮತ್ತು ಅನ್ವೇಷಿಸಿ", home_action_food: "ಆಹಾರ ಪತ್ತೇದಾರಿ",
 
-    flow_heading: "ಋತು-ಚಕ್ರ ಅನುಭವ",
-    flow_discover: "ಅನ್ವೇಷಿಸಿ",
-    flow_learn: "ಕಲಿಯಿರಿ",
-    flow_personalize: "ವೈಯಕ್ತೀಕರಿಸಿ",
-    flow_act: "ಕ್ರಿಯೆಗೈಯಿರಿ",
+    flow_heading: "ಋತು-ಚಕ್ರ ಅನುಭವ", flow_discover: "ಅನ್ವೇಷಿಸಿ", flow_learn: "ಕಲಿಯಿರಿ", flow_personalize: "ವೈಯಕ್ತೀಕರಿಸಿ", flow_act: "ಕ್ರಿಯೆಗೈಯಿರಿ",
 
     food_title: "🔎 ಆಹಾರ ಪತ್ತೇದಾರಿ",
     food_sub: "ಋತುಮಾನದ ಆಹಾರವನ್ನು ಹುಡುಕಿ ಮತ್ತು ಅದರ ಪೋಷಣೆ, ಪ್ರಯೋಜನಗಳು, ಸುಸ್ಥಿರತೆ ಮತ್ತು ಭಾರತೀಯ ಜ್ಞಾನ ಸಂಪರ್ಕವನ್ನು ಅನ್ವೇಷಿಸಿ.",
@@ -2725,10 +2383,7 @@ const TRANSLATIONS = {
 
     planner_title: "🌱 ಋತು ಯೋಜಕ",
     planner_sub: "ನಿಮಗಾಗಿ ವೈಯಕ್ತಿಕ ಋತುಮಾನದ ಸುಸ್ಥಿರತೆ ಕ್ರಿಯಾ ಯೋಜನೆಯನ್ನು ರಚಿಸಿ.",
-    planner_region_label: "📍 ಪ್ರದೇಶ",
-    planner_season_label: "🌦️ ಋತು",
-    planner_env_label: "🏠 ಪರಿಸರ",
-    planner_goal_label: "🎯 ಗುರಿ",
+    planner_region_label: "📍 ಪ್ರದೇಶ", planner_season_label: "🌦️ ಋತು", planner_env_label: "🏠 ಪರಿಸರ", planner_goal_label: "🎯 ಗುರಿ",
     planner_create_btn: "🌱 ನನ್ನ ಯೋಜನೆ ರಚಿಸಿ",
 
     wisdom_title: "🪷 ಜ್ಞಾನ → ಕ್ರಿಯೆ",
@@ -2744,8 +2399,8 @@ const TRANSLATIONS = {
     quiz_title: "🎯 ರಸಪ್ರಶ್ನೆಗಳು",
     quiz_sub: "ಒಂದು ವಿಷಯವನ್ನು ಆರಿಸಿ ಮತ್ತು ನಿಮ್ಮ ಜ್ಞಾನವನ್ನು ಪರೀಕ್ಷಿಸಿ.",
 
-    survey_title: "📋 ವಿದ್ಯಾರ್ಥಿ ಸಮೀಕ್ಷೆ",
-    survey_sub: "ಋತುಮಾನ ಮತ್ತು ಸುಸ್ಥಿರ ಜೀವನದ ಬಗ್ಗೆ ತ್ವರಿತ ಹೌದು/ಇಲ್ಲ ಪ್ರಶ್ನೆಗಳು.",
+    ecogram_title: "🌍 ಇಕೋಗ್ರಾಮ್ — ಸುಸ್ಥಿರ ಶಾಲಾ ಸಿಮ್ಯುಲೇಟರ್",
+    ecogram_sub: "ಸೀಮಿತ ಸಂಪನ್ಮೂಲಗಳೊಂದಿಗೆ ಹಲವಾರು ವರ್ಷಗಳಲ್ಲಿ ವರ್ಚುವಲ್ ಶಾಲೆಯನ್ನು ಸುಧಾರಿಸಿ, ಮತ್ತು ನಿಮ್ಮ ಆಯ್ಕೆಗಳಿಗೆ ನೀರು, ಶಕ್ತಿ, ಜೀವವೈವಿಧ್ಯ ಮತ್ತು ತ್ಯಾಜ್ಯ ಹೇಗೆ ಪ್ರತಿಕ್ರಿಯಿಸುತ್ತವೆ ಎಂಬುದನ್ನು ನೋಡಿ.",
   },
 };
 
@@ -2753,6 +2408,75 @@ const LANGUAGES = [
   { id: "en", label: "English" },
   { id: "hi", label: "हिन्दी" },
   { id: "kn", label: "ಕನ್ನಡ" },
+];
+
+/* ==========================================================================
+   ECOGRAM — Sustainable School Simulator
+   A turn-based strategy game: install interventions within a budget, then
+   advance through years and watch four meters (Water, Energy, Biodiversity,
+   Waste) respond. All numbers are illustrative/relative, not measured data.
+   ========================================================================== */
+
+const ECOGRAM_CONFIG = {
+  totalRounds: 5,
+  startingBudget: 60,
+  incomePerRound: 35,
+  startingMeters: { water: 45, energy: 45, biodiversity: 40, waste: 40 },
+  /* Meters drift down slightly each round if left unmanaged, to create urgency. */
+  baselineDrift: { water: -5, energy: -5, biodiversity: -4, waste: -6 },
+};
+
+const ECOGRAM_INTERVENTIONS = [
+  {
+    id: "rainwater", emoji: "💧", name: "Rainwater Harvesting", cost: 25,
+    effects: { water: 16, energy: 0, biodiversity: 2, waste: 0 },
+    tradeoff: null,
+    note: "Echoes traditional stepwells and check dams — capturing rain close to where it falls instead of losing it to runoff.",
+  },
+  {
+    id: "nativeplants", emoji: "🌳", name: "Native Plants", cost: 18,
+    effects: { water: 3, energy: 0, biodiversity: 14, waste: 0 },
+    tradeoff: null,
+    note: "Native species need far less irrigation than ornamental imports, and support local pollinators and birds.",
+  },
+  {
+    id: "courtyards", emoji: "🏛️", name: "Shaded Courtyards", cost: 22,
+    effects: { water: 0, energy: 13, biodiversity: 3, waste: 0 },
+    tradeoff: null,
+    note: "A passive-cooling idea straight from traditional architecture — shade and airflow instead of machines.",
+  },
+  {
+    id: "localcrops", emoji: "🌾", name: "Local Crops", cost: 18,
+    effects: { water: 6, energy: 0, biodiversity: 5, waste: 4 },
+    tradeoff: null,
+    note: "Growing what suits the local climate needs less water and fewer chemical inputs than imported crop varieties.",
+  },
+  {
+    id: "composting", emoji: "♻️", name: "Composting", cost: 14,
+    effects: { water: 0, energy: 0, biodiversity: 3, waste: 17 },
+    tradeoff: null,
+    note: "Turns food and garden scraps back into soil nutrients instead of sending them to landfill.",
+  },
+  {
+    id: "solar", emoji: "☀️", name: "Solar Power", cost: 32,
+    effects: { water: 0, energy: 19, biodiversity: -2, waste: 0 },
+    tradeoff: "Panel installation uses some open ground, a small trade-off against biodiversity.",
+    note: "Rooftop solar cuts reliance on the grid, though panels do take up space that could otherwise be green.",
+  },
+];
+
+const ECOGRAM_METER_META = {
+  water: { label: "Water", emoji: "💧", color: "indigo" },
+  energy: { label: "Energy", emoji: "⚡", color: "gold" },
+  biodiversity: { label: "Biodiversity", emoji: "🐦", color: "moss" },
+  waste: { label: "Waste Management", emoji: "♻️", color: "clay" },
+};
+
+const ECOGRAM_RATINGS = [
+  { min: 80, label: "Thriving Green Campus", emoji: "🌟", blurb: "A model of seasonal, low-impact living — close to what Ritucharya-style balance looks like at campus scale." },
+  { min: 60, label: "Making Real Progress", emoji: "🌱", blurb: "Solid gains across most areas — a few more targeted interventions would round this out." },
+  { min: 40, label: "A Work in Progress", emoji: "🌦️", blurb: "Some good choices, but the campus is still fairly resource-strained. Worth another run." },
+  { min: 0, label: "Needs Urgent Action", emoji: "⚠️", blurb: "Resources are under real strain here — try focusing your budget on fewer, higher-impact interventions." },
 ];
 
 
@@ -2770,6 +2494,7 @@ const state = {
   quiz: { topicId: null, index: 0, score: 0, answered: false },
   challenges: {}, // challengeId -> boolean
   scanImage: null,
+  ecogram: null, // set by initEcoGram
 };
 
 /* -------------------------- UTIL -------------------------- */
@@ -2786,6 +2511,7 @@ function el(tag, opts = {}, children = []) {
   children.forEach((c) => { if (c) node.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
   return node;
 }
+function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
 
 /* -------------------------- NAVIGATION -------------------------- */
 function goToView(viewId) {
@@ -3210,7 +2936,6 @@ function renderScanResult(card) {
   const result = el("div", { class: "scan-result" });
   card.appendChild(result);
 
-  // Best-guess food identification (demo — a real vision API would replace this pick).
   const guess = FOODS[Math.floor(Math.random() * FOODS.length)];
   renderScanFoodGuess(result, guess);
 }
@@ -3411,61 +3136,223 @@ function renderQuizScore(quiz) {
 }
 
 /* ========================================================================
-   SURVEY
+   ECOGRAM — Sustainable School Simulator
    ======================================================================== */
-function initSurvey() {
-  const panel = $("#surveyPanel");
-  const answers = {};
+function initEcoGram() {
+  resetEcoGram();
 
-  SURVEY_QUESTIONS.forEach((q, i) => {
-    const row = el("div", { class: "survey-question" });
-    row.appendChild(el("p", {}, [q]));
-    const btns = el("div", { class: "survey-yn" });
-    const yesBtn = el("button", { class: "yn-btn" }, ["Yes"]);
-    const noBtn = el("button", { class: "yn-btn" }, ["No"]);
-    yesBtn.addEventListener("click", () => {
-      answers[i] = true;
-      yesBtn.classList.add("selected-yes");
-      noBtn.classList.remove("selected-no");
-    });
-    noBtn.addEventListener("click", () => {
-      answers[i] = false;
-      noBtn.classList.add("selected-no");
-      yesBtn.classList.remove("selected-yes");
-    });
-    btns.appendChild(yesBtn);
-    btns.appendChild(noBtn);
-    row.appendChild(btns);
-    panel.appendChild(row);
-  });
-
-  const submitBtn = el("button", { class: "glass-btn primary wide", style: "margin-top:10px;" }, ["Submit survey"]);
-  submitBtn.addEventListener("click", () => renderSurveyResults(answers));
-  panel.appendChild(submitBtn);
+  $("#ecogramEndRoundBtn").addEventListener("click", endEcoGramRound);
+  $("#ecogramResetBtn").addEventListener("click", resetEcoGram);
+  $("#ecogramVisualToggleBtn").addEventListener("click", toggleEcoVisual);
 }
 
-function renderSurveyResults(answers) {
-  const panel = $("#surveyPanel");
-  let existing = $(".survey-results", panel);
-  if (existing) existing.remove();
-
-  const total = SURVEY_QUESTIONS.length;
-  const answeredCount = Object.keys(answers).length;
-  const yesCount = Object.values(answers).filter(Boolean).length;
-
-  const results = el("div", { class: "survey-results" });
-  if (answeredCount < total) {
-    results.appendChild(el("p", {}, [`Please answer all ${total} questions before submitting (${answeredCount}/${total} answered).`]));
-  } else {
-    results.appendChild(el("h4", {}, ["Your results"]));
-    results.appendChild(el("p", {}, [`You answered "Yes" to ${yesCount} out of ${total} questions.`]));
-    results.appendChild(el("p", { class: "view-sub" }, [
-      yesCount >= 4
-        ? "You're already quite tuned in to seasonal, sustainable living — Ritu Planner and Wisdom → Action can help you go further."
-        : "There's a lot to discover — Food Detective and the IKS section are great places to start exploring."
-    ]));
+function toggleEcoVisual() {
+  const panel = $("#ecogramVisualPanel");
+  const btn = $("#ecogramVisualToggleBtn");
+  const nowHidden = panel.classList.toggle("hidden");
+  btn.textContent = nowHidden ? "👀 See Visual" : "🙈 Hide Visual";
+  if (!nowHidden) {
+    syncEcoVisualState();
+    panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
-  panel.appendChild(results);
+}
+
+/* Maps each intervention id to the SVG group (and legend chip) it controls,
+   and toggles the "installed" class so the CSS transitions/animations in
+   style.css play automatically. Safe to call any time state changes. */
+const ECOGRAM_VISUAL_MAP = {
+  rainwater: "ecoTank",
+  nativeplants: "ecoTrees",
+  courtyards: "ecoCourtyard",
+  localcrops: "ecoCrops",
+  composting: "ecoCompost",
+  solar: "ecoSolar",
+};
+
+function syncEcoVisualState() {
+  const g = state.ecogram;
+  if (!g) return;
+  Object.entries(ECOGRAM_VISUAL_MAP).forEach(([interventionId, svgGroupId]) => {
+    const installed = !!g.installed[interventionId];
+    const svgGroup = document.getElementById(svgGroupId);
+    if (svgGroup) svgGroup.classList.toggle("installed", installed);
+    const legendChip = $(`#ecoLegend .chip[data-intervention="${interventionId}"]`);
+    if (legendChip) legendChip.classList.toggle("active", installed);
+  });
+}
+
+function resetEcoGram() {
+  state.ecogram = {
+    round: 1,
+    budget: ECOGRAM_CONFIG.startingBudget,
+    meters: { ...ECOGRAM_CONFIG.startingMeters },
+    installed: {}, // interventionId -> true
+    log: [],
+    finished: false,
+  };
+  $("#ecogramSummaryZone").innerHTML = "";
+  $("#ecogramLog").innerHTML = "";
+  renderEcoGram();
+}
+
+function renderEcoGram() {
+  const g = state.ecogram;
+  renderEcoGramHud(g);
+  renderEcoGramMeters(g);
+  renderEcoGramInterventions(g);
+  syncEcoVisualState();
+
+  const endBtn = $("#ecogramEndRoundBtn");
+  endBtn.disabled = g.finished;
+  endBtn.textContent = g.finished ? "🏁 Simulation complete" : "🌤️ End Year & See Results";
+}
+
+function renderEcoGramHud(g) {
+  const hud = $("#ecogramHud");
+  hud.innerHTML = "";
+  hud.appendChild(hudItem("YEAR", `${Math.min(g.round, ECOGRAM_CONFIG.totalRounds)} / ${ECOGRAM_CONFIG.totalRounds}`));
+  hud.appendChild(hudItem("BUDGET AVAILABLE", `${g.budget} credits`));
+  const installedCount = Object.keys(g.installed).length;
+  hud.appendChild(hudItem("INTERVENTIONS ACTIVE", `${installedCount} / ${ECOGRAM_INTERVENTIONS.length}`));
+}
+function hudItem(label, value) {
+  const wrap = el("div", { class: "eh-item" });
+  wrap.appendChild(el("span", { class: "eh-label" }, [label]));
+  wrap.appendChild(el("span", { class: "eh-value" }, [value]));
+  return wrap;
+}
+
+function renderEcoGramMeters(g) {
+  const wrap = $("#ecogramMeters");
+  wrap.innerHTML = "";
+  wrap.appendChild(el("h4", {}, ["📊 Campus Meters"]));
+  Object.entries(ECOGRAM_METER_META).forEach(([key, meta]) => {
+    const value = clamp(Math.round(g.meters[key]), 0, 100);
+    const row = el("div", { class: "eco-meter-row" });
+    const top = el("div", { class: "eco-meter-top" });
+    top.appendChild(el("span", {}, [`${meta.emoji} ${meta.label}`]));
+    top.appendChild(el("span", {}, [`${value}%`]));
+    row.appendChild(top);
+    const track = el("div", { class: "eco-meter-track" });
+    const fill = el("div", { class: `eco-meter-fill ${key}`, style: `width:${value}%;` });
+    track.appendChild(fill);
+    row.appendChild(track);
+    wrap.appendChild(row);
+  });
+}
+
+function renderEcoGramInterventions(g) {
+  const wrap = $("#ecogramInterventions");
+  wrap.innerHTML = "";
+  wrap.appendChild(el("h4", {}, ["🛠️ Available Interventions"]));
+
+  ECOGRAM_INTERVENTIONS.forEach((item) => {
+    const installed = !!g.installed[item.id];
+    const canAfford = g.budget >= item.cost;
+    const card = el("div", { class: "eco-card" + (installed ? " installed" : "") });
+    card.appendChild(el("div", { class: "eco-card-emoji" }, [item.emoji]));
+
+    const body = el("div", { class: "eco-card-body" });
+    const titleRow = el("div", { class: "eco-card-title-row" });
+    titleRow.appendChild(el("span", { class: "eco-card-title" }, [item.name]));
+    titleRow.appendChild(el("span", { class: "eco-card-cost" }, [installed ? "Active" : `${item.cost} credits`]));
+    body.appendChild(titleRow);
+    body.appendChild(el("p", { class: "eco-card-note" }, [item.note]));
+    if (item.tradeoff) body.appendChild(el("p", { class: "eco-card-tradeoff" }, ["⚠️ " + item.tradeoff]));
+
+    const btn = el("button", { class: "eco-card-btn" + (installed ? " installed-label" : "") }, [
+      installed ? "✓ Installed" : "Install"
+    ]);
+    if (installed) {
+      btn.disabled = true;
+    } else if (!canAfford || g.finished) {
+      btn.disabled = true;
+    } else {
+      btn.addEventListener("click", () => installIntervention(item.id));
+    }
+    body.appendChild(btn);
+
+    card.appendChild(body);
+    wrap.appendChild(card);
+  });
+}
+
+function installIntervention(id) {
+  const g = state.ecogram;
+  const item = ECOGRAM_INTERVENTIONS.find((i) => i.id === id);
+  if (!item || g.installed[id] || g.budget < item.cost || g.finished) return;
+  g.budget -= item.cost;
+  g.installed[id] = true;
+  renderEcoGram();
+}
+
+function endEcoGramRound() {
+  const g = state.ecogram;
+  if (g.finished) return;
+
+  const deltas = { water: 0, energy: 0, biodiversity: 0, waste: 0 };
+  Object.keys(deltas).forEach((key) => { deltas[key] += ECOGRAM_CONFIG.baselineDrift[key]; });
+
+  Object.keys(g.installed).forEach((id) => {
+    const item = ECOGRAM_INTERVENTIONS.find((i) => i.id === id);
+    if (!item) return;
+    Object.entries(item.effects).forEach(([key, val]) => { deltas[key] += val; });
+  });
+
+  Object.keys(g.meters).forEach((key) => {
+    g.meters[key] = clamp(g.meters[key] + deltas[key], 0, 100);
+  });
+
+  logEcoGramRound(g, deltas);
+
+  g.budget += ECOGRAM_CONFIG.incomePerRound;
+  g.round += 1;
+
+  if (g.round > ECOGRAM_CONFIG.totalRounds) {
+    g.finished = true;
+    renderEcoGramSummary(g);
+  }
+
+  renderEcoGram();
+}
+
+function logEcoGramRound(g, deltas) {
+  const logZone = $("#ecogramLog");
+  const entry = el("div", { class: "eco-log-entry" });
+  entry.appendChild(el("span", { class: "elog-year" }, [`Year ${g.round}:`]));
+  const parts = Object.entries(ECOGRAM_METER_META).map(([key, meta]) => {
+    const d = Math.round(deltas[key]);
+    const sign = d > 0 ? "+" : "";
+    return `${meta.emoji} ${sign}${d}`;
+  });
+  entry.appendChild(document.createTextNode(parts.join("   ")));
+  logZone.insertBefore(entry, logZone.firstChild);
+}
+
+function renderEcoGramSummary(g) {
+  const zone = $("#ecogramSummaryZone");
+  const avg = Object.values(g.meters).reduce((a, b) => a + b, 0) / Object.values(g.meters).length;
+  const rating = ECOGRAM_RATINGS.find((r) => avg >= r.min) || ECOGRAM_RATINGS[ECOGRAM_RATINGS.length - 1];
+
+  const card = el("div", { class: "eco-summary-card" });
+  card.appendChild(el("div", { class: "eco-summary-emoji" }, [rating.emoji]));
+  card.appendChild(el("div", { class: "eco-summary-label" }, [rating.label]));
+  card.appendChild(el("div", { class: "eco-summary-score" }, [`Overall sustainability score: ${Math.round(avg)} / 100`]));
+  card.appendChild(el("p", { class: "eco-summary-blurb" }, [rating.blurb]));
+
+  const installedNames = Object.keys(g.installed)
+    .map((id) => ECOGRAM_INTERVENTIONS.find((i) => i.id === id))
+    .filter(Boolean)
+    .map((i) => `${i.emoji} ${i.name}`);
+  card.appendChild(el("p", { class: "eco-summary-blurb" }, [
+    installedNames.length
+      ? "Interventions installed: " + installedNames.join(", ")
+      : "No interventions were installed this run — try again and invest early."
+  ]));
+
+  zone.innerHTML = "";
+  zone.appendChild(card);
+  zone.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 /* ========================================================================
@@ -3529,7 +3416,7 @@ function initApp() {
   initScanDiscover();
   initIKS();
   initQuizzes();
-  initSurvey();
+  initEcoGram();
   initChallenges();
 }
 
